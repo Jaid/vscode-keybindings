@@ -1,0 +1,32 @@
+name: build
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: 45 23 * * 0 # https://crontab.guru/#45_23_*_*_0
+  repository_dispatch:
+    types:
+      - build
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3.5.3
+      - name: setupNode
+        uses: actions/setup-node@v3.7.0
+        with:
+          node-version: latest
+      - name: installNodePackages
+        shell: bash
+        run: |
+          cd
+          npm install --no-save --no-package-lock @actions/core js-yaml fs-extra globby read-file-yaml
+      - id: build
+        name: build
+        shell: bash
+        env:
+          inputs: ${{ toJSON(inputs) }}
+          github: ${{ toJSON(github) }}
+        run: node --input-type module < "$GIT_WORKSPACE/.github/actions/build/index.js"

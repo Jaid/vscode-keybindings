@@ -1,0 +1,338 @@
+- key: ctrl+f
+  command: explorer.newFile
+  when: explorerViewletFocus
+- key: ctrl+d
+  command: explorer.newFolder
+  when: explorerViewletFocus
+- key: ctrl+shift+c
+  command: duplicate.execute
+  when: explorerViewletFocus
+- key: ctrl+shift+i
+  command: editor.action.insertSnippet
+  when: editorTextFocus && !editorReadonly
+  ? args
+  : name: Import module
+- key: ctrl+shift+l
+  command: editor.action.insertSnippet
+  when: editorTextFocus && !editorReadonly
+  ? args
+  : name: For of
+- key: ctrl+shift+d
+  command: editor.action.insertSnippet
+  when: editorTextFocus && !editorReadonly
+  ? args
+  : name: JSDoc comment
+- key: ctrl+shift+l
+  command: editor.action.insertSnippet
+  when: editorTextFocus && !editorReadonly
+  ? args
+  : name: For of
+- key: ctrl+shift+w
+  command: '-workbench.action.closeWindow'
+- key: ctrl+shift+w
+  command: workbench.action.closeOtherEditors
+- key: ctrl+t
+  command: '-workbench.action.showAllSymbols'
+- key: f5
+  command: '-workbench.action.debug.start'
+  when: '!inDebugMode'
+- key: ctrl+shift+down
+  command: '-editor.action.insertCursorBelow'
+  when: editorTextFocus
+- key: shift+alt+down
+  command: '-editor.action.insertCursorBelow'
+  when: editorTextFocus
+- key: ctrl+shift+up
+  command: '-editor.action.insertCursorAbove'
+  when: editorTextFocus
+- key: shift+alt+up
+  command: '-editor.action.insertCursorAbove'
+  when: editorTextFocus
+- key: ctrl+shift+right
+  command: '-workbench.action.terminal.resizePaneRight'
+  when: terminalFocus
+- key: ctrl+shift+right
+  command: '-cursorWordEndRightSelect'
+  when: textInputFocus
+- key: ctrl+pagedown
+  command: '-workbench.action.nextEditor'
+- key: ctrl+shift+left
+  command: workbench.action.previousEditor
+- key: ctrl+pageup
+  command: '-workbench.action.previousEditor'
+- key: ctrl+shift+right
+  command: workbench.action.nextEditor
+- key: ctrl+shift+left
+  command: '-cursorWordStartLeftSelect'
+  when: textInputFocus
+- key: ctrl+shift+left
+  command: '-workbench.action.terminal.resizePaneLeft'
+  when: terminalFocus
+- key: ctrl+shift+up
+  command: '-workbench.action.terminal.resizePaneUp'
+  when: terminalFocus
+- key: ctrl+shift+up
+  command: '-workbench.action.terminal.scrollUp'
+  when: terminalFocus
+- key: ctrl+shift+down
+  command: '-workbench.action.terminal.resizePaneDown'
+  when: terminalFocus
+- key: ctrl+shift+down
+  command: '-workbench.action.terminal.scrollDown'
+  when: terminalFocus
+- key: ctrl+shift+down
+  command: editor.action.copyLinesDownAction
+  when: editorTextFocus && !editorReadonly
+- key: ctrl+shift+alt+down
+  command: '-editor.action.copyLinesDownAction'
+  when: editorTextFocus && !editorReadonly
+- key: ctrl+shift+up
+  command: editor.action.copyLinesUpAction
+  when: editorTextFocus && !editorReadonly
+- key: ctrl+shift+alt+up
+  command: '-editor.action.copyLinesUpAction'
+  when: editorTextFocus && !editorReadonly
+- key: f1
+  command: '-workbench.action.showCommands'
+- key: ctrl+shift+v
+  command: '-markdown.showPreview'
+  when: editorLangId == 'markdown'
+- key: ctrl+v
+  command: '-workbench.action.terminal.paste'
+  when: terminalFocus
+- key: ctrl+shift+c
+  command: '-workbench.action.terminal.openNativeConsole'
+  when: '!terminalFocus'
+- key: ctrl+c
+  command: '-workbench.action.terminal.copySelection'
+  when: terminalFocus && terminalTextSelected
+- key: ctrl+shift+q
+  command: '-workbench.action.quickOpenNavigatePreviousInViewPicker'
+  when: inQuickOpen && inViewsPicker
+- key: ctrl+shift+q
+  command: git.stageSelectedRanges
+- key: ctrl+shift+oem_5
+  command: '-editor.action.jumpToBracket'
+  when: editorTextFocus
+- key: ctrl+shift+oem_5
+  command: workbench.action.toggleZenMode
+- key: ctrl+k z
+  command: '-workbench.action.toggleZenMode'
+- key: f6
+  command: '-workbench.action.debug.pause'
+  when: debugState == 'running'
+- key: ctrl+shift+l
+  command: '-editor.action.selectHighlights'
+  when: editorFocus
+- key: ctrl+shift+d
+  command: '-workbench.view.debug'
+- key: tab
+  command: '-leaper.leap'
+  ? when
+  : editorTextFocus && leaper.hasLineOfSight && leaper.inLeaperMode && !editorHasSelection
+    && !editorTabMovesFocus && !suggestWidgetVisible
+- key: ctrl+t
+  command: workbench.action.terminal.toggleTerminal
+- key: ctrl+oem_3
+  command: '-workbench.action.terminal.toggleTerminal'
+- key: alt+oem_5
+  command: workbench.action.switchWindow
+- key: ctrl+alt+t
+  command: workbench.action.terminal.openNativeConsole
+- key: f11
+  command: '-extension.node-debug.startWithStopOnEntry'
+  ? when
+  : "!inDebugMode && debugConfigurationType == 'node' || !inDebugMode && debugConfigurationType
+    == 'pwa-extensionHost' || !inDebugMode && debugConfigurationType == 'pwa-node'"
+- key: f11
+  command: '-workbench.action.debug.stepInto'
+  when: debugState != 'inactive'
+- key: shift+f11
+  command: '-workbench.action.debug.stepOut'
+  when: debugState == 'stopped'
+- key: ctrl+shift+oem_7
+  command: '-luna.file.newDefaultSize'
+- key: ctrl+oem_7
+  command: '-luna.file.importFromClipboard'
+- key: ctrl+shift+v
+  command: '-workbench.action.terminal.paste'
+  when: terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
+- key: ctrl+v
+  command: '-workbench.action.terminal.paste'
+  when: terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
+- key: ctrl+r r
+  command: '-npm-script.rerun-last-script'
+  when: config.npm.oldKeybindings.enable && !terminalFocus
+- key: ctrl+k l
+  command: '-npm-script.rerun-last-script'
+  when: '!config.npm.oldKeybindings.enable && !terminalFocus'
+- key: ctrl+r shift+r
+  command: '-npm-script.run'
+  when: config.npm.oldKeybindings.enable && !terminalFocus
+- key: ctrl+k shift+r
+  command: '-npm-script.run'
+  when: '!config.npm.oldKeybindings.enable && !terminalFocus'
+- key: ctrl+r t
+  command: '-npm-script.test'
+  when: config.npm.oldKeybindings.enable && !terminalFocus
+- key: ctrl+k t
+  command: '-npm-script.test'
+  when: '!config.npm.oldKeybindings.enable && !terminalFocus'
+- key: ctrl+r shift+x
+  command: '-npm-script.terminate-script'
+  when: config.npm.oldKeybindings.enable && !terminalFocus
+- key: ctrl+r l
+  command: '-npm-script.showOutput'
+  when: config.npm.oldKeybindings.enable && !terminalFocus
+- key: ctrl+k shift+x
+  command: '-npm-script.terminate-script'
+  when: '!config.npm.oldKeybindings.enable && !terminalFocus'
+- key: ctrl+c
+  command: '-workbench.action.terminal.copySelection'
+  ? when
+  : terminalFocus && terminalHasBeenCreated && terminalTextSelected || terminalFocus
+    && terminalProcessSupported && terminalTextSelected
+- key: f3
+  command: '-workbench.action.terminal.findNext'
+  ? when
+  : terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported
+    || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
+- key: shift+f3
+  command: '-workbench.action.terminal.findPrevious'
+  ? when
+  : terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported
+    || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
+- key: shift+escape
+  command: '-workbench.action.terminal.hideFind'
+  ? when
+  : terminalFindVisible && terminalFocus && terminalHasBeenCreated || terminalFindVisible
+    && terminalFocus && terminalProcessSupported
+- key: ctrl+shift+f
+  command: workbench.action.terminal.focusFind
+  ? when
+  : terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported
+    || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
+- key: ctrl+f
+  command: '-workbench.action.terminal.focusFind'
+  ? when
+  : terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported
+    || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
+- key: ctrl+w
+  command: '-workbench.action.terminal.killEditor'
+  ? when
+  : terminalEditorFocus && terminalFocus && terminalHasBeenCreated && resourceScheme
+    == 'vscode-terminal' || terminalEditorFocus && terminalFocus && terminalProcessSupported
+    && resourceScheme == 'vscode-terminal'
+- key: ctrl+f4
+  command: '-workbench.action.terminal.killEditor'
+  ? when
+  : terminalEditorFocus && terminalFocus && terminalHasBeenCreated && resourceScheme
+    == 'vscode-terminal' || terminalEditorFocus && terminalFocus && terminalProcessSupported
+    && resourceScheme == 'vscode-terminal'
+- key: ctrl+shift+f
+  command: '-workbench.action.terminal.searchWorkspace'
+  when: terminalFocus && terminalProcessSupported && terminalTextSelected
+- key: ctrl+shift+5
+  command: '-workbench.action.terminal.split'
+  when: terminalFocus && terminalProcessSupported || terminalFocus && terminalWebExtensionContributedProfile
+- key: alt+c
+  command: '-workbench.action.terminal.toggleFindCaseSensitive'
+  ? when
+  : terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported
+    || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
+- key: alt+r
+  command: '-workbench.action.terminal.toggleFindRegex'
+  ? when
+  : terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported
+    || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
+- key: alt+w
+  command: '-workbench.action.terminal.toggleFindWholeWord'
+  ? when
+  : terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported
+    || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
+- key: alt+z
+  command: '-workbench.action.terminal.sizeToContentWidth'
+  ? when
+  : terminalFocus && terminalHasBeenCreated && terminalIsOpen || terminalFocus
+    && terminalIsOpen && terminalProcessSupported
+- key: ctrl+shift+oem_5
+  command: '-workbench.action.terminal.focusTabs'
+  ? when
+  : terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
+    || terminalHasBeenCreated && terminalTabsFocus || terminalProcessSupported &&
+    terminalTabsFocus
+- key: escape
+  command: '-workbench.action.terminal.clearSelection'
+  ? when
+  : terminalFocus && terminalHasBeenCreated && terminalTextSelected && !terminalFindVisible
+    || terminalFocus && terminalProcessSupported && terminalTextSelected && !terminalFindVisible
+- key: alt+space
+  command: '-workbench.action.terminal.sendSequence'
+  ? when
+  : terminalFocus && terminalShellIntegrationEnabled && !accessibilityModeEnabled
+    && terminalShellType == 'pwsh'
+- key: ctrl+v
+  command: '-workbench.action.terminal.sendSequence'
+  when: terminalFocus && !accessibilityModeEnabled && terminalShellType == 'pwsh'
+- key: ctrl+space
+  command: '-workbench.action.terminal.sendSequence'
+  ? when
+  : terminalFocus && terminalShellIntegrationEnabled && !accessibilityModeEnabled
+    && terminalShellType == 'pwsh'
+- key: shift+enter
+  command: '-workbench.action.terminal.sendSequence'
+  ? when
+  : terminalFocus && terminalShellIntegrationEnabled && !accessibilityModeEnabled
+    && terminalShellType == 'pwsh'
+- key: ctrl+backspace
+  command: '-workbench.action.terminal.sendSequence'
+  when: terminalFocus
+- key: ctrl+backspace
+  command: '-workbench.action.terminal.sendSequence'
+  when: terminalFocus && terminalShellType == 'cmd'
+- key: ctrl+delete
+  command: '-workbench.action.terminal.sendSequence'
+  when: terminalFocus
+- key: ctrl+shift+2
+  command: '-workbench.action.terminal.sendSequence'
+  when: terminalFocus
+- key: ctrl+shift+6
+  command: '-workbench.action.terminal.sendSequence'
+  when: terminalFocus
+- key: ctrl+oem_2
+  command: '-workbench.action.terminal.sendSequence'
+  when: terminalFocus
+- key: ctrl+shift+5
+  command: '-workbench.action.terminal.splitInstance'
+  when: terminalProcessSupported && terminalTabsFocus
+- key: f1
+  command: code-runner.run
+  when: editorFocus
+- key: ctrl+shift+r
+  command: workbench.action.terminal.relaunch
+  when: terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
+- key: ctrl+shift+a
+  command: extension.multiCommand.execute
+  ? args
+  : command: multiCommand.saveAndPush
+- key: ctrl+up
+  command: editor.action.inlineSuggest.showNext
+  when: inlineSuggestionVisible && !editorReadonly
+- key: alt+oem_6
+  command: '-editor.action.inlineSuggest.showNext'
+  when: inlineSuggestionVisible && !editorReadonly
+- key: ctrl+down
+  command: editor.action.inlineSuggest.showPrevious
+  when: inlineSuggestionVisible && !editorReadonly
+- key: alt+oem_4
+  command: '-editor.action.inlineSuggest.showPrevious'
+  when: inlineSuggestionVisible && !editorReadonly
+- key: ctrl+down
+  command: '-scrollLineDown'
+  when: textInputFocus
+- key: ctrl+up
+  command: '-scrollLineUp'
+  when: textInputFocus
+- key: ctrl+shift+c
+  command: workbench.panel.chat.view.copilot.focus
+  when: '!inChat'
