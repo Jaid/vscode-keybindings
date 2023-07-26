@@ -11,7 +11,7 @@ const globbyIterator = globbyStream('*.yml', {
 })
 for await (const file of globbyIterator) {
   console.dir(file)
-  const data = await readFileYaml(file)
+  const data = await readFileYaml.default(file)
   console.dir(data)
   const output = yaml.dump(data)
   const outputFile = path.resolve(github.workspace, 'dist', file)
