@@ -35,10 +35,11 @@ jobs:
         shell: bash
         run: |
           cd "$GITHUB_WORKSPACE/dist"
-          npx vsce package
+          npx @vscode/vsce package
       - name: check
         id: check
         shell: bash
         run: |
           cd "$GITHUB_WORKSPACE/dist"
           ls -lah
+          ls -lah ~
