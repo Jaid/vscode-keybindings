@@ -8,11 +8,12 @@ import {globbyStream} from 'globby'
 const github = JSON.parse(process.env.github)
 const globbyIterator = globbyStream('*.yml', {
   cwd: path.resolve(github.workspace, 'src'),
-  objectMode: true
+  objectMode: true,
+  absolute: true
 })
-for await (const file of globbyIterator) {
+for await (const globbyEntry of globbyIterator) {
   console.dir(file)
-  const data = await readFileYaml.default(file)
+  const data = await readFileYaml.default(globbyEntry.path)
   console.dir(data)
   const output = yaml.dump(data)
   const outputFile = path.resolve(github.workspace, 'dist', file)
