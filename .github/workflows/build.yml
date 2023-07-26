@@ -22,7 +22,7 @@ jobs:
         shell: bash
         run: |
           cd
-          npm install --no-save --no-package-lock @actions/core js-yaml fs-extra globby read-file-yaml
+          npm install --no-save --no-package-lock @actions/core js-yaml fs-extra globby read-file-yaml @vscode/vsce
       - id: build
         name: build
         shell: bash
@@ -30,3 +30,15 @@ jobs:
           inputs: ${{ toJSON(inputs) }}
           github: ${{ toJSON(github) }}
         run: node --input-type module < .github/actions/build/index.js
+      - id: bundle
+        name: bundle
+        shell: bash
+        run: |
+          cd "$GITHUB_WORKSPACE/dist"
+          vsce package
+      - name: check
+        id: check
+        shell: bash
+        run: |
+          cd "$GITHUB_WORKSPACE/dist"
+          ls -lah
