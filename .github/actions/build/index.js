@@ -22,6 +22,8 @@ for await (const globbyEntry of globbyIterator) {
     }
     newOutput.push(entry)
   }
-  const output = yaml.dump(newOutput)
+  const output = yaml.dump(newOutput, {
+    lineWidth: -1,
+  })
   console.log(output)
 }
