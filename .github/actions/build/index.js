@@ -45,3 +45,4 @@ const packageManifest = {
     "keybindings": "./keybindings.json"
   }
 }
+await fs.outputFile(path.resolve(github.workspace, 'dist', "package.json"), JSON.stringify(packageManifest))
