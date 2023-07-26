@@ -22,7 +22,6 @@ for await (const globbyEntry of globbyIterator) {
     }
     newOutput.push(entry)
   }
-  const output = yaml.dump(data)
-  const outputFile = path.resolve(github.workspace, 'dist', file)
-  await fs.outputFile(outputFile, output)
+  const output = yaml.dump(newOutput)
+  console.dir(output)
 }
