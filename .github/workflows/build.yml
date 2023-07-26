@@ -29,4 +29,4 @@ jobs:
         env:
           inputs: ${{ toJSON(inputs) }}
           github: ${{ toJSON(github) }}
-        run: node --input-type module < "$GIT_WORKSPACE/.github/actions/build/index.js"
+        run: node --input-type module < .github/actions/build/index.js
