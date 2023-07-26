@@ -1,6 +1,6 @@
 {
   "editor.formatOnSave": false,
-  "yaml": {
-    "format": "prettier"
-  },
+  "yaml.schemas": {
+		"https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json": "/src/*.yml"
+	},
 }

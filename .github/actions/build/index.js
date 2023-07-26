@@ -12,7 +12,6 @@ const globbyIterator = globbyStream('*.yml', {
 })
 const additions = []
 const deletions = []
-const outputJobs = []
 for await (const globbyEntry of globbyIterator) {
   console.dir(globbyEntry)
   const data = await readFileYaml.default(globbyEntry.path)
@@ -24,13 +23,11 @@ for await (const globbyEntry of globbyIterator) {
     }
     additions.push(entry)
   }
-  const output = [
-    ...deletions,
-    ...additions
-  ]
-  const outputPath = path.resolve(github.workspace, 'dist', "keybindings.json")
-  outputJobs.push(fs.outputFile(outputPath, JSON.stringify(output)))
 }
+const output = [
+  ...deletions,
+  ...additions
+]
 const packageManifest = {
   "name": "jaid-keybindings",
   "displayName": "Jaid Keybindings",
@@ -43,8 +40,7 @@ const packageManifest = {
     "Keymaps"
   ],
   "contributes": {
-    "keybindings": "./keybindings.json"
+    "keybindings": output
   }
 }
-outputJobs.push( fs.outputFile(path.resolve(github.workspace, 'dist', "package.json"), JSON.stringify(packageManifest)))
-await Promise.all(outputJobs)
+await fs.outputFile(path.resolve(github.workspace, 'dist', "package.json"), JSON.stringify(packageManifest))
