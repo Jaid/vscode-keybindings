@@ -1,6 +1,5 @@
 // @ts-nocheck
 import core from '@actions/core'
-import yaml from 'js-yaml'
 import fs from 'fs-extra'
 import path from 'path'
 import readFileYaml from 'read-file-yaml'
@@ -30,4 +29,19 @@ for await (const globbyEntry of globbyIterator) {
   ]
   const outputPath = path.resolve(github.workspace, 'dist', "keybindings.json")
   await fs.outputFile(outputPath, JSON.stringify(output))
+}
+const packageManifest = {
+  "name": "jaid-keybindings",
+  "displayName": "Jaid Keybindings",
+  "description": "Personal keybindings (also removes any default keybindings)",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Keymaps"
+  ],
+  "contributes": {
+    "keybindings": "./keybindings.json"
+  }
 }
