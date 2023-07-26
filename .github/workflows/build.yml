@@ -42,4 +42,4 @@ jobs:
         run: |
           cd "$GITHUB_WORKSPACE/dist"
           ls -lah
-          ls -lah ~
+          ls -lah ~/node_modules
