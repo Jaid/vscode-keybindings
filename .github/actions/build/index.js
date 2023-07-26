@@ -23,5 +23,5 @@ for await (const globbyEntry of globbyIterator) {
     newOutput.push(entry)
   }
   const output = yaml.dump(newOutput)
-  console.dir(output)
+  console.log(output)
 }
