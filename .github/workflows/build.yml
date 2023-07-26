@@ -22,7 +22,7 @@ jobs:
         shell: bash
         run: |
           cd
-          npm install --no-save --no-package-lock @actions/core fs-extra globby read-file-yaml
+          npm install --no-save --no-package-lock @actions/core fs-extra globby read-file-yaml @vscode/vsce
       - id: build
         name: build
         shell: bash
@@ -35,11 +35,11 @@ jobs:
         shell: bash
         run: |
           cd "$GITHUB_WORKSPACE/dist"
-          npx @vscode/vsce package
+          # npx ~/node_modules/.bin/package
       - name: check
         id: check
         shell: bash
         run: |
           cd "$GITHUB_WORKSPACE/dist"
           ls -lah
-          ls -lah ~/node_modules
+          ls -lah ~/node_modules/.bin
