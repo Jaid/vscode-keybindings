@@ -38,9 +38,17 @@ jobs:
           npm install --no-save --no-package-lock @vscode/vsce
           cd "$GITHUB_WORKSPACE/dist"
           npx ~/node_modules/.bin/vsce package
+          mkdir bundle
+          mv *.vsix bundle
       - name: check
         id: check
         shell: bash
         run: |
           cd "$GITHUB_WORKSPACE/dist"
           ls -lah
+      - name: upload
+        id: upload
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: dist
+          path: ${{ github.workspace }}/dist/bundle/*.vsix
