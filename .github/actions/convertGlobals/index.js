@@ -5,12 +5,16 @@ import path from 'path'
 import readFileJson from 'read-file-json'
 const github = JSON.parse(process.env.github)
 const jsonPath = path.resolve(github.workspace, 'src', 'global.jsonc')
-const data = await readFileJson.default(jsonPath)
+// const data = await readFileJson.default(jsonPath)
+const data = {
+  abc: 'def\nghi\njkl\nmno\npqr\nstu\nvwx\nyz'
+}
 const yamlString = yaml.stringify(data, null, {
   schema: 'core',
   doubleQuotedMinMultiLineLength: 10000,
   lineWidth: 0,
   minContentWidth: 0,
-  singleQuote: true
+  singleQuote: true,
+  nullStr: '~'
 })
 console.log(yamlString)
