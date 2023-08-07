@@ -8,12 +8,12 @@ const excludedKeystrokes = [
   'escape',
   'escape escape',
   /^(|(ctrl|alt|shift)\+)(up|left|right|down)$/,
+  /^(|(ctrl|alt|shift)\+)(end|home|pageup|pagedown)$/,
   'backspace',
   'delete',
   'tab',
   'shift+escape',
   'enter',
-  'ctrl+end',
   'home'
 ]
 const github = JSON.parse(process.env.github)
