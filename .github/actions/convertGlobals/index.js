@@ -15,6 +15,7 @@ const yamlString = yaml.stringify(data, null, {
   lineWidth: 0,
   minContentWidth: 0,
   singleQuote: true,
-  nullStr: '~'
+  nullStr: '~',
+  blockQuote: 'literal'
 })
 console.log(yamlString)
