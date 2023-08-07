@@ -1,0 +1,28 @@
+name: convertGlobals
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+jobs:
+  convertGlobals:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3.5.3
+      - name: setupNode
+        uses: actions/setup-node@v3.7.0
+        with:
+          node-version: latest
+      - name: installNodePackages
+        shell: bash
+        run: |
+          cd
+          npm install --no-save --no-package-lock @actions/core fs-extra read-file-json
+      - id: convertGlobals
+        name: convertGlobals
+        shell: bash
+        env:
+          inputs: ${{ toJSON(inputs) }}
+          github: ${{ toJSON(github) }}
+        run: node --input-type module < .github/actions/convertGlobals/index.js
