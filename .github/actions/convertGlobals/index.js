@@ -7,19 +7,13 @@ import readFileJson from 'read-file-json'
 const excludedKeystrokes = [
   'escape',
   'escape escape',
-  'down',
-  'left',
-  'right',
-  'up',
+  /(^|ctrl|alt|shift)\+(up|left|right|down)$/,
   'backspace',
   'delete',
   'tab',
-  'shift+left',
-  'shift+right',
-  'shift+up',
-  'shift+down',
   'shift+escape',
-  'enter'
+  'enter',
+  'ctrl+end'
 ]
 const github = JSON.parse(process.env.github)
 const jsonPath = path.resolve(github.workspace, 'src', 'global.jsonc')
@@ -30,8 +24,15 @@ const shouldInclude = entry => {
   if (entry.command.startsWith('-')) {
     return false
   }
-  if (excludedKeystrokes.includes(entry.key)) {
-    return false
+  for (const excludedKeystroke of excludedKeystrokes) {
+    if (typeof excludedKeystroke === 'string') {
+      if (entry.key === excludedKeystroke) {
+        return false
+      }
+    }
+    if (excludedKeystroke.test(entry.key)) {
+      return false
+    }
   }
   return true
 }
