@@ -30,8 +30,10 @@ const shouldInclude = entry => {
         return false
       }
     }
-    if (excludedKeystroke.test(entry.key)) {
-      return false
+    if (excludedKeystroke instanceof RegExp) {
+      if (excludedKeystroke.test(entry.key)) {
+        return false
+      }
     }
   }
   return true
