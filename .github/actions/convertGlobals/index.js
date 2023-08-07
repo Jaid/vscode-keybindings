@@ -26,14 +26,17 @@ const jsonPath = path.resolve(github.workspace, 'src', 'global.jsonc')
 const data = await readFileJson.default(jsonPath)
 const result = []
 const excluded = []
-for (const entry of data) {
-  let include = true
+const shouldInclude = entry => {
   if (entry.command.startsWith('-')) {
-    include = false
+    return false
   }
   if (excludedKeystrokes.includes(entry.key)) {
-    include = false
+    return false
   }
+  return true
+}
+for (const entry of data) {
+  const include = shouldInclude(entry)
   if (include) {
     result.push(entry)
   } else {
@@ -42,7 +45,7 @@ for (const entry of data) {
 }
 core.info(`Loaded ${Object.keys(data).length} global keybindings from ${jsonPath}`)
 core.info(`Included ${result.length}, excluded ${data.length - result.length}`)
-const yamlString = yaml.stringify(data, null, {
+const yamlString = yaml.stringify(result, null, {
   schema: 'core',
   lineWidth: 0,
   minContentWidth: 0,
