@@ -5,16 +5,10 @@ import yaml from 'yaml'
 import path from 'path'
 import readFileJson from 'read-file-json'
 const excludedKeystrokes = [
-  'escape',
   'escape escape',
-  /^(|(ctrl|alt|shift)\+)(up|left|right|down)$/,
-  /^(|(ctrl|alt|shift)\+)(end|home|pageup|pagedown)$/,
-  'backspace',
-  'delete',
-  'tab',
-  'shift+escape',
-  'enter',
-  'home'
+  /^(|(ctrl|alt|shift|ctrl\+shift|ctrl\+shift\+alt)\+)(up|left|right|down)$/,
+  /^(|(ctrl|alt|shift|ctrl\+shift|ctrl\+shift\+alt)\+)(end|home|pageup|pagedown)$/,
+  /^(|(ctrl|alt|shift|ctrl\+shift|ctrl\+shift\+alt)\+)(backspace|delete|tab|enter|escape)$/,
 ]
 const github = JSON.parse(process.env.github)
 const jsonPath = path.resolve(github.workspace, 'src', 'global.jsonc')
