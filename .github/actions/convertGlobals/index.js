@@ -2,6 +2,7 @@
 import fs from 'fs-extra'
 import path from 'path'
 import readFileJson from 'read-file-json'
+const github = JSON.parse(process.env.github)
 const jsonPath = path.resolve(github.workspace, 'src', 'keybindings.json')
 const data = await readFileJson.default(jsonPath)
 console.dir(data)
