@@ -18,7 +18,7 @@ jobs:
         shell: bash
         run: |
           cd
-          npm install --no-save --no-package-lock @actions/core fs-extra read-file-json yaml
+          npm install --no-save --no-package-lock @actions/core fs-extra read-file-json yaml key-counter
       - id: convertGlobals
         name: convertGlobals
         shell: bash
