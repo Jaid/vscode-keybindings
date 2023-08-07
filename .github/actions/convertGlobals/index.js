@@ -16,7 +16,7 @@ const jsonPath = path.resolve(github.workspace, 'src', 'global.jsonc')
 const data = await readFileJson.default(jsonPath)
 const result = []
 const excluded = []
-const exclusionCounter = new KeyCounter
+const exclusionCounter = new KeyCounter.default
 const toYaml = input => yaml.stringify(input, null, {
   schema: 'core',
   lineWidth: 0,
