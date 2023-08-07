@@ -7,7 +7,7 @@ import readFileJson from 'read-file-json'
 const excludedKeystrokes = [
   'escape',
   'escape escape',
-  /^(|ctrl|alt|shift)\+(up|left|right|down)$/,
+  /^(|(ctrl|alt|shift)\+)(up|left|right|down)$/,
   'backspace',
   'delete',
   'tab',
