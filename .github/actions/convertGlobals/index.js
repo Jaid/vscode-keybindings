@@ -12,7 +12,14 @@ const excludedKeystrokes = [
   'right',
   'up',
   'backspace',
-  'delete'
+  'delete',
+  'tab',
+  'shift+left',
+  'shift+right',
+  'shift+up',
+  'shift+down',
+  'shift+escape',
+  'enter'
 ]
 const github = JSON.parse(process.env.github)
 const jsonPath = path.resolve(github.workspace, 'src', 'global.jsonc')
@@ -20,15 +27,18 @@ const data = await readFileJson.default(jsonPath)
 const result = []
 const excluded = []
 for (const entry of data) {
+  let include = true
   if (entry.command.startsWith('-')) {
-    excluded.push(entry)
-    continue
+    include = false
   }
   if (excludedKeystrokes.includes(entry.key)) {
-    excluded.push(entry)
-    continue
+    include = false
   }
-  result.push(entry)
+  if (include) {
+    result.push(entry)
+  } else {
+    excluded.push(entry)
+  }
 }
 core.info(`Loaded ${Object.keys(data).length} global keybindings from ${jsonPath}`)
 core.info(`Included ${result.length}, excluded ${data.length - result.length}`)
