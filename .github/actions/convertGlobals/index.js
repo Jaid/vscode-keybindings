@@ -7,9 +7,14 @@ import readFileJson from 'read-file-json'
 import KeyCounter from 'key-counter'
 const excludedKeystrokes = [
   'escape escape',
-  /^(|(ctrl|alt|shift|ctrl\+shift|ctrl\+shift\+alt)\+)(up|left|right|down)$/,
-  /^(|(ctrl|alt|shift|ctrl\+shift|ctrl\+shift\+alt)\+)(end|home|pageup|pagedown)$/,
-  /^(|(ctrl|alt|shift|ctrl\+shift|ctrl\+shift\+alt)\+)(backspace|delete|tab|enter|escape)$/,
+  /^(|(ctrl|alt|shift|ctrl\+alt|shift\+alt|ctrl\+shift|ctrl\+shift\+alt)\+)(up|left|right|down)$/,
+  /^(|(ctrl|alt|shift|ctrl\+alt|shift\+alt|ctrl\+shift|ctrl\+shift\+alt)\+)(end|home|pageup|pagedown)$/,
+  /^(|(ctrl|alt|shift|ctrl\+alt|shift\+alt|ctrl\+shift|ctrl\+shift\+alt)\+)(backspace|delete|tab|enter|escape|space)$/,
+  'ctrl+a',
+  'ctrl+c',
+  'ctrl+v',
+  'ctrl+z',
+  'ctrl+shift+y',
 ]
 const github = JSON.parse(process.env.github)
 const jsonPath = path.resolve(github.workspace, 'src', 'global.jsonc')
