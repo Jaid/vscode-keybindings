@@ -86,7 +86,7 @@ for (const entry of data) {
     if (excludedKeystroke.test(entry)) {
       isIncluded = false
       excluded.push(entry)
-      exclusionCounter.add(excludedKeystroke.getTitle())
+      exclusionCounter.feed(excludedKeystroke.getTitle())
       break
     }
   }
