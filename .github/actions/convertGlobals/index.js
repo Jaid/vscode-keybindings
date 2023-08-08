@@ -6,7 +6,6 @@ import path from 'path'
 import readFileJson from 'read-file-json'
 import KeyCounter from 'key-counter'
 const excludedKeystrokes = [
-  'escape escape',
   /^(|(ctrl|alt|shift|ctrl\+alt|shift\+alt|ctrl\+shift|ctrl\+shift\+alt)\+)(up|left|right|down)$/,
   /^(|(ctrl|alt|shift|ctrl\+alt|shift\+alt|ctrl\+shift|ctrl\+shift\+alt)\+)(pageup|pagedown)$/,
   /^(|(ctrl|alt|shift|ctrl\+alt|shift\+alt|ctrl\+shift|ctrl\+shift\+alt)\+)(end|home)$/,
@@ -23,6 +22,8 @@ const excludedKeystrokes = [
   'ctrl+f',
   'ctrl+shift+z',
   'ctrl+shift+f',
+  'ctrl+w',
+  'ctrl+x'
 ]
 const github = JSON.parse(process.env.github)
 const jsonPath = path.resolve(github.workspace, 'src', 'global.jsonc')
@@ -62,16 +63,18 @@ const shouldInclude = entry => {
 for (const entry of data) {
   const include = shouldInclude(entry)
   if (include) {
-    result.push(entry)
+    result.push({
+      command: `-${entry.command}`,
+      ...entry,
+    })
   } else {
     excluded.push(entry)
   }
 }
 core.info(`Loaded ${Object.keys(data).length} global keybindings from ${jsonPath}`)
 core.info(`Included ${result.length}, excluded ${data.length - result.length}`)
-const yamlString = toYaml(result)
 core.startGroup('YAML output')
-core.info(yamlString)
+core.info(toYaml(result))
 core.endGroup()
 core.startGroup('Excluded')
 core.info(`Excluded ${excluded.length} keybindings`)
