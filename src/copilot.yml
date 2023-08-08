@@ -1,0 +1,13 @@
+- key: f1
+  command: workbench.panel.chat.view.copilot.focus
+  when: |-
+    !inChat
+- key: f1
+  command: workbench.panel.chat.view.copilot.focus
+  when: inChat && !inChatInput
+- key: f1
+  command: workbench.action.focusActiveEditorGroup
+  when: inChatInput && editorIsOpen
+- key: f1
+  command: workbench.explorer.fileView.focus
+  when: inChatInput && !editorIsOpen

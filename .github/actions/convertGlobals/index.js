@@ -5,6 +5,46 @@ import yaml from 'yaml'
 import path from 'path'
 import readFileJson from 'read-file-json'
 import KeyCounter from 'key-counter'
+const ExclusionRule = class {
+  constructor (input) {
+    if (typeof input === 'string') {
+      this.value = input
+      this.type = 'static'
+    }
+    if (input instanceof RegExp) {
+      this.value = input
+      this.type = 'regex'
+    }
+    if (Array.isArray(input)) {
+      if (input[0] === 'command') {
+        this.value = input[1]
+        this.type = 'command'
+      }
+    }
+  }
+  test (keystrokeObject) {
+    if (this.type === 'static') {
+      return keystrokeObject.key === this.value
+    }
+    if (this.type === 'regex') {
+      return this.value.test(keystrokeObject.key)
+    }
+    if (this.type === 'command') {
+      return keystrokeObject.command === this.value
+    }
+  }
+  getTitle() {
+    if (this.type === 'static') {
+      return this.value
+    }
+    if (this.type === 'regex') {
+      return this.value.source
+    }
+    if (this.type === 'command') {
+      return `command ${this.value}`
+    }
+  }
+}
 const excludedKeystrokes = [
   /^(|(ctrl|alt|shift|ctrl\+alt|shift\+alt|ctrl\+shift|ctrl\+shift\+alt)\+)(up|left|right|down)$/,
   /^(|(ctrl|alt|shift|ctrl\+alt|shift\+alt|ctrl\+shift|ctrl\+shift\+alt)\+)(pageup|pagedown)$/,
@@ -23,8 +63,9 @@ const excludedKeystrokes = [
   'ctrl+shift+z',
   'ctrl+shift+f',
   'ctrl+w',
-  'ctrl+x'
-]
+  'ctrl+x',
+  ['command', 'editor.action.refactor']
+].map(input => new ExclusionRule(input))
 const github = JSON.parse(process.env.github)
 const jsonPath = path.resolve(github.workspace, 'src', 'global.jsonc')
 const data = await readFileJson.default(jsonPath)
@@ -39,44 +80,25 @@ const toYaml = input => yaml.stringify(input, null, {
   singleQuote: true,
   nullStr: '~'
 })
-const shouldInclude = entry => {
-  if (entry.command.startsWith('-')) {
-    return false
-  }
-  for (const excludedKeystroke of excludedKeystrokes) {
-    if (typeof excludedKeystroke === 'string') {
-      if (entry.key === excludedKeystroke) {
-        exclusionCounter.feed(excludedKeystroke)
-        return false
-      }
-    }
-    if (excludedKeystroke instanceof RegExp) {
-      if (excludedKeystroke.test(entry.key)) {
-        exclusionCounter.feed(excludedKeystroke.source)
-        return false
-      }
-    }
-  }
-  keystrokeCounter.feed(entry.key)
-  return true
-}
 for (const entry of data) {
-  const include = shouldInclude(entry)
-  if (include) {
+  for (const excludedKeystroke of excludedKeystrokes) {
+    if (excludedKeystroke.test(entry)) {
+      exclusionCounter.feed(excludedKeystroke.getTitle())
+      excluded.push(entry)
+      continue
+    }
     result.push({
       ...entry,
       command: `-${entry.command}`,
     })
-  } else {
-    excluded.push(entry)
   }
 }
 core.info(`Loaded ${Object.keys(data).length} global keybindings from ${jsonPath}`)
 core.info(`Included ${result.length}, excluded ${data.length - result.length}`)
-core.startGroup('YAML output')
+core.startGroup('YAML output (keystrokes to delete)')
 core.info(toYaml(result))
 core.endGroup()
-core.startGroup('Excluded')
+core.startGroup('Excluded (keystroke to ignore)')
 core.info(`Excluded ${excluded.length} keybindings`)
 core.info(toYaml(exclusionCounter.toObjectSortedByValues()))
 core.info(toYaml(excluded))

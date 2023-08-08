@@ -1,0 +1,10 @@
+- key: f2
+  command: workbench.explorer.fileView.focus
+  when: |-
+    !filesExplorerFocus
+- key: f2
+  command: workbench.action.focusActiveEditorGroup
+  when: filesExplorerFocus
+- key: ctrl+r
+  command: renameFile
+  when: filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly

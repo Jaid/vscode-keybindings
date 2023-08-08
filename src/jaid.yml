@@ -1,37 +1,21 @@
-- key: ctrl+f
+- key: ctrl+n
   command: explorer.newFile
   when: explorerViewletFocus
-- key: ctrl+d
+- key: ctrl+shift+n
   command: explorer.newFolder
   when: explorerViewletFocus
-- key: ctrl+shift+c
+- key: ctrl+d
   command: duplicate.execute
   when: explorerViewletFocus
-- key: ctrl+shift+i
-  command: editor.action.insertSnippet
-  when: editorTextFocus && !editorReadonly
-  args:
-    name: Import module
-- key: ctrl+shift+l
-  command: editor.action.insertSnippet
-  when: editorTextFocus && !editorReadonly
-  args:
-    name: For of
-- key: ctrl+shift+d
-  command: editor.action.insertSnippet
-  when: editorTextFocus && !editorReadonly
-  args:
-    name: JSDoc comment
-- key: ctrl+shift+l
-  command: editor.action.insertSnippet
-  when: editorTextFocus && !editorReadonly
-  args:
-    name: For of
 - key: ctrl+shift+w
   command: workbench.action.closeOtherEditors
-- key: ctrl+shift+left
+  when: editorIsOpen && !terminalFocus
+- key: shift+w
+  command: workbench.action.closeEditorsInOtherGroups
+  when: editorFocus && !terminalFocus && multipleEditorGroups
+- key: ctrl+q
   command: workbench.action.previousEditor
-- key: ctrl+shift+right
+- key: ctrl+e
   command: workbench.action.nextEditor
 - key: ctrl+shift+down
   command: editor.action.copyLinesDownAction
@@ -39,33 +23,46 @@
 - key: ctrl+shift+up
   command: editor.action.copyLinesUpAction
   when: editorTextFocus && !editorReadonly
-- key: ctrl+shift+q
-  command: git.stageSelectedRanges
-- key: ctrl+shift+oem_5
-  command: workbench.action.toggleZenMode
-- key: ctrl+t
-  command: workbench.action.terminal.toggleTerminal
 - key: alt+oem_5
   command: workbench.action.switchWindow
-- key: ctrl+alt+t
-  command: workbench.action.terminal.openNativeConsole
-- key: ctrl+shift+f
-  command: workbench.action.terminal.focusFind
-  when: terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
 - key: ctrl+shift+r
   command: workbench.action.terminal.relaunch
   when: terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
-- key: ctrl+shift+a
-  command: extension.multiCommand.execute
-  args:
-    command: multiCommand.saveAndPush
-- key: ctrl+up
-  command: editor.action.inlineSuggest.showNext
-  when: inlineSuggestionVisible && !editorReadonly
-- key: ctrl+down
-  command: editor.action.inlineSuggest.showPrevious
-  when: inlineSuggestionVisible && !editorReadonly
-- key: ctrl+shift+c
-  command: workbench.panel.chat.view.copilot.focus
-  when: |
-    !inChat
+# - key: ctrl+shift+i
+#   command: editor.action.insertSnippet
+#   when: editorTextFocus && !editorReadonly
+#   args:
+#     name: Import module
+# - key: ctrl+shift+l
+#   command: editor.action.insertSnippet
+#   when: editorTextFocus && !editorReadonly
+#   args:
+#     name: For of
+# - key: ctrl+shift+d
+#   command: editor.action.insertSnippet
+#   when: editorTextFocus && !editorReadonly
+#   args:
+#     name: JSDoc comment
+# - key: ctrl+shift+l
+#   command: editor.action.insertSnippet
+#   when: editorTextFocus && !editorReadonly
+#   args:
+#     name: For of
+# - key: ctrl+shift+a
+#   command: extension.multiCommand.execute
+#   args:
+#     command: multiCommand.saveAndPush
+# - key: ctrl+up
+#   command: editor.action.inlineSuggest.showNext
+#   when: inlineSuggestionVisible && !editorReadonly
+# - key: ctrl+down
+#   command: editor.action.inlineSuggest.showPrevious
+#   when: inlineSuggestionVisible && !editorReadonly
+# - key: ctrl+alt+t
+#   command: workbench.action.terminal.openNativeConsole
+# - key: ctrl+shift+q
+#   command: git.stageSelectedRanges
+# - key: ctrl+shift+oem_5
+#   command: workbench.action.toggleZenMode
+# - key: ctrl+t
+#   command: workbench.action.terminal.toggleTerminal
