@@ -22,6 +22,7 @@ const excludedKeystrokes = [
   'ctrl+z',
   'ctrl+f',
   'ctrl+shift+z',
+  'ctrl+shift+f',
 ]
 const github = JSON.parse(process.env.github)
 const jsonPath = path.resolve(github.workspace, 'src', 'global.jsonc')
@@ -77,8 +78,6 @@ core.info(`Excluded ${excluded.length} keybindings`)
 core.info(toYaml(exclusionCounter.toObjectSortedByValues()))
 core.info(toYaml(excluded))
 core.endGroup()
-core.startGroup('Keystrokes')
-core.info(`Keystrokes: ${result.length}`)
 const keystrokeList = Object.entries(keystrokeCounter.toObjectSortedByValues()).map(([key, value]) => {
   return {
     key,
@@ -86,9 +85,9 @@ const keystrokeList = Object.entries(keystrokeCounter.toObjectSortedByValues()).
     keystrokes: data.filter(entry => entry.key === key)
   }
 })
+keystrokeList.reverse()
 for (const entry of keystrokeList) {
-  core.startGroup(entry.key + ' (' + entry.value + ')')
+  core.startGroup(`Keystroke ${entry.key} (${entry.value})`)
   core.info(toYaml(entry.keystrokes))
   core.endGroup()
 }
-core.endGroup()
