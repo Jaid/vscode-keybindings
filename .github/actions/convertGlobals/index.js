@@ -81,17 +81,22 @@ const toYaml = input => yaml.stringify(input, null, {
   nullStr: '~'
 })
 for (const entry of data) {
+  let isIncluded = true
   for (const excludedKeystroke of excludedKeystrokes) {
     if (excludedKeystroke.test(entry)) {
-      exclusionCounter.feed(excludedKeystroke.getTitle())
+      isIncluded = false
       excluded.push(entry)
-      continue
+      exclusionCounter.add(excludedKeystroke.getTitle())
+      break
     }
-    result.push({
-      ...entry,
-      command: `-${entry.command}`,
-    })
   }
+  if (!isIncluded) {
+    continue
+  }
+  result.push({
+    ...entry,
+    command: `-${entry.command}`,
+  })
 }
 core.info(`Loaded ${Object.keys(data).length} global keybindings from ${jsonPath}`)
 core.info(`Included ${result.length}, excluded ${data.length - result.length}`)
