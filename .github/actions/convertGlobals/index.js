@@ -64,8 +64,8 @@ for (const entry of data) {
   const include = shouldInclude(entry)
   if (include) {
     result.push({
-      command: `-${entry.command}`,
       ...entry,
+      command: `-${entry.command}`,
     })
   } else {
     excluded.push(entry)
