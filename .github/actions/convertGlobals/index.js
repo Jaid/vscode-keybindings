@@ -28,6 +28,7 @@ const data = await readFileJson.default(jsonPath)
 const result = []
 const excluded = []
 const exclusionCounter = new KeyCounter.default
+const keystrokeCounter = new KeyCounter.default
 const toYaml = input => yaml.stringify(input, null, {
   schema: 'core',
   lineWidth: 0,
@@ -53,6 +54,7 @@ const shouldInclude = entry => {
       }
     }
   }
+  keystrokeCounter.feed(entry.key)
   return true
 }
 for (const entry of data) {
@@ -73,4 +75,8 @@ core.startGroup('Excluded')
 core.info(`Excluded ${excluded.length} keybindings`)
 core.info(toYaml(exclusionCounter.toObjectSortedByValues()))
 core.info(toYaml(excluded))
+core.endGroup()
+core.startGroup('Keystrokes')
+core.info(`Keystrokes: ${result.length}`)
+core.info(toYaml(keystrokeCounter.toObjectSortedByValues()))
 core.endGroup()
