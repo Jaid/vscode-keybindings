@@ -1,10 +1,36 @@
-- key: f2
-  command: workbench.explorer.fileView.focus
-  when: |-
-    !filesExplorerFocus
-- key: f2
-  command: workbench.action.focusActiveEditorGroup
-  when: filesExplorerFocus
-- key: ctrl+r
-  command: renameFile
-  when: filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly
+- key: ctrl+oem_2
+  command: editor.action.addCommentLine
+  when: editorTextFocus && !editorReadonly
+- key: ctrl+shift+oem_2
+  command: editor.action.commentLine
+  when: editorTextFocus && !editorReadonly
+- key: ctrl+shift+alt+oem_2
+  command: runCommands
+  args:
+    commands:
+      - editor.action.copyLinesDownAction
+      - cursorUp
+      - editor.action.commentLine
+      - cursorUndo
+  when: editorTextFocus && !editorReadonly
+- key: ctrl+shift+w
+  command: workbench.action.closeEditorsInOtherGroups
+  when: editorFocus && multipleEditorGroups && groupEditorsCount == 1
+- key: ctrl+shift+w
+  command: workbench.action.closeGroup
+  when: editorFocus && !multipleEditorGroups && groupEditorsCount == 1
+- key: ctrl+shift+w
+  command: workbench.action.closeOtherEditors
+  when: editorIsOpen
+- key: ctrl+q
+  command: workbench.action.previousEditor
+- key: ctrl+e
+  command: workbench.action.nextEditor
+- key: ctrl+d
+  command: editor.action.copyLinesUpAction
+  when: editorTextFocus && !editorReadonly
+- key: ctrl+n
+  command: workbench.action.files.newUntitledFile
+- key: ctrl+shift+t
+  command: workbench.action.reopenClosedEditor
+  when: editorIsOpen && !editorReadonly

@@ -1,10 +1,21 @@
 - key: f2
   command: workbench.explorer.fileView.focus
-  when: |-
-    !filesExplorerFocus
+  when: focusedView != 'workbench.explorer.fileView'
 - key: f2
   command: workbench.action.focusActiveEditorGroup
-  when: filesExplorerFocus
+  when: focusedView == 'workbench.explorer.fileView'
+- key: shift+f2
+  command: workbench.explorer.openEditorsView.focus
+  when: focusedView != 'workbench.explorer.openEditorsView'
 - key: ctrl+r
   command: renameFile
-  when: filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly
+  when: focusedView == 'workbench.explorer.fileView' && !explorerResourceIsRoot && !explorerResourceReadonly
+- key: ctrl+n
+  command: explorer.newFile
+  when: focusedView == 'workbench.explorer.fileView'
+- key: ctrl+shift+n
+  command: explorer.newFolder
+  when: focusedView == 'workbench.explorer.fileView'
+- key: ctrl+d
+  command: duplicate.execute
+  when: focusedView == 'workbench.explorer.fileView'

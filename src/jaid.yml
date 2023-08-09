@@ -1,28 +1,3 @@
-- key: ctrl+n
-  command: explorer.newFile
-  when: explorerViewletFocus
-- key: ctrl+shift+n
-  command: explorer.newFolder
-  when: explorerViewletFocus
-- key: ctrl+d
-  command: duplicate.execute
-  when: explorerViewletFocus
-- key: ctrl+shift+w
-  command: workbench.action.closeOtherEditors
-  when: editorIsOpen && !terminalFocus
-- key: shift+w
-  command: workbench.action.closeEditorsInOtherGroups
-  when: editorFocus && !terminalFocus && multipleEditorGroups
-- key: ctrl+q
-  command: workbench.action.previousEditor
-- key: ctrl+e
-  command: workbench.action.nextEditor
-- key: ctrl+shift+down
-  command: editor.action.copyLinesDownAction
-  when: editorTextFocus && !editorReadonly
-- key: ctrl+shift+up
-  command: editor.action.copyLinesUpAction
-  when: editorTextFocus && !editorReadonly
 - key: ctrl+shift+r
   command: workbench.action.terminal.relaunch
   when: terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
@@ -74,3 +49,9 @@
 #   command: workbench.action.toggleZenMode
 # - key: ctrl+t
 #   command: workbench.action.terminal.toggleTerminal
+# - key: ctrl+shift+down
+#  command: editor.action.copyLinesDownAction
+#  when: editorTextFocus && !editorReadonly
+# - key: ctrl+shift+up
+#  command: editor.action.copyLinesUpAction
+#  when: editorTextFocus && !editorReadonly

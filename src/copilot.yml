@@ -11,3 +11,9 @@
 - key: f1
   command: workbench.explorer.fileView.focus
   when: inChatInput && !editorIsOpen
+- key: ctrl+f1
+  command: inlineChat.start
+  when: editorTextFocus
+- key: ctrl+shift+f1
+  command: inlineChat.stop
+  when: editorTextFocus
