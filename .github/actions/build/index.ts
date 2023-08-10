@@ -1,6 +1,7 @@
 // @ts-nocheck
 import core from '@actions/core'
 import toYaml from './lib/toYaml'
+import path from 'node:path'
 
 import {fileURLToPath} from "node:url"
 
