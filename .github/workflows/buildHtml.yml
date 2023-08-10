@@ -11,6 +11,9 @@ on:
 permissions:
   pages: write
   id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -52,7 +55,7 @@ jobs:
         id: uploadPages
         uses: actions/upload-pages-artifact@v2.0.0
         with:
-          path: '${{ env.GITHUB_WORKSPACE }}/dist'
+          path: '${{ github.workspace }}/dist'
       - name: deployPages
         id: deployPages
         uses: actions/deploy-pages@v2.0.4
