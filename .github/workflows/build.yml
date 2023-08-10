@@ -16,10 +16,7 @@ jobs:
       - name: installNodePackages
         shell: bash
         working-directory: ${{ runner.workspace }}
-        run: |
-          set -o xtrace
-          cd
-          npm install --no-save --no-package-lock ts-node @actions/core @actions/github yaml
+        run: npm install --no-save --no-package-lock ts-node @actions/core @actions/github yaml
       - id: build
         name: build
         shell: bash
