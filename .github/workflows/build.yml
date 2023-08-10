@@ -14,9 +14,10 @@ jobs:
         with:
           node-version: latest
       - name: installNodePackages
-        shell: bash
+        shell: bash -o errexit -o pipefail -o xtrace
+        working-directory: ${{ runner.workspace }}
         run: |
-          cd
+          cd ${{ runner.workspace }}
           npm install --no-save --no-package-lock ts-node @actions/core @actions/github yaml
       - id: build
         name: build
