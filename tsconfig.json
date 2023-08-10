@@ -15,20 +15,16 @@
     "outDir": "dist/typescript",
     "newLine": "lf",
     "declaration": true,
-    "emitDeclarationOnly": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "nodenext",
+    "target": "es2022",
+    "moduleResolution": "nodenext",
     "lib": [
       "ESNext"
     ]
   },
   "ts-node": {
+    "esm": true,
     "transpileOnly": true,
-    "preferTsExts": true,
-    "compilerOptions": {
-      "module": "NodeNext",
-      "target": "ESNext"
-    }
+    "preferTsExts": true
   }
 }
