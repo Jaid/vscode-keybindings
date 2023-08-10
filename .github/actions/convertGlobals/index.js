@@ -4,6 +4,7 @@ import fs from 'fs-extra'
 import path from 'path'
 import readFileJson from 'read-file-json'
 import KeyCounter from 'key-counter'
+import {fileURLToPath} from 'url'
 
 const dirName = path.dirname(fileURLToPath(import.meta.url))
 const toYaml = await import(path.resolve(dirName, 'lib', 'toYaml.js'))
