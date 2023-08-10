@@ -30,6 +30,7 @@ const output = [
 ]
 const packageManifest = {
   "name": "keybindings-reimagined",
+  "publisher": "jaidchen",
   "displayName": "Keybindings Reimagined",
   "description": "Personal keybindings (also removes any default keybindings)",
   "version": "0.0.1",

@@ -30,6 +30,12 @@ jobs:
           inputs: ${{ toJSON(inputs) }}
           github: ${{ toJSON(github) }}
         run: node --input-type module < .github/actions/buildHtml/index.js
+      - name: check
+        id: check
+        shell: bash
+        run: |
+          cd "$GITHUB_WORKSPACE/dist"
+          ls -l --almost-all --color=always --si --literal --group-directories-first
       - id: publish
         name: publish
         uses: peaceiris/actions-gh-pages@v3.9.3
