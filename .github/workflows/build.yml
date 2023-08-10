@@ -18,12 +18,12 @@ jobs:
         working-directory: ${{ runner.workspace }}
         run: |
           set -o xtrace
-          cd ${{ runner.workspace }}
+          cd
           npm install --no-save --no-package-lock ts-node @actions/core @actions/github yaml
       - id: build
         name: build
         shell: bash
         env:
           inputs: ${{ toJSON(inputs) }}
-        # run: node --input-type module --loader ts-node/esm .github/actions/build/index.ts
-        run:  ~/node_modules/.bin/ts-node .github/actions/build/index.ts
+        working-directory: ${{ github.workspace }}/.github/actions/build
+        run: ${{ runner.workspace }}/node_modules/.bin/ts-node index.ts
