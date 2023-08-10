@@ -24,4 +24,4 @@ jobs:
         env:
           inputs: ${{ toJSON(inputs) }}
         # run: node --input-type module --loader ts-node/esm .github/actions/build/index.ts
-        run:  ~/node_modules/.bin/ts-node-esm .github/actions/build/index.ts
+        run:  ~/node_modules/.bin/ts-node .github/actions/build/index.ts
