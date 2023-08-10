@@ -23,4 +23,4 @@ jobs:
         env:
           inputs: ${{ toJSON(inputs) }}
         working-directory: ${{ github.workspace }}/.github/actions/build
-        run: ${{ runner.workspace }}/node_modules/.bin/ts-node index.ts
+        run: ${{ runner.workspace }}/node_modules/.bin/ts-node-esm index.ts
