@@ -1,10 +1,11 @@
 // @ts-nocheck
 import core from '@actions/core'
 import fs from 'fs-extra'
-import yaml from 'yaml'
 import path from 'path'
 import readFileJson from 'read-file-json'
 import KeyCounter from 'key-counter'
+import toYaml from './lib/toYaml'
+
 const ExclusionRule = class {
   constructor (input) {
     if (typeof input === 'string') {
@@ -73,13 +74,6 @@ const result = []
 const excluded = []
 const exclusionCounter = new KeyCounter.default
 const keystrokeCounter = new KeyCounter.default
-const toYaml = input => yaml.stringify(input, null, {
-  schema: 'core',
-  lineWidth: 0,
-  minContentWidth: 0,
-  singleQuote: true,
-  nullStr: '~'
-})
 for (const entry of data) {
   let isIncluded = true
   for (const excludedKeystroke of excludedKeystrokes) {
