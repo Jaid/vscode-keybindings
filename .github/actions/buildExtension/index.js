@@ -47,4 +47,4 @@ const packageManifest = {
     "keybindings": output
   }
 }
-await fs.outputFile(path.resolve(process.env.RUNNER_WORKSPACE, 'dist', "package.json"), JSON.stringify(packageManifest))
+await fs.outputFile(path.resolve(process.env.GITHUB_WORKSPACE, 'dist', "package.json"), JSON.stringify(packageManifest))
