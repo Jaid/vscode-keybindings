@@ -29,10 +29,10 @@ const output = [
   ...additions
 ]
 const packageManifest = {
-  "name": "jaid-keybindings",
-  "displayName": "Jaid Keybindings",
+  "name": "keybindings-reimagined",
+  "displayName": "Keybindings Reimagined",
   "description": "Personal keybindings (also removes any default keybindings)",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "engines": {
     "vscode": "^1.80.0"
   },

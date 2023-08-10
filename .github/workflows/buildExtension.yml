@@ -1,0 +1,62 @@
+name: build
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: 45 23 * * 0 # https://crontab.guru/#45_23_*_*_0
+  repository_dispatch:
+    types:
+      - build
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3.5.3
+      - name: setupNode
+        uses: actions/setup-node@v3.7.0
+        with:
+          node-version: latest
+      - name: installNodePackages
+        shell: bash
+        run: |
+          cd
+          npm install --no-save --no-package-lock @actions/core fs-extra globby read-file-yaml
+      - id: build
+        name: build
+        shell: bash
+        env:
+          inputs: ${{ toJSON(inputs) }}
+          github: ${{ toJSON(github) }}
+        run: node --input-type module < .github/actions/build/index.js
+      - id: bundle
+        name: bundle
+        shell: bash
+        run: |
+          cd
+          npm install --no-save --no-package-lock @vscode/vsce
+          cd "$GITHUB_WORKSPACE/dist"
+          npx ~/node_modules/.bin/vsce package
+          mkdir bundle
+          mv *.vsix bundle
+      - name: check
+        id: check
+        shell: bash
+        run: |
+          cd "$GITHUB_WORKSPACE/dist"
+          ls -lah
+          ls -lah bundle
+      - name: upload
+        id: upload
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: dist
+          path: ${{ github.workspace }}/dist/bundle/*.vsix
+      - name: publish
+        id: publish
+        shell: bash
+        env:
+          VSCE_PAT: ${{ secrets.azureToken }}
+        run: |-
+          npx ~/node_modules/.bin/vsce publish --packagePath ${{ github.workspace }}/dist/bundle/*.vsix
