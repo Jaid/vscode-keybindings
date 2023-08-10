@@ -42,12 +42,6 @@ jobs:
         run: |
           cd "$GITHUB_WORKSPACE/dist"
           ls -l --almost-all --color=always --si --literal --group-directories-first
-      # - id: publish
-      #   name: publish
-      #   uses: peaceiris/actions-gh-pages@v3.9.3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: "$GITHUB_WORKSPACE/dist"
       - name: Setup Pages
         id: setupPages
         uses: actions/configure-pages@v3.0.6

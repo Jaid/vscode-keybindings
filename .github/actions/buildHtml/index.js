@@ -1,11 +1,16 @@
 // @ts-nocheck
+import core from '@actions/core'
 import {context} from '@actions/github'
 import fs from 'fs-extra'
 import path from 'path'
 import showdown from 'showdown'
 import Handlebars from 'handlebars'
-import * as url from 'url';
 import {fileURLToPath} from "node:url"
+
+const setOutput = (value, name = 'value') => {
+  core.setOutput(name, value)
+  core.info(`Output ${name}: ${value}`)
+}
 
 const dirName = path.dirname(fileURLToPath(import.meta.url))
 
@@ -24,3 +29,4 @@ const outputJobs = [
   fs.writeFile(htmlFile, html)
 ]
 await Promise.all(outputJobs)
+setOutput(md, 'markdown')
