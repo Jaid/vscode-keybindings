@@ -6,9 +6,8 @@ import fs from 'fs-extra'
 import path from 'path'
 import readFileYaml from 'read-file-yaml'
 import {globbyStream} from 'globby'
-const github = JSON.parse(process.env.github)
 const globbyIterator = globbyStream('*.yml', {
-  cwd: path.resolve(github.workspace, 'src'),
+  cwd: path.resolve(process.env.GITHUB_WORKSPACE, 'src'),
   objectMode: true,
   absolute: true
 })
