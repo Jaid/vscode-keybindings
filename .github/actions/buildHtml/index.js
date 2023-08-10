@@ -16,7 +16,7 @@ const setOutput = (value, name = 'value') => {
 const dirName = path.dirname(fileURLToPath(import.meta.url))
 
 const handlebars = Handlebars.create()
-const template = await readFileString(path.resolve(dirName, 'template.hbs'))
+const template = await readFileString.default(path.resolve(dirName, 'template.hbs'))
 const templateInvoker = handlebars.compile(template)
 const md = templateInvoker()
 const converter = new showdown.Converter
