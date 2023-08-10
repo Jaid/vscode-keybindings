@@ -34,7 +34,7 @@ jobs:
         shell: bash
         env:
           inputs: ${{ toJSON(inputs) }}
-        run: ts-node .github/actions/buildHtml/index.ts
+        run: ~/node_modules/.bin/ts-node .github/actions/buildHtml/index.ts
       - name: check
         id: check
         shell: bash

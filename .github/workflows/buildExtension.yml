@@ -28,7 +28,7 @@ jobs:
         shell: bash
         env:
           inputs: ${{ toJSON(inputs) }}
-        run: ts-node .github/actions/buildExtension/index.ts
+        run: ~/node_modules/.bin/ts-node .github/actions/buildExtension/index.ts
       - id: bundle
         name: bundle
         shell: bash
@@ -36,7 +36,7 @@ jobs:
           cd
           npm install --no-save --no-package-lock @vscode/vsce
           cd "$GITHUB_WORKSPACE/dist"
-          npx ~/node_modules/.bin/vsce package
+          ~/node_modules/.bin/vsce package
           mkdir bundle
           mv *.vsix bundle
       - name: check
@@ -58,4 +58,4 @@ jobs:
         env:
           VSCE_PAT: ${{ secrets.azureToken }}
         run: |-
-          npx ~/node_modules/.bin/vsce publish --allow-star-activation --packagePath ${{ github.workspace }}/dist/bundle/*.vsix
+          ~/node_modules/.bin/vsce publish --allow-star-activation --packagePath ${{ github.workspace }}/dist/bundle/*.vsix
