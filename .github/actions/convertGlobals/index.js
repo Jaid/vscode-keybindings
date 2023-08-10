@@ -4,7 +4,7 @@ import fs from 'fs-extra'
 import path from 'path'
 import readFileJson from 'read-file-json'
 import KeyCounter from 'key-counter'
-import toYaml from './lib/toYaml'
+import toYaml from './lib/toYaml.js'
 
 const ExclusionRule = class {
   constructor (input) {
