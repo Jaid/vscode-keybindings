@@ -15,11 +15,10 @@ jobs:
         shell: bash
         run: |
           cd
-          npm install --no-save --no-package-lock @actions/core fs-extra read-file-json yaml key-counter
+          npm install --no-save --no-package-lock @actions/core fs-extra read-file-json yaml key-counter ts-node
       - id: convertGlobals
         name: convertGlobals
         shell: bash
         env:
           inputs: ${{ toJSON(inputs) }}
-          github: ${{ toJSON(github) }}
-        run: node --input-type module < .github/actions/convertGlobals/index.js
+        run: ts-node .github/actions/convertGlobals/index.ts

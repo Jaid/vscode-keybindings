@@ -11,5 +11,12 @@
   },
   "compilerOptions": {
     "baseUrl": "."
+  },
+  "ts-node": {
+    "esm": true,
+    "compilerOptions": {
+      "module": "NodeNext",
+      "target": "ESNext"
+    }
   }
 }

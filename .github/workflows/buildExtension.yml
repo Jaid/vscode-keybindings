@@ -28,8 +28,7 @@ jobs:
         shell: bash
         env:
           inputs: ${{ toJSON(inputs) }}
-          github: ${{ toJSON(github) }}
-        run: node --input-type module < .github/actions/buildExtension/index.js
+        run: ts-node .github/actions/buildExtension/index.ts
       - id: bundle
         name: bundle
         shell: bash
