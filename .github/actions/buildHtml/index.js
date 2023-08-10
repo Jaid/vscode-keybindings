@@ -4,6 +4,7 @@ import {context} from '@actions/github'
 import fs from 'fs-extra'
 import path from 'path'
 import showdown from 'showdown'
+import readFileString from 'read-file-string'
 import Handlebars from 'handlebars'
 import {fileURLToPath} from "node:url"
 
