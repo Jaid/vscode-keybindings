@@ -19,8 +19,6 @@ jobs:
         run: npm install --no-save --no-package-lock ts-node @actions/core @actions/github yaml
       - id: build
         name: build
-        shell: bash
-        env:
-          inputs: ${{ toJSON(inputs) }}
+        shell: node --loader ts-node/esm
         working-directory: ${{ github.workspace }}/.github/actions/build
-        run: node --loader ts-node/esm index.ts
+        run: index.ts
