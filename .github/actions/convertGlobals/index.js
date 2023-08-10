@@ -4,7 +4,9 @@ import fs from 'fs-extra'
 import path from 'path'
 import readFileJson from 'read-file-json'
 import KeyCounter from 'key-counter'
-import toYaml from './lib/toYaml.js'
+
+const dirName = path.dirname(fileURLToPath(import.meta.url))
+const toYaml = await import(path.resolve(dirName, 'lib', 'toYaml.js'))
 
 const ExclusionRule = class {
   constructor (input) {
