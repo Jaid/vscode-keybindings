@@ -1,6 +1,6 @@
 import yaml from 'yaml'
 
-export default input => yaml.stringify(input, null, {
+export default (input): string => yaml.stringify(input, null, {
   schema: 'core',
   lineWidth: 0,
   minContentWidth: 0,

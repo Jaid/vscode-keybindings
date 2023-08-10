@@ -3,17 +3,6 @@ on:
   push:
     branches:
       - main
-  schedule:
-    - cron: 45 23 * * 0 # https://crontab.guru/#45_23_*_*_0
-  repository_dispatch:
-    types:
-      - build
-permissions:
-  pages: write
-  id-token: write
-concurrency:
-  group: pages
-  cancel-in-progress: false
 jobs:
   build:
     runs-on: ubuntu-latest
