@@ -8,6 +8,9 @@ on:
   repository_dispatch:
     types:
       - build
+permissions:
+  pages: write
+  id-token: write
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -36,9 +39,20 @@ jobs:
         run: |
           cd "$GITHUB_WORKSPACE/dist"
           ls -l --almost-all --color=always --si --literal --group-directories-first
-      - id: publish
-        name: publish
-        uses: peaceiris/actions-gh-pages@v3.9.3
+      # - id: publish
+      #   name: publish
+      #   uses: peaceiris/actions-gh-pages@v3.9.3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: "$GITHUB_WORKSPACE/dist"
+      - name: Setup Pages
+        id: setupPages
+        uses: actions/configure-pages@v3.0.6
+      - name: uploadPages
+        id: uploadPages
+        uses: actions/upload-pages-artifact@v2.0.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: "$GITHUB_WORKSPACE/dist"
+          path: '{{ env.GITHUB_WORKSPACE }}/dist'
+      - name: deployPages
+        id: deployPages
+        uses: actions/deploy-pages@v2.0.4
