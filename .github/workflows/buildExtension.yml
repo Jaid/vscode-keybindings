@@ -59,4 +59,4 @@ jobs:
         env:
           VSCE_PAT: ${{ secrets.azureToken }}
         run: |-
-          npx ~/node_modules/.bin/vsce publish --pre-release --allow-star-activation --allow-missing-repository --packagePath ${{ github.workspace }}/dist/bundle/*.vsix
+          npx ~/node_modules/.bin/vsce publish --allow-star-activation --packagePath ${{ github.workspace }}/dist/bundle/*.vsix
