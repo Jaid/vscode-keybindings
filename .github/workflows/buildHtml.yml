@@ -52,7 +52,7 @@ jobs:
         id: uploadPages
         uses: actions/upload-pages-artifact@v2.0.0
         with:
-          path: '{{ env.GITHUB_WORKSPACE }}/dist'
+          path: '${{ env.GITHUB_WORKSPACE }}/dist'
       - name: deployPages
         id: deployPages
         uses: actions/deploy-pages@v2.0.4
