@@ -1,0 +1,15 @@
+{
+  "extends": "tsconfig-jaid/base",
+  "include": [
+    "src/**/*.js",
+    "src/**/*.ts",
+    ".github/actions/**/*.js",
+    ".github/actions/**/*.ts"
+  ],
+  "typeAcquisition": {
+    "enable": true
+  },
+  "compilerOptions": {
+    "baseUrl": "."
+  }
+}

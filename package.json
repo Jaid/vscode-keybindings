@@ -1,0 +1,32 @@
+{
+  "version": "1.0.0",
+  "author": "Jaid <jaid.jsx@gmail.com> (https://github.com/Jaid)",
+  "devDependencies": {
+    "browserslist-config-jaid-universal": "^2.1.0",
+    "eslint": "^7.6.0",
+    "eslint-config-jaid": "^1.49.0",
+    "tsconfig-jaid": "^2.0.1"
+  },
+  "scripts": {
+  },
+  "name": "vscode-keyindings",
+  "description": "Simplified wrapper for pluralize.",
+  "funding": "https://github.com/sponsors/jaid",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaid/vscode-keyindings"
+  },
+  "homepage": "https://github.com/Jaid/vscode-keyindings",
+  "keywords": [
+    "vsce",
+    "vsix",
+    "code-extension",
+    "extension",
+    "vscode",
+    "vscode-extension",
+    "vscode-keybindings",
+    "keybindings",
+    "keybinding",
+    "reset"
+  ]
+}
