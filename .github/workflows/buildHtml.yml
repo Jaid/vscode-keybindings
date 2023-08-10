@@ -28,7 +28,7 @@ jobs:
         shell: bash
         run: |
           cd
-          npm install --no-save --no-package-lock @actions/core @actions/github fs-extra globby read-file-yaml
+          npm install --no-save --no-package-lock @actions/core @actions/github fs-extra globby read-file-yaml showdown handlebars
       - id: build
         name: build
         shell: bash
