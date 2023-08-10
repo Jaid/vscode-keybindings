@@ -24,7 +24,8 @@
     ]
   },
   "ts-node": {
-    "esm": true,
+    "transpileOnly": true,
+    "preferTsExts": true,
     "compilerOptions": {
       "module": "NodeNext",
       "target": "ESNext"

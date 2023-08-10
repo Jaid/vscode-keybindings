@@ -10,6 +10,7 @@
   "scripts": {
   },
   "name": "vscode-keyindings",
+  "type": "module",
   "description": "Simplified wrapper for pluralize.",
   "funding": "https://github.com/sponsors/jaid",
   "repository": {
