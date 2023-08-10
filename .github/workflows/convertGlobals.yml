@@ -12,13 +12,10 @@ jobs:
         with:
           node-version: latest
       - name: installNodePackages
-        shell: bash
-        run: |
-          cd
-          npm install --no-save --no-package-lock ts-node @actions/core fs-extra read-file-json yaml key-counter
+        id: installNodePackages
+        working-directory: ${{ runner.workspace }}
+        run: npm install --no-save --no-package-lock ts-node @actions/core fs-extra read-file-json yaml key-counter
       - id: convertGlobals
         name: convertGlobals
-        shell: bash
-        env:
-          inputs: ${{ toJSON(inputs) }}
-        run: ~/node_modules/.bin/ts-node .github/actions/convertGlobals/index.ts
+        working-directory: ${{ github.workspace }}/.github/actions/convertGlobals
+        run: node --loader ts-node/esm index.ts

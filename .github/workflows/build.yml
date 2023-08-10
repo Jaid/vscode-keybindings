@@ -14,11 +14,10 @@ jobs:
         with:
           node-version: latest
       - name: installNodePackages
-        shell: bash
+        id: installNodePackages
         working-directory: ${{ runner.workspace }}
         run: npm install --no-save --no-package-lock ts-node @actions/core @actions/github yaml
       - id: build
         name: build
-        shell: node --loader ts-node/esm
         working-directory: ${{ github.workspace }}/.github/actions/build
-        run: index.ts
+        run: node --loader ts-node/esm index.ts

@@ -25,16 +25,13 @@ jobs:
         with:
           node-version: latest
       - name: installNodePackages
-        shell: bash
-        run: |
-          cd
-          npm install --no-save --no-package-lock ts-node @actions/core @actions/github fs-extra globby read-file-yaml showdown handlebars read-file-string
+        id: installNodePackages
+        working-directory: ${{ runner.workspace }}
+        run: npm install --no-save --no-package-lock ts-node @actions/core @actions/github fs-extra globby read-file-yaml showdown handlebars read-file-string
       - id: build
         name: build
-        shell: bash
-        env:
-          inputs: ${{ toJSON(inputs) }}
-        run: node --loader ts-node/esm .github/actions/buildHtml/index.ts
+        working-directory: ${{ github.workspace }}/.github/actions/buildHtml
+        run: node --loader ts-node/esm index.ts
       - name: check
         id: check
         shell: bash
