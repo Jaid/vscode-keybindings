@@ -1,4 +1,4 @@
-name: build
+name: buildHtml
 on:
   push:
     branches:
