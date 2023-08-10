@@ -22,7 +22,7 @@ jobs:
         shell: bash
         run: |
           cd
-          npm install --no-save --no-package-lock @actions/core @actions/github fs-extra globby read-file-yaml
+          npm install --no-save --no-package-lock @actions/core @actions/github fs-extra globby read-file-yaml prevent-start lodash
       - id: build
         name: build
         shell: bash

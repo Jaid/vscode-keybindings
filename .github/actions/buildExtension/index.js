@@ -1,5 +1,8 @@
 // @ts-nocheck
-import {context} from '@actions/github'
+import {} from '@actions/core'
+import * as context from '@actions/github'
+import preventStart from 'prevent-start'
+import lodash from "lodash"
 console.dir(context)
 import fs from 'fs-extra'
 import path from 'path'
@@ -29,10 +32,11 @@ const output = [
   ...deletions,
   ...additions
 ]
+const id = preventStart.default(context.payload.repository.name, "vscode-")
 const packageManifest = {
-  "name": "keybindings-reimagined",
+  "name": id,
   "publisher": "jaidchen",
-  "displayName": "Keybindings Reimagined",
+  "displayName": lodash.startCase(id),
   "description": "Personal keybindings (also removes any default keybindings)",
   "version": "0.0.1",
   "engines": {
