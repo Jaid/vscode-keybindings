@@ -1,5 +1,6 @@
 // @ts-nocheck
-import core from '@actions/core'
+import {context} from '@actions/github'
+console.dir(context)
 import fs from 'fs-extra'
 import path from 'path'
 import readFileYaml from 'read-file-yaml'
@@ -44,4 +45,4 @@ const packageManifest = {
     "keybindings": output
   }
 }
-await fs.outputFile(path.resolve(github.workspace, 'dist', "package.json"), JSON.stringify(packageManifest))
+await fs.outputFile(path.resolve(context.workspace, 'dist', "package.json"), JSON.stringify(packageManifest))
