@@ -21,8 +21,9 @@ const templateInvoker = handlebars.compile(template)
 const md = templateInvoker()
 const converter = new showdown.Converter
 const html = converter.makeHtml(md)
-const mdFile = path.resolve('dist', 'index.md')
-const htmlFile = path.resolve('dist', 'index.html')
+const outputFolder = 'dist'
+const mdFile = path.resolve(outputFolder, 'index.md')
+const htmlFile = path.resolve(outputFolder, 'index.html')
 await fs.ensureDir(outputFolder)
 const outputJobs = [
   fs.writeFile(mdFile, md),
