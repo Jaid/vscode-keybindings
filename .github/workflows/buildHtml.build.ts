@@ -19,8 +19,13 @@ const handlebars = Handlebars.create()
 const template = await readFileString.default(path.resolve(dirName, 'buildHtml.template.md.hbs'))
 const templateInvoker = handlebars.compile(template)
 const md = templateInvoker()
+const htmlTemplate = await readFileString.default(path.resolve(dirName, 'buildHtml.template.html.hbs'))
+const htmlTemplateInvoker = handlebars.compile(htmlTemplate)
 const converter = new showdown.Converter
-const html = converter.makeHtml(md)
+converter.setFlavor('github')
+const html = htmlTemplateInvoker({
+  showdownContent: converter.makeHtml(md)
+})
 const outputFolder = 'dist'
 const mdFile = path.resolve(outputFolder, 'index.md')
 const htmlFile = path.resolve(outputFolder, 'index.html')
