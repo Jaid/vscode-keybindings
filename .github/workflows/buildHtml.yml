@@ -28,13 +28,14 @@ jobs:
         run: npm install --no-save --no-package-lock ts-node @actions/core @actions/github fs-extra globby read-file-yaml showdown handlebars read-file-string
       - id: build
         name: build
+        env:
+          inputs: ${{ toJson(inputs) }}
         run: node --loader ts-node/esm .github/workflows/buildHtml.build.ts
       - name: check
         id: check
         shell: bash
-        run: |
-          cd "$GITHUB_WORKSPACE/dist"
-          ls -l --almost-all --color=always --si --literal --group-directories-first
+        working-directory: ${{ github.workspace }}/dist
+        run: ls -l --almost-all --color=always --si --literal --group-directories-first
       - name: Setup Pages
         id: setupPages
         uses: actions/configure-pages@v3.0.6

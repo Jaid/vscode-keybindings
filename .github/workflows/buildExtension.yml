@@ -36,8 +36,8 @@ jobs:
       - name: check
         id: check
         shell: bash
+        working-directory: ${{ github.workspace }}/dist
         run: |
-          cd "$GITHUB_WORKSPACE/dist"
           ls -l --almost-all --color=always --si --literal --group-directories-first
           ls -l --almost-all --color=always --si --literal --group-directories-first bundle
       - name: upload

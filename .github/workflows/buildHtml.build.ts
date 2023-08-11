@@ -8,6 +8,9 @@ import readFileString from 'read-file-string'
 import Handlebars from 'handlebars'
 import {fileURLToPath} from "node:url"
 
+const inputs = JSON.parse(process.env.inputs)
+console.dir(inputs)
+
 const setOutput = (value, name = 'value') => {
   core.setOutput(name, value)
   core.info(`Output ${name}: ${value}`)
