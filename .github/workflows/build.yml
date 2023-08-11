@@ -21,7 +21,7 @@ jobs:
         name: build
         run: node --loader ts-node/esm .github/workflows/build.build.ts
     outputs:
-      data: ${{ steps.build.outputs.value }}
+      value: ${{ steps.build.outputs.value }}
   buildHtml:
     needs: build
     uses: ./.github/workflows/buildHtml.yml
