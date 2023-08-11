@@ -1,7 +1,17 @@
 // @ts-nocheck
 import core from '@actions/core'
-import toYaml from './lib/toYaml.ts'
+import toYaml from './src/lib/toYaml.ts'
 import path from 'node:path'
+
+import yaml from 'yaml'
+
+export default input => yaml.stringify(input, null, {
+  schema: 'core',
+  lineWidth: 0,
+  minContentWidth: 0,
+  singleQuote: true,
+  nullStr: '~'
+})
 
 import {fileURLToPath} from "node:url"
 
