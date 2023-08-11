@@ -1,9 +1,7 @@
 {
   "include": [
-    "src/**/*.js",
     "src/**/*.ts",
-    ".github/actions/**/*.js",
-    ".github/actions/**/*.ts"
+    ".github/workflows/**/*.ts",
   ],
   "typeAcquisition": {
     "enable": true
