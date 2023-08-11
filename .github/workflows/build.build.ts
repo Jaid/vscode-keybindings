@@ -4,7 +4,7 @@ import path from 'node:path'
 
 import yaml from 'yaml'
 
-export default input => yaml.stringify(input, null, {
+const toYaml = input => yaml.stringify(input, null, {
   schema: 'core',
   lineWidth: 0,
   minContentWidth: 0,
