@@ -1,6 +1,5 @@
 // @ts-nocheck
 import core from '@actions/core'
-import toYaml from './src/lib/toYaml.ts'
 import path from 'node:path'
 
 import yaml from 'yaml'
