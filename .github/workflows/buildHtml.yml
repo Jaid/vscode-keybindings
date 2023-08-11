@@ -28,7 +28,7 @@ jobs:
         run: npm install --no-save --no-package-lock ts-node @actions/core @actions/github fs-extra globby read-file-yaml showdown handlebars read-file-string
       - id: build
         name: build
-        run: node --loader ts-node/esm .github/workflows/${{ github.workflow }}.build.ts
+        run: node --loader ts-node/esm .github/workflows/buildHtml.build.ts
       - name: check
         id: check
         shell: bash
