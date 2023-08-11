@@ -1,13 +1,13 @@
 // @ts-nocheck
 import {context} from '@actions/github'
 import preventStart from 'prevent-start'
-import lodash from "lodash"
+import lodash from "lodash-es"
 import fs from 'fs-extra'
 import path from 'path'
 import readFileYaml from 'read-file-yaml'
 import {globbyStream} from 'globby'
 const globbyIterator = globbyStream('*.yml', {
-  cwd: path.resolve(process.env.GITHUB_WORKSPACE, 'src'),
+  cwd: 'src',
   objectMode: true,
   absolute: true
 })
@@ -46,4 +46,4 @@ const packageManifest = {
     "keybindings": output
   }
 }
-await fs.outputFile(path.resolve(process.env.GITHUB_WORKSPACE, 'dist', "package.json"), JSON.stringify(packageManifest))
+await fs.outputFile(path.resolve('dist', "package.json"), JSON.stringify(packageManifest))

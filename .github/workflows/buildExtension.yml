@@ -21,11 +21,10 @@ jobs:
       - name: installNodePackages
         id: installNodePackages
         working-directory: ${{ runner.workspace }}
-        run: npm install --no-save --no-package-lock ts-node @actions/core @actions/github fs-extra globby read-file-yaml prevent-start lodash
+        run: npm install --no-save --no-package-lock ts-node @actions/core @actions/github fs-extra globby read-file-yaml prevent-start lodash-es
       - id: build
         name: build
-        working-directory: ${{ github.workspace }}/.github/actions/buildExtension
-        run: node --loader ts-node/esm index.ts
+        run: node --loader ts-node/esm .github/workflows/${{ github.workflow }}.build.ts
       - id: bundle
         name: bundle
         shell: bash

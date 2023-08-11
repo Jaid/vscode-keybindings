@@ -4,11 +4,19 @@ import fs from 'fs-extra'
 import path from 'path'
 import readFileJson from 'read-file-json'
 import KeyCounter from 'key-counter'
-import toYaml from './lib/to-yaml'
+
 // import {fileURLToPath} from 'url'
 
 // const dirName = path.dirname(fileURLToPath(import.meta.url))
 // const toYaml = await import(path.resolve(dirName, 'lib', 'toYaml.js'))
+
+const toYaml = input => yaml.stringify(input, null, {
+  schema: 'core',
+  lineWidth: 0,
+  minContentWidth: 0,
+  singleQuote: true,
+  nullStr: '~'
+})
 
 const ExclusionRule = class {
   constructor (input) {
@@ -71,8 +79,7 @@ const excludedKeystrokes = [
   'ctrl+x',
   ['command', 'editor.action.refactor']
 ].map(input => new ExclusionRule(input))
-const github = JSON.parse(process.env.github)
-const jsonPath = path.resolve(github.workspace, 'src', 'global.jsonc')
+const jsonPath = path.resolve('src', 'global.jsonc')
 const data = await readFileJson.default(jsonPath)
 const result = []
 const excluded = []

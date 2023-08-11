@@ -15,7 +15,6 @@ jobs:
         id: installNodePackages
         working-directory: ${{ runner.workspace }}
         run: npm install --no-save --no-package-lock ts-node @actions/core fs-extra read-file-json yaml key-counter
-      - id: convertGlobals
-        name: convertGlobals
-        working-directory: ${{ github.workspace }}/.github/actions/convertGlobals
-        run: node --loader ts-node/esm index.ts
+      - id: build
+        name: build
+        run: node --loader ts-node/esm .github/workflows/${{ github.workflow }}.build.ts
