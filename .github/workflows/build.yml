@@ -16,7 +16,19 @@ jobs:
       - name: installNodePackages
         id: installNodePackages
         working-directory: ${{ runner.workspace }}
-        run: npm install --no-save --no-package-lock ts-node @actions/core @actions/github yaml
+        run: npm install --no-save --no-package-lock ts-node @actions/core globby read-file-yaml
       - id: build
         name: build
         run: node --loader ts-node/esm .github/workflows/${{ github.workflow }}.build.ts
+    outputs:
+      data: ${{ steps.build.outputs.value }}
+  buildHtml:
+    needs: build
+    uses: ./.github/workflows/buildHtml.yml
+    with:
+      data: ${{ needs.build.outputs.value }}
+  buildExtension:
+    needs: build
+    uses: ./.github/workflows/buildExtension.yml
+    with:
+      data: ${{ needs.build.outputs.value }}
