@@ -19,7 +19,7 @@ jobs:
         run: npm install --no-save --no-package-lock ts-node @actions/core globby read-file-yaml key-counter read-file-json yaml fs-extra
       - id: convertGlobals
         name: convertGlobals
-        run: node --loader ts-node/esm src/workflows/build/convertGlobalas.ts
+        run: pwd && node --loader ts-node/esm src/workflows/build/convertGlobals.ts
       - id: build
         name: build
         env:
