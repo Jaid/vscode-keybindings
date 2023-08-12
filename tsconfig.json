@@ -13,7 +13,7 @@
     "baseUrl": ".",
     "allowJs": true,
     "checkJs": true,
-    "outDir": "../../dist/ts",
+    "outDir": "./dist/ts",
     "newLine": "lf",
     "declaration": true,
     "esModuleInterop": true,
