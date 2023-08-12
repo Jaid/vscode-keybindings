@@ -2,7 +2,6 @@
 import path from 'node:path'
 
 import core from '@actions/core'
-import fs from 'fs-extra'
 import KeyCounter from 'key-counter'
 import readFileJson from 'read-file-json'
 import yaml from 'yaml'
@@ -21,6 +20,10 @@ const toYaml = input => yaml.stringify(input, null, {
 })
 
 const ExclusionRule = class {
+  value: string
+
+  type: `static` | `regex` | `command`
+
   constructor(input) {
     if (typeof input === `string`) {
       this.value = input
