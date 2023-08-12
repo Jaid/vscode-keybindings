@@ -18,7 +18,7 @@ const setOutput = (value, name = `value`) => {
 }
 
 const data = await readFileYaml.default(path.join(process.env.RUNNER_WORKSPACE, `out`, `data.yml`))
-
+console.dir(data)
 const handlebars = Handlebars.create()
 const template = await readFileString.default(path.resolve(dirName, `template.md.hbs`))
 const templateInvoker = handlebars.compile(template)
