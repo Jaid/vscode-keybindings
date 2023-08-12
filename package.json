@@ -4,7 +4,7 @@
   "devDependencies": {
     "browserslist-config-jaid-universal": "^3.0.0",
     "eslint": "^8.47.0",
-    "eslint-config-jaid": "^3.0.0",
+    "eslint-config-jaid": "^3.0.1",
     "tsconfig-jaid": "^3.0.0"
   },
   "scripts": {
