@@ -2,10 +2,9 @@ name: buildHtml
 on:
   workflow_call:
     inputs:
-      data:
+      artifactId:
         required: true
         type: string
-        description: Data in JSON
 permissions:
   pages: write
   id-token: write
@@ -20,7 +19,7 @@ jobs:
         id: downloadArtifact
         uses: actions/download-artifact@v3.0.2
         with:
-          name: data
+          name: ${{ inputs.artifactId }}
           path: ${{ runner.workspace }}/out
       - name: checkout
         uses: actions/checkout@v3.5.3
