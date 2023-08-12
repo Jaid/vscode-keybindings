@@ -14,6 +14,9 @@ const toYaml = input => yaml.stringify(input, null, {
   nullStr: `~`,
 })
 
+const a = 2
+core.info(`test`)
+
 const ExclusionRule = class {
   value: string
 
