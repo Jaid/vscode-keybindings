@@ -1,15 +1,10 @@
 // @ts-nocheck
-import path from 'node:path'
-
+/* eslint-disable unicorn/prefer-node-protocol */
 import core from '@actions/core'
 import KeyCounter from 'key-counter'
+import path from 'path'
 import readFileJson from 'read-file-json'
 import yaml from 'yaml'
-
-// import {fileURLToPath} from 'url'
-
-// const dirName = path.dirname(fileURLToPath(import.meta.url))
-// const toYaml = await import(path.resolve(dirName, 'lib', 'toYaml.js'))
 
 const toYaml = input => yaml.stringify(input, null, {
   schema: `core`,
