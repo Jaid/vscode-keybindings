@@ -51,7 +51,7 @@ const normalizeKeystrokes = keystrokes => {
   })
 }
 for (const [id, entry] of Object.entries(data)) {
-  const [deletions, additions] = lodash.partition(entry.keystrokes, keystroke => keystroke.key.startsWith(`-`))
+  const [deletions, additions] = lodash.partition(entry.keystrokes, keystroke => keystroke.command.startsWith(`-`))
   if (additions.length) {
     core.info(`${additions.length} additions for ${id}`)
     dataNormalized.additions[id] = normalizeKeystrokes(additions)
