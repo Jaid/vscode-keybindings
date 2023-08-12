@@ -19,12 +19,12 @@ const setOutput = (value, name = 'value') => {
 const dirName = path.dirname(fileURLToPath(import.meta.url))
 
 const handlebars = Handlebars.create()
-const template = await readFileString.default(path.resolve(dirName, 'buildHtml.template.md.hbs'))
+const template = await readFileString.default(path.resolve(dirName, 'template.md.hbs'))
 const templateInvoker = handlebars.compile(template)
 const md = templateInvoker({
   ...inputs.data
 })
-const htmlTemplate = await readFileString.default(path.resolve(dirName, 'buildHtml.template.html.hbs'))
+const htmlTemplate = await readFileString.default(path.resolve(dirName, 'template.html.hbs'))
 const htmlTemplateInvoker = handlebars.compile(htmlTemplate)
 const converter = new showdown.Converter
 converter.setFlavor('github')

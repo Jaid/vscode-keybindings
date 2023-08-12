@@ -19,12 +19,12 @@ jobs:
         run: npm install --no-save --no-package-lock ts-node @actions/core globby read-file-yaml key-counter read-file-json yaml fs-extra
       - id: convertGlobals
         name: convertGlobals
-        run: node --loader ts-node/esm .github/workflows/build.convertGlobals.ts
+        run: node --loader ts-node/esm .github/workflows/build/convertGlobals.ts
       - id: build
         name: build
         env:
           steps: ${{ toJson(steps) }}
-        run: node --loader ts-node/esm .github/workflows/build.build.ts
+        run: node --loader ts-node/esm .github/workflows/build/build.ts
     outputs:
       value: ${{ steps.build.outputs.value }}
   buildHtml:

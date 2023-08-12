@@ -30,7 +30,7 @@ jobs:
         name: build
         env:
           inputs: ${{ toJson(inputs) }}
-        run: node --loader ts-node/esm .github/workflows/buildHtml.build.ts
+        run: node --loader ts-node/esm .github/workflows/buildHtml/build.ts
       - name: check
         id: check
         shell: bash

@@ -1,0 +1,1003 @@
+{
+  "env": {
+    "es2022": true,
+    "node": true,
+    "shared-node-browser": true
+  },
+  "globals": {
+    "GOOGLE_ANALYTICS_TRACKING_ID": "readonly",
+    "__non_webpack_require__": "readonly",
+    "it": "readonly",
+    "afterAll": "readonly",
+    "expect": "readonly"
+  },
+  "parser": "D:\\git\\vscode-keybindings\\node_modules\\@typescript-eslint\\parser\\dist\\index.js",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "you-dont-need-lodash-underscore",
+    "@typescript-eslint",
+    "simple-import-sort",
+    "import",
+    "unicorn",
+    "promise",
+    "node"
+  ],
+  "rules": {
+    "array-bracket-newline": [
+      1,
+      {
+        "multiline": true
+      }
+    ],
+    "array-bracket-spacing": [
+      1
+    ],
+    "array-callback-return": [
+      1
+    ],
+    "array-element-newline": [
+      1,
+      "consistent"
+    ],
+    "arrow-parens": [
+      1,
+      "as-needed"
+    ],
+    "arrow-spacing": [
+      1
+    ],
+    "block-spacing": [
+      1
+    ],
+    "brace-style": [
+      1
+    ],
+    "comma-dangle": [
+      1,
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never"
+      }
+    ],
+    "comma-spacing": [
+      1
+    ],
+    "comma-style": [
+      1
+    ],
+    "computed-property-spacing": [
+      1
+    ],
+    "constructor-super": [
+      1
+    ],
+    "curly": [
+      1,
+      "all"
+    ],
+    "dot-location": [
+      1,
+      "property"
+    ],
+    "dot-notation": [
+      1
+    ],
+    "eol-last": [
+      1,
+      "never"
+    ],
+    "eqeqeq": [
+      1,
+      "smart"
+    ],
+    "func-call-spacing": [
+      1
+    ],
+    "function-paren-newline": [
+      1,
+      "never"
+    ],
+    "getter-return": [
+      1
+    ],
+    "implicit-arrow-linebreak": [
+      1
+    ],
+    "import/first": [
+      1
+    ],
+    "import/newline-after-import": [
+      1
+    ],
+    "import/no-absolute-path": [
+      1
+    ],
+    "import/no-deprecated": [
+      1
+    ],
+    "import/no-duplicates": [
+      1
+    ],
+    "import/no-mutable-exports": [
+      1
+    ],
+    "import/no-self-import": [
+      1
+    ],
+    "import/no-unresolved": [
+      2,
+      {
+        "ignore": [
+          "^node:",
+          "^!"
+        ],
+        "caseSensitive": true,
+        "caseSensitiveStrict": false
+      }
+    ],
+    "import/no-useless-path-segments": [
+      1
+    ],
+    "indent": [
+      1,
+      2
+    ],
+    "jsx-quotes": [
+      1
+    ],
+    "key-spacing": [
+      1
+    ],
+    "keyword-spacing": [
+      1
+    ],
+    "linebreak-style": [
+      1,
+      "unix"
+    ],
+    "lines-between-class-members": [
+      1
+    ],
+    "multiline-comment-style": [
+      0
+    ],
+    "no-alert": [
+      1
+    ],
+    "no-array-constructor": [
+      1
+    ],
+    "no-buffer-constructor": [
+      1
+    ],
+    "no-caller": [
+      1
+    ],
+    "no-class-assign": [
+      1
+    ],
+    "no-compare-neg-zero": [
+      1
+    ],
+    "no-cond-assign": [
+      1
+    ],
+    "no-const-assign": [
+      1
+    ],
+    "no-constant-binary-expression": [
+      1
+    ],
+    "no-constructor-return": [
+      1
+    ],
+    "no-delete-var": [
+      1
+    ],
+    "no-dupe-args": [
+      1
+    ],
+    "no-dupe-class-members": [
+      1
+    ],
+    "no-dupe-keys": [
+      1
+    ],
+    "no-duplicate-case": [
+      1
+    ],
+    "no-empty-character-class": [
+      1
+    ],
+    "no-empty-pattern": [
+      1
+    ],
+    "no-eq-null": [
+      1
+    ],
+    "no-eval": [
+      1
+    ],
+    "no-ex-assign": [
+      1
+    ],
+    "no-extend-native": [
+      1
+    ],
+    "no-extra-bind": [
+      1
+    ],
+    "no-extra-boolean-cast": [
+      1
+    ],
+    "no-extra-label": [
+      1
+    ],
+    "no-extra-parens": [
+      1
+    ],
+    "no-fallthrough": [
+      1
+    ],
+    "no-floating-decimal": [
+      1
+    ],
+    "no-func-assign": [
+      1
+    ],
+    "no-global-assign": [
+      1
+    ],
+    "no-implicit-coercion": [
+      1
+    ],
+    "no-inner-declarations": [
+      1
+    ],
+    "no-invalid-regexp": [
+      1
+    ],
+    "no-irregular-whitespace": [
+      1
+    ],
+    "no-iterator": [
+      1
+    ],
+    "no-label-var": [
+      1
+    ],
+    "no-lonely-if": [
+      1
+    ],
+    "no-multi-assign": [
+      1
+    ],
+    "no-multi-spaces": [
+      1
+    ],
+    "no-multi-str": [
+      1
+    ],
+    "no-multiple-empty-lines": [
+      1
+    ],
+    "no-nested-ternary": [
+      1
+    ],
+    "no-new": [
+      1
+    ],
+    "no-new-func": [
+      1
+    ],
+    "no-new-object": [
+      1
+    ],
+    "no-new-symbol": [
+      1
+    ],
+    "no-obj-calls": [
+      1
+    ],
+    "no-octal": [
+      1
+    ],
+    "no-proto": [
+      1
+    ],
+    "no-redeclare": [
+      1
+    ],
+    "no-regex-spaces": [
+      1
+    ],
+    "no-restricted-imports": [
+      1,
+      {
+        "paths": [
+          {
+            "name": "lodash",
+            "message": "Use lodash-es"
+          },
+          {
+            "name": "ensure-array",
+            "message": "Use sure-array"
+          },
+          {
+            "name": "@absolunet/fsp",
+            "message": "Use fs-extra"
+          },
+          {
+            "name": "@absolunet/fss",
+            "message": "Use fs-extra"
+          },
+          {
+            "name": "opn",
+            "message": "Use open"
+          },
+          {
+            "name": "pify",
+            "message": "Use util.promisify"
+          },
+          {
+            "name": "fs/promises",
+            "message": "Use fs-extra (more stable)"
+          },
+          {
+            "name": "node:fs/promises",
+            "message": "Use fs-extra (more stable)"
+          },
+          {
+            "name": "execall",
+            "message": "Use super-regex"
+          }
+        ]
+      }
+    ],
+    "no-return-assign": [
+      1,
+      "always"
+    ],
+    "no-return-await": [
+      1
+    ],
+    "no-self-assign": [
+      1
+    ],
+    "no-self-compare": [
+      1
+    ],
+    "no-sequences": [
+      1
+    ],
+    "no-setter-return": [
+      1
+    ],
+    "no-shadow": [
+      1
+    ],
+    "no-sparse-arrays": [
+      1
+    ],
+    "no-tabs": [
+      1
+    ],
+    "no-this-before-super": [
+      1
+    ],
+    "no-throw-literal": [
+      1
+    ],
+    "no-trailing-spaces": [
+      1
+    ],
+    "no-undef": [
+      1
+    ],
+    "no-undef-init": [
+      1
+    ],
+    "no-underscore-dangle": [
+      1,
+      {
+        "allow": [
+          "__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"
+        ],
+        "allowAfterThis": false,
+        "allowAfterSuper": false,
+        "allowAfterThisConstructor": false,
+        "enforceInMethodNames": false,
+        "allowFunctionParams": true,
+        "enforceInClassFields": false,
+        "allowInArrayDestructuring": true,
+        "allowInObjectDestructuring": true
+      }
+    ],
+    "no-unexpected-multiline": [
+      1
+    ],
+    "no-unneeded-ternary": [
+      1
+    ],
+    "no-unreachable": [
+      1
+    ],
+    "no-unsafe-finally": [
+      1
+    ],
+    "no-unsafe-negation": [
+      1
+    ],
+    "no-unused-labels": [
+      1
+    ],
+    "no-unused-vars": [
+      1
+    ],
+    "no-use-before-define": [
+      1
+    ],
+    "no-useless-call": [
+      1
+    ],
+    "no-useless-computed-key": [
+      1
+    ],
+    "no-useless-concat": [
+      1
+    ],
+    "no-useless-constructor": [
+      1
+    ],
+    "no-useless-escape": [
+      1
+    ],
+    "no-useless-rename": [
+      1
+    ],
+    "no-var": [
+      1
+    ],
+    "no-void": [
+      1
+    ],
+    "no-whitespace-before-property": [
+      1
+    ],
+    "no-with": [
+      1
+    ],
+    "node/file-extension-in-import": [
+      2
+    ],
+    "node/no-mixed-requires": [
+      1
+    ],
+    "node/no-new-require": [
+      1
+    ],
+    "node/no-path-concat": [
+      1
+    ],
+    "node/no-sync": [
+      1
+    ],
+    "object-curly-newline": [
+      1,
+      {
+        "ObjectExpression": {
+          "consistent": true,
+          "minProperties": 2,
+          "multiline": true
+        },
+        "ObjectPattern": "never"
+      }
+    ],
+    "object-curly-spacing": [
+      1
+    ],
+    "object-property-newline": [
+      1
+    ],
+    "object-shorthand": [
+      1
+    ],
+    "one-var": [
+      1,
+      "never"
+    ],
+    "operator-linebreak": [
+      1,
+      "before"
+    ],
+    "padding-line-between-statements": [
+      0
+    ],
+    "prefer-const": [
+      1
+    ],
+    "prefer-destructuring": [
+      1,
+      {
+        "array": false
+      }
+    ],
+    "prefer-promise-reject-errors": [
+      1
+    ],
+    "prefer-spread": [
+      1
+    ],
+    "prefer-template": [
+      1
+    ],
+    "promise/catch-or-return": [
+      1
+    ],
+    "promise/no-callback-in-promise": [
+      1
+    ],
+    "promise/no-promise-in-callback": [
+      1
+    ],
+    "promise/no-return-in-finally": [
+      1
+    ],
+    "promise/no-return-wrap": [
+      1
+    ],
+    "promise/param-names": [
+      1
+    ],
+    "quote-props": [
+      1,
+      "as-needed"
+    ],
+    "quotes": [
+      1
+    ],
+    "radix": [
+      1
+    ],
+    "require-yield": [
+      1
+    ],
+    "rest-spread-spacing": [
+      1
+    ],
+    "semi": [
+      1,
+      "never"
+    ],
+    "semi-style": [
+      1
+    ],
+    "simple-import-sort/imports": [
+      1,
+      {
+        "groups": [
+          [
+            "^\\u0000"
+          ],
+          [
+            "^@jest/globals$"
+          ],
+          [
+            "^node:"
+          ],
+          [
+            "^@?\\w"
+          ],
+          [
+            "^lib/",
+            "^components/"
+          ],
+          [
+            "^src/",
+            "^root/"
+          ],
+          [
+            "^\\."
+          ]
+        ]
+      }
+    ],
+    "space-before-blocks": [
+      1
+    ],
+    "space-before-function-paren": [
+      1,
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ],
+    "space-in-parens": [
+      1
+    ],
+    "space-infix-ops": [
+      1
+    ],
+    "spaced-comment": [
+      1
+    ],
+    "switch-colon-spacing": [
+      1
+    ],
+    "template-curly-spacing": [
+      1
+    ],
+    "template-tag-spacing": [
+      1
+    ],
+    "unicorn/better-regex": [
+      1
+    ],
+    "unicorn/catch-error-name": [
+      1
+    ],
+    "unicorn/consistent-function-scoping": [
+      1
+    ],
+    "unicorn/error-message": [
+      1
+    ],
+    "unicorn/escape-case": [
+      1
+    ],
+    "unicorn/expiring-todo-comments": [
+      1
+    ],
+    "unicorn/new-for-builtins": [
+      1
+    ],
+    "unicorn/no-array-for-each": [
+      1
+    ],
+    "unicorn/no-await-expression-member": [
+      1
+    ],
+    "unicorn/no-hex-escape": [
+      1
+    ],
+    "unicorn/no-instanceof-array": [
+      1
+    ],
+    "unicorn/no-new-array": [
+      1
+    ],
+    "unicorn/no-new-buffer": [
+      2
+    ],
+    "unicorn/no-thenable": [
+      1
+    ],
+    "unicorn/no-useless-fallback-in-spread": [
+      1
+    ],
+    "unicorn/no-useless-length-check": [
+      1
+    ],
+    "unicorn/no-useless-promise-resolve-reject": [
+      1
+    ],
+    "unicorn/no-useless-spread": [
+      1
+    ],
+    "unicorn/no-useless-undefined": [
+      1
+    ],
+    "unicorn/number-literal-case": [
+      1
+    ],
+    "unicorn/numeric-separators-style": [
+      1
+    ],
+    "unicorn/prefer-add-event-listener": [
+      1
+    ],
+    "unicorn/prefer-array-find": [
+      1
+    ],
+    "unicorn/prefer-array-flat": [
+      1
+    ],
+    "unicorn/prefer-array-flat-map": [
+      1
+    ],
+    "unicorn/prefer-array-index-of": [
+      1
+    ],
+    "unicorn/prefer-code-point": [
+      1
+    ],
+    "unicorn/prefer-date-now": [
+      2
+    ],
+    "unicorn/prefer-exponentiation-operator": [
+      1
+    ],
+    "unicorn/prefer-includes": [
+      1
+    ],
+    "unicorn/prefer-logical-operator-over-ternary": [
+      1
+    ],
+    "unicorn/prefer-math-trunc": [
+      2
+    ],
+    "unicorn/prefer-modern-math-apis": [
+      1
+    ],
+    "unicorn/prefer-module": [
+      1
+    ],
+    "unicorn/prefer-native-coercion-functions": [
+      1
+    ],
+    "unicorn/prefer-node-protocol": [
+      1
+    ],
+    "unicorn/prefer-number-properties": [
+      1
+    ],
+    "unicorn/prefer-regexp-test": [
+      1
+    ],
+    "unicorn/prefer-spread": [
+      1
+    ],
+    "unicorn/prefer-string-replace-all": [
+      1
+    ],
+    "unicorn/prefer-string-slice": [
+      1
+    ],
+    "unicorn/prefer-string-starts-ends-with": [
+      1
+    ],
+    "unicorn/prefer-string-trim-start-end": [
+      1
+    ],
+    "unicorn/prefer-top-level-await": [
+      1
+    ],
+    "unicorn/prefer-type-error": [
+      1
+    ],
+    "unicorn/relative-url-style": [
+      1
+    ],
+    "unicorn/text-encoding-identifier-case": [
+      1
+    ],
+    "unicorn/throw-new-error": [
+      1
+    ],
+    "use-isnan": [
+      1
+    ],
+    "valid-typeof": [
+      1
+    ],
+    "yield-star-spacing": [
+      1
+    ],
+    "yoda": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/is-function": [
+      0
+    ],
+    "you-dont-need-lodash-underscore/is-nil": [
+      0
+    ],
+    "you-dont-need-lodash-underscore/is-string": [
+      0
+    ],
+    "you-dont-need-lodash-underscore/last": [
+      0
+    ],
+    "you-dont-need-lodash-underscore/omit": [
+      0
+    ],
+    "you-dont-need-lodash-underscore/uniq": [
+      0
+    ],
+    "you-dont-need-lodash-underscore/concat": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/drop": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/drop-right": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/index-of": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/join": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/last-index-of": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/reverse": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/fill": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/find": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/detect": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/first": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/find-index": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/is-array": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/each": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/for-each": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/every": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/all": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/filter": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/select": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/map": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/collect": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/reduce": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/inject": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/foldl": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/reduce-right": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/foldr": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/size": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/some": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/any": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/includes": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/contains": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/slice": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/take-right": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/bind": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/is-finite": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/is-integer": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/is-nan": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/is-null": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/is-undefined": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/keys": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/extend-own": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/assign": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/values": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/entries": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/to-pairs": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/pairs": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/get": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/split": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/starts-with": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/ends-with": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/to-lower": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/to-upper": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/trim": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/pad-start": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/pad-end": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/repeat": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/replace": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/flatten": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/throttle": [
+      1
+    ],
+    "you-dont-need-lodash-underscore/cast-array": [
+      1
+    ]
+  },
+  "settings": {},
+  "ignorePatterns": [
+    "dist/",
+    "/node_modules/",
+    "/test/fixtures/",
+    "/build/",
+    "/readme/*.js"
+  ]
+}
