@@ -7,23 +7,23 @@ import {context} from '@actions/github'
 import fs from 'fs-extra'
 import Handlebars from 'handlebars'
 import readFileString from 'read-file-string'
+import readFileYaml from 'read-file-yaml'
 import showdown from 'showdown'
 
-const inputs = JSON.parse(process.env.inputs)
-console.dir(inputs.data)
+const dirName = path.dirname(fileURLToPath(import.meta.url))
 
 const setOutput = (value, name = `value`) => {
   core.setOutput(name, value)
   core.info(`Output ${name}: ${value}`)
 }
 
-const dirName = path.dirname(fileURLToPath(import.meta.url))
+const data = await readFileYaml.default(path.join(process.env.RUNNER_WORKSPACE, `out`, `data.yml`))
 
 const handlebars = Handlebars.create()
 const template = await readFileString.default(path.resolve(dirName, `template.md.hbs`))
 const templateInvoker = handlebars.compile(template)
 const md = templateInvoker({
-  ...inputs.data,
+  ...data,
 })
 const htmlTemplate = await readFileString.default(path.resolve(dirName, `template.html.hbs`))
 const htmlTemplateInvoker = handlebars.compile(htmlTemplate)

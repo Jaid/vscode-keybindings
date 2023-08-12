@@ -2,6 +2,7 @@
 import path from 'node:path'
 
 import * as core from '@actions/core'
+import fs from 'fs-extra'
 import {globbyStream} from 'globby'
 import readFileYaml from 'read-file-yaml'
 import yaml from 'yaml'
@@ -45,4 +46,4 @@ const output = {
   additions,
 }
 const yamlOutput = toYaml(output)
-core.setOutput(`value`, yamlOutput)
+await fs.outputFile(path.join(process.env.RUNNER_WORKSPACE, `out`, `data.yml`), yamlOutput)

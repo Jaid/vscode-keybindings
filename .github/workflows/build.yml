@@ -25,8 +25,12 @@ jobs:
         env:
           steps: ${{ toJson(steps) }}
         run: node --loader ts-node/esm src/workflows/build/build.ts
-    outputs:
-      value: ${{ steps.build.outputs.value }}
+      - id: uploadArtifact
+        name: uploadArtifact
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: data
+          path: ${{ runner.workspace }}/out
   buildHtml:
     needs: build
     uses: ./.github/workflows/buildHtml.yml
@@ -35,8 +39,8 @@ jobs:
     permissions:
       id-token: write
       pages: write
-  buildExtension:
-    needs: build
-    uses: ./.github/workflows/buildExtension.yml
-    with:
-      data: ${{ needs.build.outputs.value }}
+  # buildExtension:
+  #   needs: build
+  #   uses: ./.github/workflows/buildExtension.yml
+  #   with:
+  #     data: ${{ needs.build.outputs.value }}
