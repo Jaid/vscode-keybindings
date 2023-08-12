@@ -22,9 +22,7 @@ console.dir(data)
 const handlebars = Handlebars.create()
 const template = await readFileString.default(path.resolve(dirName, `template.md.hbs`))
 const templateInvoker = handlebars.compile(template)
-const md = templateInvoker({
-  ...data,
-})
+const md = templateInvoker({...data})
 const htmlTemplate = await readFileString.default(path.resolve(dirName, `template.html.hbs`))
 const htmlTemplateInvoker = handlebars.compile(htmlTemplate)
 const converter = new showdown.Converter

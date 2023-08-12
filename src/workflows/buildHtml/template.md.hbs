@@ -1,5 +1,10 @@
 # Keybindings Reimagined
 
-```json
-{{{globalData}}}
-```
+{{#with config}}
+  {{#each this}}
+    ## {{{this.key}}}
+    {{#each this.keystrokes}}
+      - {{{key}}}
+    {{/each}}
+  {{/each}}
+{{/with}}
