@@ -18,7 +18,11 @@ const toYaml = input => yaml.stringify(input, null, {
 })
 
 const globalData = convertGlobals()
-
+console.dir(globalData, {
+  depth: 2,
+  colors: true,
+  sorted: true,
+})
 const config = {}
 
 const globbyIterator = globbyStream(`*.yml`, {
