@@ -25,7 +25,7 @@ jobs:
       - name: installNodePackages
         id: installNodePackages
         working-directory: ${{ runner.workspace }}
-        run: npm install --no-save --no-package-lock ts-node @actions/core @actions/github fs-extra globby read-file-yaml prevent-start lodash-es
+        run: npm install --no-save --no-package-lock ts-node @actions/core @actions/github fs-extra globby read-file-yaml prevent-start lodash-es tsconfig-jaid
       - id: build
         name: build
         run: node --loader ts-node/esm src/workflows/buildExtension/build.ts

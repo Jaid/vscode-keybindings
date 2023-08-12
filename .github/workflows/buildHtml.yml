@@ -31,7 +31,7 @@ jobs:
       - name: installNodePackages
         id: installNodePackages
         working-directory: ${{ runner.workspace }}
-        run: npm install --no-save --no-package-lock ts-node @actions/core @actions/github fs-extra globby read-file-yaml showdown handlebars read-file-string
+        run: npm install --no-save --no-package-lock ts-node @actions/core @actions/github fs-extra globby read-file-yaml showdown handlebars read-file-string tsconfig-jaid
       - id: build
         name: build
         env:

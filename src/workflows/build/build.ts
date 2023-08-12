@@ -7,8 +7,7 @@ import {globbyStream} from 'globby'
 import readFileYaml from 'read-file-yaml'
 import yaml from 'yaml'
 
-const steps = JSON.parse(process.env.steps)
-console.dir(steps)
+import convertGlobals from './convertGlobals.ts'
 
 const toYaml = input => yaml.stringify(input, null, {
   schema: `core`,
@@ -17,6 +16,8 @@ const toYaml = input => yaml.stringify(input, null, {
   singleQuote: true,
   nullStr: `~`,
 })
+
+const globalData = convertGlobals()
 
 const config = {}
 

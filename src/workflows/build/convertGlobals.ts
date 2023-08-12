@@ -14,9 +14,6 @@ const toYaml = input => yaml.stringify(input, null, {
   nullStr: `~`,
 })
 
-const a = 2
-core.info(`test`)
-
 const ExclusionRule = class {
   value: string
 
@@ -86,53 +83,50 @@ const excludedKeystrokes = [
 ].map(input => new ExclusionRule(input))
 const jsonPath = path.resolve(`src`, `global.jsonc`)
 const data = await readFileJson.default(jsonPath)
-const result = []
-const excluded = []
-const exclusionCounter = new KeyCounter.default
-const keystrokeCounter = new KeyCounter.default
-for (const entry of data) {
-  let isIncluded = true
-  for (const excludedKeystroke of excludedKeystrokes) {
-    if (excludedKeystroke.test(entry)) {
-      isIncluded = false
-      excluded.push(entry)
-      exclusionCounter.feed(excludedKeystroke.getTitle())
-      break
+export default () => {
+  const result = []
+  const excluded = []
+  const exclusionCounter = new KeyCounter.default
+  const keystrokeCounter = new KeyCounter.default
+  for (const entry of data) {
+    let isIncluded = true
+    for (const excludedKeystroke of excludedKeystrokes) {
+      if (excludedKeystroke.test(entry)) {
+        isIncluded = false
+        excluded.push(entry)
+        exclusionCounter.feed(excludedKeystroke.getTitle())
+        break
+      }
     }
+    if (!isIncluded) {
+      continue
+    }
+    result.push({
+      ...entry,
+      command: `-${entry.command}`,
+    })
   }
-  if (!isIncluded) {
-    continue
-  }
-  result.push({
-    ...entry,
-    command: `-${entry.command}`,
-  })
-}
-core.info(`Loaded ${Object.keys(data).length} global keybindings from ${jsonPath}`)
-core.info(`Included ${result.length}, excluded ${data.length - result.length}`)
-core.startGroup(`YAML output (keystrokes to delete)`)
-core.info(toYaml(result))
-core.endGroup()
-core.startGroup(`Excluded (keystrokes to keep)`)
-core.info(`Excluded ${excluded.length} keybindings`)
-core.info(toYaml(exclusionCounter.toObjectSortedByValues()))
-core.info(toYaml(excluded))
-core.endGroup()
-const keystrokeList = Object.entries(keystrokeCounter.toObjectSortedByValues()).map(([key, value]) => {
-  return {
-    key,
-    value,
-    keystrokes: data.filter(entry => entry.key === key),
-  }
-})
-keystrokeList.reverse()
-for (const entry of keystrokeList) {
-  core.startGroup(`Keystroke ${entry.key} (${entry.value})`)
-  core.info(entry)
+  core.info(`Loaded ${Object.keys(data).length} global keybindings from ${jsonPath}`)
+  core.info(`Included ${result.length}, excluded ${data.length - result.length}`)
+  core.startGroup(`YAML output (keystrokes to delete)`)
+  core.info(toYaml(result))
   core.endGroup()
+  core.startGroup(`Excluded (keystrokes to keep)`)
+  core.info(`Excluded ${excluded.length} keybindings`)
+  core.info(toYaml(exclusionCounter.toObjectSortedByValues()))
+  core.info(toYaml(excluded))
+  core.endGroup()
+  const keystrokeList = Object.entries(keystrokeCounter.toObjectSortedByValues()).map(([key, value]) => {
+    return {
+      key,
+      value,
+      keystrokes: data.filter(entry => entry.key === key),
+    }
+  })
+  keystrokeList.reverse()
+  for (const entry of keystrokeList) {
+    core.startGroup(`Keystroke ${entry.key} (${entry.value})`)
+    core.info(entry)
+    core.endGroup()
+  }
 }
-core.setOutput(`value`, {
-  all: data,
-  result,
-  excluded,
-})
