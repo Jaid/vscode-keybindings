@@ -61,6 +61,7 @@ for (const [id, entry] of Object.entries(data)) {
     dataNormalized.deletions[id] = normalizeKeystrokes(deletions)
   }
 }
+core.info(JSON.stringify(dataNormalized))
 console.dir(dataNormalized, {depth: Number.POSITIVE_INFINITY})
 const handlebars = Handlebars.create()
 const template = await readFileString.default(path.resolve(dirName, `template.md.hbs`))

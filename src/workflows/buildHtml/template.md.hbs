@@ -9,7 +9,13 @@
    Keystroke|Command|Condition
    -- |-- |--
     {{#each this}}
-      {{key}}|{{command}}|{{when}}
+      {{#each keystrokeVisualization}}
+        {{{this}}}
+      {{/each}}
+      |{{command}}
+      {{#if condition}}
+        |{{condition}}
+      {{/if}}
     {{/each}}
   {{/each}}
 {{/each}}
