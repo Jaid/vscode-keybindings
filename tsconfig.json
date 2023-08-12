@@ -17,7 +17,7 @@
     "newLine": "lf",
     "declaration": true,
     "esModuleInterop": true,
-    "module": "nodenext",
+    "module": "esnext",
     "moduleResolution": "nodenext",
     "target": "esnext",
     "lib": [
