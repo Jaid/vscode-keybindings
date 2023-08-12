@@ -1,8 +1,5 @@
 {
   "extends": "tsconfig-jaid/base",
-  "include": [
-    "src/**/*.ts"
-  ],
   "typeAcquisition": {
     "enable": true
   },
