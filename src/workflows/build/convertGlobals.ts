@@ -13,51 +13,51 @@ import yaml from "yaml"
 // const toYaml = await import(path.resolve(dirName, 'lib', 'toYaml.js'))
 
 const toYaml = input => yaml.stringify(input, null, {
-  schema: "core",
+  schema: `core`,
   lineWidth: 0,
   minContentWidth: 0,
   singleQuote: true,
-  nullStr: "~",
+  nullStr: `~`,
 })
 
 const ExclusionRule = class {
   constructor(input) {
-    if (typeof input === "string") {
+    if (typeof input === `string`) {
       this.value = input
-      this.type = "static"
+      this.type = `static`
     }
     if (input instanceof RegExp) {
       this.value = input
-      this.type = "regex"
+      this.type = `regex`
     }
     if (Array.isArray(input)) {
-      if (input[0] === "command") {
+      if (input[0] === `command`) {
         this.value = input[1]
-        this.type = "command"
+        this.type = `command`
       }
     }
   }
 
   test(keystrokeObject) {
-    if (this.type === "static") {
+    if (this.type === `static`) {
       return keystrokeObject.key === this.value
     }
-    if (this.type === "regex") {
+    if (this.type === `regex`) {
       return this.value.test(keystrokeObject.key)
     }
-    if (this.type === "command") {
+    if (this.type === `command`) {
       return keystrokeObject.command === this.value
     }
   }
 
   getTitle() {
-    if (this.type === "static") {
+    if (this.type === `static`) {
       return this.value
     }
-    if (this.type === "regex") {
+    if (this.type === `regex`) {
       return this.value.source
     }
-    if (this.type === "command") {
+    if (this.type === `command`) {
       return `command ${this.value}`
     }
   }
@@ -72,18 +72,18 @@ const excludedKeystrokes = [
   /^(|(ctrl|alt|shift|ctrl\+alt|shift\+alt|ctrl\+shift|ctrl\+shift\+alt)\+)enter$/,
   /^(|(ctrl|alt|shift|ctrl\+alt|shift\+alt|ctrl\+shift|ctrl\+shift\+alt)\+)escape$/,
   /^(|(ctrl|alt|shift|ctrl\+alt|shift\+alt|ctrl\+shift|ctrl\+shift\+alt)\+)space$/,
-  "ctrl+a",
-  "ctrl+c",
-  "ctrl+v",
-  "ctrl+z",
-  "ctrl+f",
-  "ctrl+shift+z",
-  "ctrl+shift+f",
-  "ctrl+w",
-  "ctrl+x",
-  ["command", "editor.action.refactor"],
+  `ctrl+a`,
+  `ctrl+c`,
+  `ctrl+v`,
+  `ctrl+z`,
+  `ctrl+f`,
+  `ctrl+shift+z`,
+  `ctrl+shift+f`,
+  `ctrl+w`,
+  `ctrl+x`,
+  [`command`, `editor.action.refactor`],
 ].map(input => new ExclusionRule(input))
-const jsonPath = path.resolve("src", "global.jsonc")
+const jsonPath = path.resolve(`src`, `global.jsonc`)
 const data = await readFileJson.default(jsonPath)
 const result = []
 const excluded = []
@@ -109,10 +109,10 @@ for (const entry of data) {
 }
 core.info(`Loaded ${Object.keys(data).length} global keybindings from ${jsonPath}`)
 core.info(`Included ${result.length}, excluded ${data.length - result.length}`)
-core.startGroup("YAML output (keystrokes to delete)")
+core.startGroup(`YAML output (keystrokes to delete)`)
 core.info(toYaml(result))
 core.endGroup()
-core.startGroup("Excluded (keystrokes to keep)")
+core.startGroup(`Excluded (keystrokes to keep)`)
 core.info(`Excluded ${excluded.length} keybindings`)
 core.info(toYaml(exclusionCounter.toObjectSortedByValues()))
 core.info(toYaml(excluded))
@@ -130,7 +130,7 @@ for (const entry of keystrokeList) {
   core.info(entry)
   core.endGroup()
 }
-core.setOutput("value", {
+core.setOutput(`value`, {
   all: data,
   result,
   excluded,

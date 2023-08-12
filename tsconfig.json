@@ -1,4 +1,5 @@
 {
+  "extends": "tsconfig-jaid/base",
   "include": [
     "src/**/*.ts"
   ],
@@ -7,21 +8,5 @@
   },
   "compilerOptions": {
     "baseUrl": ".",
-    "allowJs": true,
-    "checkJs": true,
-    "outDir": "dist/typescript",
-    "newLine": "lf",
-    "declaration": true,
-    "module": "nodenext",
-    "target": "es2022",
-    "moduleResolution": "nodenext",
-    "lib": [
-      "ESNext"
-    ],
-    "esModuleInterop": true
   },
-  "ts-node": {
-    "transpileOnly": true,
-    "preferTsExts": true
-  }
 }
