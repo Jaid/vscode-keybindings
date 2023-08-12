@@ -36,7 +36,7 @@ const normalizeKeystrokes = keystrokes => {
       if (part === `+`) {
         return {
           type: `connector`,
-          value: ` + `,
+          value: ` `,
         }
       }
       return {

@@ -1,21 +1,26 @@
 # Keybindings Reimagined
 
-{{#each data}}
+{{#each data~}}
   ## {{{@key}}}
 
-  {{#each this}}
+  {{#each this~}}
     ### {{{@key}}}
 
    Keystroke|Command|Condition
    -- |-- |--
     {{#each this}}
-      {{#each keystrokeVisualization}}
-        {{{this}}}
-      {{/each}}
+      {{#each keyVisualization ~}}
+        {{#if (isKey type)~}}
+          `{{{titleCase value}}}`
+        {{~else~}}
+          {{{value}}}
+        {{~/if}}
+      {{~/each~}}
       |{{command}}
-      {{#if condition}}
-        |{{condition}}
-      {{/if}}
+      {{~#if when~}}
+        |{{when}}
+      {{~/if}}
+
     {{/each}}
   {{/each}}
 {{/each}}
