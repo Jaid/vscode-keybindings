@@ -9,7 +9,7 @@ import Handlebars from 'handlebars'
 import {fileURLToPath} from "node:url"
 
 const inputs = JSON.parse(process.env.inputs)
-console.dir(inputs)
+console.dir(inputs.data)
 
 const setOutput = (value, name = 'value') => {
   core.setOutput(name, value)
