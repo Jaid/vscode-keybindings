@@ -1,3 +1,7 @@
 {
-  "extends": "jaid"
+  "extends": "jaid",
+  "rules": {
+    "unicorn/expiring-todo-comments": "off",
+    "import/no-unresolved": "off"
+  }
 }

@@ -1,7 +1,6 @@
 {
   "include": [
-    "src/**/*.ts",
-    ".github/workflows/**/*.ts",
+    "src/**/*.ts"
   ],
   "typeAcquisition": {
     "enable": true

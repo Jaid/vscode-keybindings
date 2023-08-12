@@ -1,28 +1,29 @@
 // @ts-nocheck
-import readFileYaml from 'read-file-yaml'
-import {globbyStream} from 'globby'
-import * as core from '@actions/core'
-import path from "path"
+import path from "node:path"
+
+import * as core from "@actions/core"
+import {globbyStream} from "globby"
+import readFileYaml from "read-file-yaml"
 
 const steps = JSON.parse(process.env.steps)
 console.dir(steps)
 
-config = {}
+const config = {}
 
-const globbyIterator = globbyStream('*.yml', {
-  cwd: 'src',
+const globbyIterator = globbyStream("*.yml", {
+  cwd: "src",
   objectMode: true,
-  absolute: true
+  absolute: true,
 })
 const additions = []
 const deletions = []
 for await (const globbyEntry of globbyIterator) {
-  const id = path.basename(globalEntry.name, '.yml')
+  const id = path.basename(globbyEntry.name, ".yml")
   config[id] = []
   const data = await readFileYaml.default(globbyEntry.path)
   for (const entry of data) {
     config[id].push(entry)
-    if (entry.command.startsWith('-')) {
+    if (entry.command.startsWith("-")) {
       deletions.push(entry)
       continue
     }
@@ -32,6 +33,6 @@ for await (const globbyEntry of globbyIterator) {
 const output = {
   config,
   deletions,
-  additions
+  additions,
 }
-core.setOutput('value', JSON.stringify(output))
+core.setOutput("value", JSON.stringify(output))
