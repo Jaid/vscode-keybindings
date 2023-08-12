@@ -27,9 +27,11 @@ const sortKeystrokes = keystrokes => lodash.orderBy(keystrokes, [keystroke => ke
 for (const [id, entry] of Object.entries(data)) {
   const [deletions, additions] = lodash.partition(entry.keystrokes, keystroke => keystroke.key.startsWith(`-`))
   if (additions.length) {
+    core.info(`${additions.length} additions for ${id}`)
     dataNormalized.additions[id] = sortKeystrokes(additions)
   }
   if (deletions.length) {
+    core.info(`${deletions.length} deletions for ${id}`)
     dataNormalized.deletions[id] = sortKeystrokes(deletions)
   }
 }

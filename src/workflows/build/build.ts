@@ -36,9 +36,5 @@ for (const [id, entry] of Object.entries(config)) {
   }
   entry.keystrokes = await readFileYaml.default(path.join(`src`, `${id}.yml`))
 }
-const output = {
-  config,
-  globalData,
-}
-const yamlOutput = toYaml(output)
+const yamlOutput = toYaml(config)
 await fs.outputFile(path.join(process.env.RUNNER_WORKSPACE, `out`, `data.yml`), yamlOutput)
