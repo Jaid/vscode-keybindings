@@ -33,6 +33,7 @@ for (const [id, entry] of Object.entries(data)) {
     dataNormalized.deletions[id] = sortKeystrokes(deletions)
   }
 }
+console.dir(dataNormalized, {depth: Number.POSITIVE_INFINITY})
 const handlebars = Handlebars.create()
 const template = await readFileString.default(path.resolve(dirName, `template.md.hbs`))
 const templateInvoker = handlebars.compile(template)
