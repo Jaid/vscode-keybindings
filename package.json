@@ -3,9 +3,9 @@
   "author": "Jaid <jaid.jsx@gmail.com> (https://github.com/Jaid)",
   "devDependencies": {
     "browserslist-config-jaid-universal": "^2.1.0",
-    "eslint": "^7.6.0",
-    "eslint-config-jaid": "^1.49.0",
-    "tsconfig-jaid": "^2.0.1"
+    "eslint": "^8.47.0",
+    "eslint-config-jaid": "^2.1.0",
+    "tsconfig-jaid": "^2.3.2"
   },
   "scripts": {
   },

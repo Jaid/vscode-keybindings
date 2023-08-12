@@ -22,7 +22,7 @@ const handlebars = Handlebars.create()
 const template = await readFileString.default(path.resolve(dirName, 'buildHtml.template.md.hbs'))
 const templateInvoker = handlebars.compile(template)
 const md = templateInvoker({
-  data: inputs.data
+  ...inputs.data
 })
 const htmlTemplate = await readFileString.default(path.resolve(dirName, 'buildHtml.template.html.hbs'))
 const htmlTemplateInvoker = handlebars.compile(htmlTemplate)

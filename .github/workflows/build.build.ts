@@ -2,6 +2,12 @@
 import readFileYaml from 'read-file-yaml'
 import {globbyStream} from 'globby'
 import * as core from '@actions/core'
+import path from "path"
+
+const steps = JSON.parse(process.env.steps)
+console.dir(steps)
+
+config = {}
 
 const globbyIterator = globbyStream('*.yml', {
   cwd: 'src',
@@ -11,10 +17,11 @@ const globbyIterator = globbyStream('*.yml', {
 const additions = []
 const deletions = []
 for await (const globbyEntry of globbyIterator) {
-  console.dir(globbyEntry)
+  const id = path.basename(globalEntry.name, '.yml')
+  config[id] = []
   const data = await readFileYaml.default(globbyEntry.path)
-  console.dir(data)
   for (const entry of data) {
+    config[id].push(entry)
     if (entry.command.startsWith('-')) {
       deletions.push(entry)
       continue
@@ -23,7 +30,8 @@ for await (const globbyEntry of globbyIterator) {
   }
 }
 const output = {
-  ...deletions,
-  ...additions
+  config,
+  deletions,
+  additions
 }
 core.setOutput('value', JSON.stringify(output))

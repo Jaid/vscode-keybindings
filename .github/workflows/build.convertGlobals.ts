@@ -121,8 +121,10 @@ const keystrokeList = Object.entries(keystrokeCounter.toObjectSortedByValues()).
   }
 })
 keystrokeList.reverse()
+const output = toYaml(entry.keystrokes)
 for (const entry of keystrokeList) {
   core.startGroup(`Keystroke ${entry.key} (${entry.value})`)
-  core.info(toYaml(entry.keystrokes))
+  core.info(output)
   core.endGroup()
 }
+core.setOutput('value', output)
