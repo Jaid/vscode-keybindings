@@ -2,10 +2,10 @@
   "version": "1.0.0",
   "author": "Jaid <jaid.jsx@gmail.com> (https://github.com/Jaid)",
   "devDependencies": {
-    "browserslist-config-jaid-universal": "^2.1.0",
+    "browserslist-config-jaid-universal": "^3.0.0",
     "eslint": "^8.47.0",
-    "eslint-config-jaid": "^2.1.0",
-    "tsconfig-jaid": "^2.3.2"
+    "eslint-config-jaid": "^3.0.0",
+    "tsconfig-jaid": "^3.0.0"
   },
   "scripts": {
   },
