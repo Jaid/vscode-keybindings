@@ -7,11 +7,11 @@
     ### {{{@key}}}
 
    Keystroke|Command|Condition
-   -- |-- |--
+    --|-- |--
     {{#each this}}
       {{#each keyVisualization ~}}
         {{#if (isKey type)~}}
-          `{{{startCase value}}}`
+          `{{{upper value}}}`
         {{~else~}}
           {{{value}}}
         {{~/if}}

@@ -67,8 +67,8 @@ const handlebars = Handlebars.create()
 handlebars.registerHelper(`isKey`, value => {
   return value === `key`
 })
-handlebars.registerHelper(`startCase`, value => {
-  return lodash.startCase(value)
+handlebars.registerHelper(`upper`, value => {
+  return value.toUppercase()
 })
 const template = await readFileString.default(path.resolve(dirName, `template.md.hbs`))
 const templateInvoker = handlebars.compile(template)
