@@ -1,13 +1,13 @@
 // @ts-nocheck
-import path from "node:path"
-import {fileURLToPath} from "node:url"
+import path from 'node:path'
+import {fileURLToPath} from 'node:url'
 
-import core from "@actions/core"
-import {context} from "@actions/github"
-import fs from "fs-extra"
-import Handlebars from "handlebars"
-import readFileString from "read-file-string"
-import showdown from "showdown"
+import core from '@actions/core'
+import {context} from '@actions/github'
+import fs from 'fs-extra'
+import Handlebars from 'handlebars'
+import readFileString from 'read-file-string'
+import showdown from 'showdown'
 
 const inputs = JSON.parse(process.env.inputs)
 console.dir(inputs.data)

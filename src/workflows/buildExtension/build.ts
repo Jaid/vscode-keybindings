@@ -1,12 +1,12 @@
 // @ts-nocheck
-import path from "node:path"
+import path from 'node:path'
 
-import {context} from "@actions/github"
-import fs from "fs-extra"
-import {globbyStream} from "globby"
-import lodash from "lodash-es"
-import preventStart from "prevent-start"
-import readFileYaml from "read-file-yaml"
+import {context} from '@actions/github'
+import fs from 'fs-extra'
+import {globbyStream} from 'globby'
+import lodash from 'lodash-es'
+import preventStart from 'prevent-start'
+import readFileYaml from 'read-file-yaml'
 
 const globbyIterator = globbyStream(`*.yml`, {
   cwd: `src`,

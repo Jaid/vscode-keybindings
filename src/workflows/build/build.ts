@@ -1,9 +1,9 @@
 // @ts-nocheck
-import path from "node:path"
+import path from 'node:path'
 
-import * as core from "@actions/core"
-import {globbyStream} from "globby"
-import readFileYaml from "read-file-yaml"
+import * as core from '@actions/core'
+import {globbyStream} from 'globby'
+import readFileYaml from 'read-file-yaml'
 import yaml from 'yaml'
 
 const steps = JSON.parse(process.env.steps)

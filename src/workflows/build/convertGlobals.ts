@@ -1,11 +1,11 @@
 // @ts-nocheck
-import path from "node:path"
+import path from 'node:path'
 
-import core from "@actions/core"
-import fs from "fs-extra"
-import KeyCounter from "key-counter"
-import readFileJson from "read-file-json"
-import yaml from "yaml"
+import core from '@actions/core'
+import fs from 'fs-extra'
+import KeyCounter from 'key-counter'
+import readFileJson from 'read-file-json'
+import yaml from 'yaml'
 
 // import {fileURLToPath} from 'url'
 
