@@ -6,6 +6,7 @@ import core from '@actions/core'
 import {context} from '@actions/github'
 import fs from 'fs-extra'
 import Handlebars from 'handlebars'
+import lodash from 'lodash-es'
 import readFileString from 'read-file-string'
 import readFileYaml from 'read-file-yaml'
 import showdown from 'showdown'
@@ -18,11 +19,24 @@ const setOutput = (value, name = `value`) => {
 }
 
 const data = await readFileYaml.default(path.join(process.env.RUNNER_WORKSPACE, `out`, `data.yml`))
-console.dir(data)
+const dataNormalized = {
+  additions: {},
+  deletions: {},
+}
+const sortKeystrokes = keystrokes => lodash.orderBy(keystrokes, [keystroke => keystroke.command, keystroke => keystroke.when ?? ``])
+for (const [id, entry] of Object.entries(data)) {
+  const [deletions, additions] = lodash.partition(entry.keystrokes, keystroke => keystroke.key.startsWith(`-`))
+  if (additions.length) {
+    dataNormalized.additions[id] = sortKeystrokes(additions)
+  }
+  if (deletions.length) {
+    dataNormalized.deletions[id] = sortKeystrokes(deletions)
+  }
+}
 const handlebars = Handlebars.create()
 const template = await readFileString.default(path.resolve(dirName, `template.md.hbs`))
 const templateInvoker = handlebars.compile(template)
-const md = templateInvoker({...data})
+const md = templateInvoker({data: dataNormalized})
 const htmlTemplate = await readFileString.default(path.resolve(dirName, `template.html.hbs`))
 const htmlTemplateInvoker = handlebars.compile(htmlTemplate)
 const converter = new showdown.Converter

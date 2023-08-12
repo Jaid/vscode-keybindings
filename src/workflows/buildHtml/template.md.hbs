@@ -1,10 +1,12 @@
 # Keybindings Reimagined
 
-{{#with config}}
+{{#with data}}
   {{#each this}}
     ## {{{this.key}}}
-    {{#each this.keystrokes}}
-      - {{{key}}}
-    {{/each}}
+    {{#with this.keystrokes}}
+      {{#each this}}
+        - {{{this}}}
+      {{/each}}
+    {{/with}}
   {{/each}}
 {{/with}}
