@@ -3,6 +3,7 @@ import path from 'node:path'
 
 import * as core from '@actions/core'
 import fs from 'fs-extra'
+import lodash from 'lodash-es'
 import readFileYaml from 'read-file-yaml'
 import yaml from 'yaml'
 
@@ -19,32 +20,24 @@ const toYaml = input => yaml.stringify(input, null, {
 const globalData = convertGlobals()
 
 const config = {
-  global: {
-    title: `Default`,
+  deletedDefaults: {
     keystrokes: globalData.result,
+    role: `extension`,
   },
+  keptDefaults: {
+    keystrokes: globalData.excluded,
+    role: `doc`,
+  },
+  editor: {},
 }
-
-const additions = []
-const deletions = []
 for (const [id, entry] of Object.entries(config)) {
-  if (entry.keystrokes.length) {
+  if (entry.keystrokes) {
     continue
   }
-  const data = await readFileYaml.default(path.join(`src`, `${id}.yml`))
-  for (const keystrokeEntry of data) {
-    config[id].push(keystrokeEntry)
-    if (keystrokeEntry.command.startsWith(`-`)) {
-      deletions.push(keystrokeEntry)
-      continue
-    }
-    additions.push(keystrokeEntry)
-  }
+  entry.keystrokes = await readFileYaml.default(path.join(`src`, `${id}.yml`))
 }
 const output = {
   config,
-  deletions,
-  additions,
   globalData,
 }
 const yamlOutput = toYaml(output)
