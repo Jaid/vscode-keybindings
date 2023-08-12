@@ -16,7 +16,7 @@ jobs:
       - name: installNodePackages
         id: installNodePackages
         working-directory: ${{ runner.workspace }}
-        run: npm install --no-save --no-package-lock ts-node @actions/core globby read-file-yaml key-counter read-file-json yaml fs-extra
+        run: npm install --no-save --no-package-lock ts-node @actions/core globby read-file-yaml key-counter read-file-json yaml fs-extra tsconfig-jaid
       - id: convertGlobals
         name: convertGlobals
         run: ls -lah src/workflows/build && node --loader ts-node/esm src/workflows/build/convertGlobals.ts

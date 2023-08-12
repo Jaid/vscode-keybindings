@@ -1,8 +1,5 @@
 {
-  "ts-node": {
-    "transpileOnly": true,
-    "preferTsExts": true
-  },
+  "extends": "tsconfig-jaid/base",
   "include": [
     "src/**/*.ts"
   ],
@@ -10,18 +7,6 @@
     "enable": true
   },
   "compilerOptions": {
-    "baseUrl": ".",
-    "allowJs": true,
-    "checkJs": true,
-    "outDir": "./dist/ts",
-    "newLine": "lf",
-    "declaration": true,
-    "esModuleInterop": true,
-    "module": "NodeNext",
-    "moduleResolution": "nodenext",
-    "target": "esnext",
-    "lib": [
-      "esnext"
-    ]
+    "baseUrl": "."
   },
 }
