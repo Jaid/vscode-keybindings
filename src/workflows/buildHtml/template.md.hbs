@@ -3,6 +3,9 @@
 {{#each data}}
   ## {{{@key}}}
   {{#each this}}
-    - {{{key}}}
+    ### {{{@key}}}
+    {{#each this}}
+      - {{key}}
+    {{/each}}
   {{/each}}
 {{/each}}
