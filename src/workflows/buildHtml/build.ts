@@ -67,8 +67,11 @@ const handlebars = Handlebars.create()
 handlebars.registerHelper(`isKey`, value => {
   return value === `key`
 })
-handlebars.registerHelper(`upper`, value => {
-  return value.toUppercase()
+handlebars.registerHelper(`formatKey`, value => {
+  return value.replace(/^oem_/, `OEM `)
+})
+handlebars.registerHelper(`noBreaks`, value => {
+  return value.replaceAll(/\s+/g, ` `)
 })
 const template = await readFileString.default(path.resolve(dirName, `template.md.hbs`))
 const templateInvoker = handlebars.compile(template)

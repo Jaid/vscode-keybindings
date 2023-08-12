@@ -11,7 +11,7 @@
     {{#each this}}
       {{#each keyVisualization ~}}
         {{#if (isKey type)~}}
-          `{{{upper value}}}`
+          `{{{formatKey value}}}`
         {{~else~}}
           {{{value}}}
         {{~/if}}
