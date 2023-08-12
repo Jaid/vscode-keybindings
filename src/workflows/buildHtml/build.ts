@@ -64,6 +64,12 @@ for (const [id, entry] of Object.entries(data)) {
 core.info(JSON.stringify(dataNormalized))
 console.dir(dataNormalized, {depth: Number.POSITIVE_INFINITY})
 const handlebars = Handlebars.create()
+Handlebars.registerHelper(`isKey`, value => {
+  return value === `key`
+})
+Handlebars.registerHelper(`startCase`, value => {
+  return lodash.startCase(value)
+})
 const template = await readFileString.default(path.resolve(dirName, `template.md.hbs`))
 const templateInvoker = handlebars.compile(template)
 const md = templateInvoker({data: dataNormalized})
