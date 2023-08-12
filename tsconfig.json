@@ -19,7 +19,7 @@
     "esModuleInterop": true,
     "module": "nodenext",
     "moduleResolution": "nodenext",
-    "target": "es2022",
+    "target": "esnext",
     "lib": [
       "esnext"
     ]
