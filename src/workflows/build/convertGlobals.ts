@@ -129,4 +129,8 @@ export default () => {
     core.info(entry)
     core.endGroup()
   }
+  return {
+    result,
+    excluded,
+  }
 }

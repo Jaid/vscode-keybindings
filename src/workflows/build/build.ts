@@ -3,7 +3,6 @@ import path from 'node:path'
 
 import * as core from '@actions/core'
 import fs from 'fs-extra'
-import {globbyStream} from 'globby'
 import readFileYaml from 'read-file-yaml'
 import yaml from 'yaml'
 
@@ -18,31 +17,28 @@ const toYaml = input => yaml.stringify(input, null, {
 })
 
 const globalData = convertGlobals()
-console.dir(globalData, {
-  depth: 2,
-  colors: true,
-  sorted: true,
-})
-const config = {}
 
-const globbyIterator = globbyStream(`*.yml`, {
-  cwd: `src`,
-  objectMode: true,
-  absolute: true,
-})
+const config = {
+  global: {
+    title: `Default`,
+    entries: globalData.result,
+  },
+}
+
 const additions = []
 const deletions = []
-for await (const globbyEntry of globbyIterator) {
-  const id = path.basename(globbyEntry.name, `.yml`)
-  config[id] = []
-  const data = await readFileYaml.default(globbyEntry.path)
-  for (const entry of data) {
-    config[id].push(entry)
-    if (entry.command.startsWith(`-`)) {
-      deletions.push(entry)
+for (const [id, entry] of Object.entries(config)) {
+  if (entry.entries.length) {
+    continue
+  }
+  const data = await readFileYaml.default(path.join(`src`, `${id}.yml`))
+  for (const keystrokeEntry of data) {
+    config[id].push(keystrokeEntry)
+    if (keystrokeEntry.command.startsWith(`-`)) {
+      deletions.push(keystrokeEntry)
       continue
     }
-    additions.push(entry)
+    additions.push(keystrokeEntry)
   }
 }
 const output = {
