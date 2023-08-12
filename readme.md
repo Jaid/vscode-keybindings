@@ -1,4 +1,4 @@
-# vscode-keybindings
+# vscode-keybindings-reimagined
 
 ## Development
 

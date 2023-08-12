@@ -23,16 +23,42 @@ const dataNormalized = {
   additions: {},
   deletions: {},
 }
-const sortKeystrokes = keystrokes => lodash.orderBy(keystrokes, [keystroke => keystroke.command, keystroke => keystroke.when ?? ``])
+const normalizeKeystrokes = keystrokes => {
+  const sorted = lodash.orderBy(keystrokes, [keystroke => keystroke.command, keystroke => keystroke.when ?? ``])
+  return sorted.map(keystroke => {
+    const keyVisualization = keystroke.key.split(/([ +|])/g).map(part => {
+      if (part === ` `) {
+        return {
+          type: `connector`,
+          value: ` → `,
+        }
+      }
+      if (part === `+`) {
+        return {
+          type: `connector`,
+          value: ` + `,
+        }
+      }
+      return {
+        type: `key`,
+        value: part,
+      }
+    })
+    return {
+      ...keystroke,
+      keyVisualization,
+    }
+  })
+}
 for (const [id, entry] of Object.entries(data)) {
   const [deletions, additions] = lodash.partition(entry.keystrokes, keystroke => keystroke.key.startsWith(`-`))
   if (additions.length) {
     core.info(`${additions.length} additions for ${id}`)
-    dataNormalized.additions[id] = sortKeystrokes(additions)
+    dataNormalized.additions[id] = normalizeKeystrokes(additions)
   }
   if (deletions.length) {
     core.info(`${deletions.length} deletions for ${id}`)
-    dataNormalized.deletions[id] = sortKeystrokes(deletions)
+    dataNormalized.deletions[id] = normalizeKeystrokes(deletions)
   }
 }
 console.dir(dataNormalized, {depth: Number.POSITIVE_INFINITY})
