@@ -15,14 +15,17 @@
     table {
       border-collapse: collapse;
     }
-    tr {
-      height: 2.2rem;
+    tr > td {
+      padding: 0.5rem;
     }
     tr:nth-child(even) {
       background: color(srgb 0.58 0.54 1 / 0.10);
     }
     tr > td:first-child {
       white-space: nowrap;
+    }
+    tr > td:last-child {
+      max-width: 40rem;
     }
   </style>
 </head>

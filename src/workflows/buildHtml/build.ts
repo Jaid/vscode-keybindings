@@ -70,6 +70,9 @@ handlebars.registerHelper(`isKey`, value => {
 handlebars.registerHelper(`formatKey`, value => {
   return value.replace(/^oem_/, `OEM `).toUpperCase()
 })
+handlebars.registerHelper(`startCase`, value => {
+  return lodash.startCase(value)
+})
 const template = await readFileString.default(path.resolve(dirName, `template.md.hbs`))
 const templateInvoker = handlebars.compile(template)
 const md = templateInvoker({data: dataNormalized})
