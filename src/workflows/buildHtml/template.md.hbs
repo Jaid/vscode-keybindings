@@ -11,7 +11,7 @@
     {{#each this}}
       {{#each keyVisualization ~}}
         {{#if (isKey type)~}}
-          `{{{titleCase value}}}`
+          `{{{startCase value}}}`
         {{~else~}}
           {{{value}}}
         {{~/if}}
