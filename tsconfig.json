@@ -1,5 +1,9 @@
 {
   "extends": "tsconfig-jaid/base",
+  "ts-node": {
+    "transpileOnly": true,
+    "preferTsExts": true
+  },
   "include": [
     "src/**/*.ts"
   ],
