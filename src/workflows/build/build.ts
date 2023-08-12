@@ -45,6 +45,7 @@ const output = {
   config,
   deletions,
   additions,
+  globalData,
 }
 const yamlOutput = toYaml(output)
 await fs.outputFile(path.join(process.env.RUNNER_WORKSPACE, `out`, `data.yml`), yamlOutput)
