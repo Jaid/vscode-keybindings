@@ -31,13 +31,9 @@ jobs:
   buildHtml:
     needs: build
     uses: ./.github/workflows/buildHtml.yml
-    with:
-      data: ${{ needs.build.outputs.value }}
     permissions:
       id-token: write
       pages: write
   # buildExtension:
   #   needs: build
   #   uses: ./.github/workflows/buildExtension.yml
-  #   with:
-  #     data: ${{ needs.build.outputs.value }}
