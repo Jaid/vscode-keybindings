@@ -21,14 +21,14 @@ const globalData = convertGlobals()
 const config = {
   global: {
     title: `Default`,
-    entries: globalData.result,
+    keystrokes: globalData.result,
   },
 }
 
 const additions = []
 const deletions = []
 for (const [id, entry] of Object.entries(config)) {
-  if (entry.entries.length) {
+  if (entry.keystrokes.length) {
     continue
   }
   const data = await readFileYaml.default(path.join(`src`, `${id}.yml`))
