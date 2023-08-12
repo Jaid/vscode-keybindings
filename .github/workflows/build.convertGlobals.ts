@@ -4,6 +4,7 @@ import fs from 'fs-extra'
 import path from 'path'
 import readFileJson from 'read-file-json'
 import KeyCounter from 'key-counter'
+import yaml from 'yaml'
 
 // import {fileURLToPath} from 'url'
 
