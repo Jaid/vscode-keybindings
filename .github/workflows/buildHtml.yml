@@ -33,14 +33,8 @@ jobs:
         run: npm install --no-save --no-package-lock @actions/core @actions/github fs-extra globby read-file-yaml showdown handlebars read-file-string lodash-es tsx tsconfig-jaid
       - name: rewriteTsconfigJaid
         id: rewriteTsconfigJaid
-        uses: jacobtomlinson/gha-find-replace@3.0.2
-        with:
-          include: ${{ runner.workspace }}/node_modules/tsconfig-jaid/base.json
-          find: '"..'
-          replace: '"../..'
-          regex: false
-      - if: ${{ steps.rewriteTsconfigJaid.outputs.modifiedFiles > 0 }}
-        id: build
+        run: sed --regexp-extended 's|"\.\.|"\.\./\.\.|g, s|''\.\.|''\.\./\.\.|g' --in-place ${{ runner.workspace }}/node_modules/tsconfig-jaid/base.json
+      - id: build
         name: build
         run: ${{ runner.workspace }}/node_modules/.bin/tsx src/workflows/buildHtml/build.ts
       - name: check
