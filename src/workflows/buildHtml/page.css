@@ -4,7 +4,7 @@ body {
   font-family: GeologicaFlex, sans-serif;
   padding: 1rem;
 }
-td > code {
+tr > td:first-child > code {
   background: white;
   padding: 0.2rem;
   color: rgba(0, 0, 0, 0.9);
