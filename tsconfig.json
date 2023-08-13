@@ -8,22 +8,8 @@
     "composite": true,
     "paths": {
       "lib/*": [
-        "./src/lib/*"
+        "./src/workflows/lib/*"
       ]
     }
   },
-  "ts-node": {
-    "transpileOnly": true,
-    "preferTsExts": true,
-    "esm": true,
-    "compilerOptions": {
-      "composite": true,
-      "baseUrl": ".",
-      "paths": {
-        "lib/*": [
-          "./src/lib/*"
-        ]
-      }
-    }
-  }
 }
