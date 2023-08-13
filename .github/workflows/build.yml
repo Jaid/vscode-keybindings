@@ -16,12 +16,19 @@ jobs:
       - name: installNodePackages
         id: installNodePackages
         working-directory: ${{ runner.workspace }}
-        run: npm install --no-save --no-package-lock ts-node @actions/core globby read-file-yaml key-counter read-file-json yaml fs-extra tsconfig-jaid lodash-es tsconfig-paths
-      - id: build
+        run: npm install --no-save --no-package-lock @actions/core globby read-file-yaml key-counter read-file-json yaml fs-extra tsconfig-jaid lodash-es tsx
+      - name: rewriteTsconfigJaid
+        id: rewriteTsconfigJaid
+        uses: jacobtomlinson/gha-find-replace@3.0.2
+        with:
+          include: ${{ runner.workspace }}/node_modules/tsconfig-jaid/base.json
+          find: '"..'
+          replace: '"../..'
+          regex: false
+      - if: ${{ steps.rewriteTsconfigJaid.outputs.modifiedFiles > 0 }}
+        id: build
         name: build
-        env:
-          steps: ${{ toJson(steps) }}
-        run: node --loader ts-node/esm src/workflows/build/build.ts
+        run: ${{ runner.workspace }}/node_modules/.bin/tsx src/workflows/build/build.ts
       - id: uploadArtifact
         name: uploadArtifact
         uses: actions/upload-artifact@v3.1.2

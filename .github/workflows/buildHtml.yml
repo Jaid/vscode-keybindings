@@ -30,26 +30,19 @@ jobs:
       - name: installNodePackages
         id: installNodePackages
         working-directory: ${{ runner.workspace }}
-        run: npm install --no-save --no-package-lock ts-node @actions/core @actions/github fs-extra globby read-file-yaml showdown handlebars read-file-string lodash-es tsconfig-paths tsx
-      - name: installNodePackagesInRepo
-        id: installNodePackagesInRepo
-        run: npm install --no-save --no-package-lock tsconfig-jaid
-      - id: checkTypescriptConfig
-        name: checkTypescriptConfig
-        run: |-
-          PATH=$PATH:$GITHUB_WORKSPACE/node_modules/.bin:$RUNNER_WORKSPACE/node_modules/.bin
-          export PATH
-          set -o xtrace
-          ls -l --almost-all --color=always --si --literal --group-directories-first $GITHUB_WORKSPACE/node_modules/.bin
-          ls -l --almost-all --color=always --si --literal --group-directories-first $RUNNER_WORKSPACE/node_modules/.bin
-          tsc --showConfig
-      - id: build
+        run: npm install --no-save --no-package-lock @actions/core @actions/github fs-extra globby read-file-yaml showdown handlebars read-file-string lodash-es tsx tsconfig-jaid
+      - name: rewriteTsconfigJaid
+        id: rewriteTsconfigJaid
+        uses: jacobtomlinson/gha-find-replace@3.0.2
+        with:
+          include: ${{ runner.workspace }}/node_modules/tsconfig-jaid/base.json
+          find: '"..'
+          replace: '"../..'
+          regex: false
+      - if: ${{ steps.rewriteTsconfigJaid.outputs.modifiedFiles > 0 }}
+        id: build
         name: build
-        run: |-
-          PATH=$PATH:$GITHUB_WORKSPACE/node_modules/.bin:$RUNNER_WORKSPACE/node_modules/.bin
-          export PATH
-          set -o xtrace
-          tsx src/workflows/buildHtml/build.ts
+        run: ${{ runner.workspace }}/node_modules/.bin/tsx src/workflows/buildHtml/build.ts
       - name: check
         id: check
         shell: bash

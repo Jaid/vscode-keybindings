@@ -24,10 +24,19 @@ jobs:
       - name: installNodePackages
         id: installNodePackages
         working-directory: ${{ runner.workspace }}
-        run: npm install --no-save --no-package-lock ts-node @actions/core @actions/github fs-extra globby read-file-yaml prevent-start lodash-es tsconfig-jaid tsconfig-paths
-      - id: build
+        run: npm install --no-save --no-package-lock @actions/core @actions/github fs-extra globby read-file-yaml prevent-start lodash-es tsconfig-jaid tsx
+      - name: rewriteTsconfigJaid
+        id: rewriteTsconfigJaid
+        uses: jacobtomlinson/gha-find-replace@3.0.2
+        with:
+          include: ${{ runner.workspace }}/node_modules/tsconfig-jaid/base.json
+          find: '"..'
+          replace: '"../..'
+          regex: false
+      - if: ${{ steps.rewriteTsconfigJaid.outputs.modifiedFiles > 0 }}
+        id: build
         name: build
-        run: node --loader ts-node/esm src/workflows/buildExtension/build.ts
+        run: ${{ runner.workspace }}/node_modules/.bin/tsx src/workflows/buildExtension/build.ts
       - id: bundle
         name: bundle
         shell: bash
