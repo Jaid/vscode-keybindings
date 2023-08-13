@@ -8,8 +8,8 @@
     "composite": true,
     "paths": {
       "lib/*": [
-        "./src/workflows/lib/*"
+        "src/workflows/lib/*"
       ]
     }
-  },
+  }
 }

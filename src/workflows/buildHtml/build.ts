@@ -11,7 +11,7 @@ import readFileString from 'read-file-string'
 import readFileYaml from 'read-file-yaml'
 import showdown from 'showdown'
 
-import {RawKeybinding, Keybinding} from 'lib/Keybinding.js'
+import {Keybinding, RawKeybinding} from 'lib/Keybinding.ts'
 
 const dirName = path.dirname(fileURLToPath(import.meta.url))
 
