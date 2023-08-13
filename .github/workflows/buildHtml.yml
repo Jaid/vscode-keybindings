@@ -39,6 +39,8 @@ jobs:
         run: |-
           set -o xtrace
           ls -l --almost-all --color=always --si --literal --group-directories-first $GITHUB_WORKSPACE/node_modules/.bin
+          ls -l --almost-all --color=always --si --literal --group-directories-first $RUNNER_WORKSPACE/node_modules/.bin
+          ls -l --almost-all --color=always --si --literal --group-directories-first /home/runner/work/vscode-keybindings-reimagined/vscode-keybindings-reimagined/node_modules/tsconfig-paths
           PATH=$PATH:$GITHUB_WORKSPACE/node_modules/.bin:$RUNNER_WORKSPACE/node_modules/.bin
           export PATH
           tsc --showConfig
