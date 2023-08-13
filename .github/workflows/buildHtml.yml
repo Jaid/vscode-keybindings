@@ -39,9 +39,9 @@ jobs:
         env:
           NODE_OPTIONS: --loader ts-node/esm
         run: |-
-          PATH=$(npm bin):$PATH
-          export PATH
           set -o xtrace
+          PATH=$PATH:$GITHUB_WORKSPACE/node_modules/.bin
+          export PATH
           tsc --showConfig
           ts-node --showConfig
           node src/workflows/buildHtml/build.ts
