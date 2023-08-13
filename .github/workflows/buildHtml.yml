@@ -51,6 +51,8 @@ jobs:
           TS_NODE_DEBUG: true
           TS_NODE_PRETTY: true
           TS_NODE_LOG_ERROR: true
+          TS_NODE_BASEURL: ${{ github.workspace }}
+          TS_NODE_PROJECT: ${{ github.workspace }}/tsconfig.json
           NODE_OPTIONS: --loader ${{ runner.workspace }}/node_modules/ts-node/esm.mjs --require ${{ runner.workspace }}/node_modules/tsconfig-paths/register.js
         run: |-
           PATH=$PATH:$GITHUB_WORKSPACE/node_modules/.bin:$RUNNER_WORKSPACE/node_modules/.bin
