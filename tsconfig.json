@@ -4,6 +4,11 @@
     "enable": true
   },
   "compilerOptions": {
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "lib/*": [
+        "./src/lib/*"
+      ]
+    }
   },
 }
