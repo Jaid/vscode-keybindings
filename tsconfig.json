@@ -1,3 +1,13 @@
 {
-  "extends": "tsconfig-jaid/base"
+  "extends": "tsconfig-jaid/base",
+  "compilerOptions": {
+    "paths": {
+      "src/*": [
+        "src/*"
+      ],
+      "lib/*": [
+        "src/lib/*"
+      ]
+    }
+  }
 }
