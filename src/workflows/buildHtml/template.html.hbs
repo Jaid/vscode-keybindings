@@ -1,10 +1,17 @@
 <head>
   <style>
+    :root {
+      --font-data-url: '{{{fontDataUrl}}}';
+    }
     @font-face {
-      font-family: 'GeologicaFlex';
-      src: local('Geologica'),
-           local('Geologica Flex'),
-           url('{{{fontDataUrl}}}');
+      font-family: 'Geologica Text';
+      src: local('Geologica'), local('Geologica Flex'), url(var(--font-data-url));
+      font-variation-settings: 'wght' 400;
+    }
+    @font-face {
+      font-family: 'Geologica Key';
+      src: local('Geologica'), local('Geologica Flex'), url(var(--font-data-url));
+      font-variation-settings: 'wght' 900;
     }
   </style>
   <style>
