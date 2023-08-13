@@ -34,7 +34,7 @@ const normalizeKeystrokes = keystrokes => {
   }
   const getKeystrokeModifierOrder = keystroke => {
     const key: string = keystroke.key
-    const modifiers = key.split(/[ +|]/g).filter(part => part !== ` ` && part !== `+`).splice(0, -1)
+    const modifiers = key.split(/[ +|]/g).filter(part => part !== ` ` && part !== `+`).slice(0, -1)
     return modifiers.length
   }
   const sorted = lodash.orderBy(keystrokes, [getKeystrokeOrder, getKeystrokeModifierOrder, `command`, `when`])
