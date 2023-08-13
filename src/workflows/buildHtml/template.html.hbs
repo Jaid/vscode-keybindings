@@ -2,7 +2,9 @@
   <style>
     @font-face {
       font-family: 'GeologicaFlex';
-      src: local('Geologica') local('Geologica Flex') url('{{{fontDataUrl}}}');
+      src: local('Geologica') tech('variations'),
+           local('Geologica Flex') tech('variations'),
+           url('{{{fontDataUrl}}}') tech('variations')
     }
   </style>
   <style>
