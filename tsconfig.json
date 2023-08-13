@@ -5,10 +5,25 @@
   },
   "compilerOptions": {
     "baseUrl": ".",
+    "composite": true,
     "paths": {
       "lib/*": [
         "./src/lib/*"
       ]
     }
   },
+  "ts-node": {
+    "transpileOnly": true,
+    "preferTsExts": true,
+    "esm": true,
+    "compilerOptions": {
+      "composite": true,
+      "baseUrl": ".",
+      "paths": {
+        "lib/*": [
+          "./src/lib/*"
+        ]
+      }
+    }
+  }
 }
