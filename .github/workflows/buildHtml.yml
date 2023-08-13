@@ -56,7 +56,7 @@ jobs:
           PATH=$PATH:$GITHUB_WORKSPACE/node_modules/.bin:$RUNNER_WORKSPACE/node_modules/.bin
           export PATH
           set -o xtrace
-          NODE_OPTIONS="--loader $RUNNER_WORKSPACE/node_modules/ts-node/esm --require $RUNNER_WORKSPACE/node_modules/tsconfig-paths/register" node src/workflows/buildHtml/build.ts
+          node src/workflows/buildHtml/build.ts
       - name: check
         id: check
         shell: bash
