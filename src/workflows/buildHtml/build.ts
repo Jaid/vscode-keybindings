@@ -6,12 +6,12 @@ import core from '@actions/core'
 import {context} from '@actions/github'
 import fs from 'fs-extra'
 import Handlebars from 'handlebars'
-import lodash from 'lodash-es'
+import * as lodash from 'lodash-es'
 import readFileString from 'read-file-string'
 import readFileYaml from 'read-file-yaml'
 import showdown from 'showdown'
 
-import {Keybinding, RawKeybinding} from 'src/workflows/lib/Keybinding.ts'
+import {Keybinding, RawKeybinding} from 'lib/Keybinding.ts'
 
 const dirName = path.dirname(fileURLToPath(import.meta.url))
 
