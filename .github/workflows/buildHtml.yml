@@ -36,6 +36,7 @@ jobs:
         run: |-
           sed 's|"\.\.|"\.\./\.\.|g' --in-place ${{ runner.workspace }}/node_modules/tsconfig-jaid/base.json
           sed "s|'\.\.|'\.\./\.\.|g" --in-place ${{ runner.workspace }}/node_modules/tsconfig-jaid/base.json
+          cat ${{ runner.workspace }}/node_modules/tsconfig-jaid/base.json
       - id: build
         name: build
         run: ${{ runner.workspace }}/node_modules/.bin/tsx src/workflows/buildHtml/build.ts
