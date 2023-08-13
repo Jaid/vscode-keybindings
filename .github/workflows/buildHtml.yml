@@ -48,7 +48,7 @@ jobs:
       - id: build
         name: build
         env:
-          NODE_OPTIONS: --loader ts-node/esm
+          NODE_OPTIONS: --loader ts-node/esm --require tsconfig-paths/register
           TS_NODE_DEBUG: true
           TS_NODE_PRETTY: true
           TS_NODE_LOG_ERROR: true

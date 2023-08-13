@@ -2,10 +2,5 @@
   "extends": "tsconfig-jaid/base",
   "typeAcquisition": {
     "enable": true
-  },
-  "ts-node": {
-    "require": [
-      "tsconfig-paths/register"
-    ]
   }
 }
