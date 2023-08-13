@@ -37,7 +37,7 @@ jobs:
       - id: build
         name: build
         env:
-          NODE_OPTIONS: --loader ts-node/esm --require ${{ runner.workspace }}/node_modules/tsconfig-paths/register
+          NODE_OPTIONS: --loader ts-node/esm
         run: |-
           set -o xtrace
           ${{ runner.workspace }}/node_modules/.bin/tsc --showConfig
