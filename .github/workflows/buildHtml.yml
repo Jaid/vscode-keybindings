@@ -31,12 +31,12 @@ jobs:
         id: installNodePackages
         working-directory: ${{ runner.workspace }}
         run: npm install --no-save --no-package-lock ts-node @actions/core @actions/github fs-extra globby read-file-yaml showdown handlebars read-file-string tsconfig-jaid lodash-es
-      - id: showConfig
-        name: showConfig
-        run: ${{ runner.workspace }}/node_modules/.bin/ts-node --showConfig
       - id: build
         name: build
-        run: node --loader ts-node/esm src/workflows/buildHtml/build.ts
+        run: |-
+          set -o xtrace
+          ${{ runner.workspace }}/node_modules/.bin/ts-node --showConfig
+          node --loader ts-node/esm src/workflows/buildHtml/build.ts
       - name: check
         id: check
         shell: bash
