@@ -41,7 +41,7 @@ jobs:
           ${{ runner.workspace }}/node_modules/.bin/tsc --showConfig
           ${{ runner.workspace }}/node_modules/.bin/ts-node --showConfig
           ${{ runner.workspace }}/node_modules/.bin/ts-node --help
-          ${{ runner.workspace }}/node_modules/.bin/ts-node --esm --require ${{ runner.workspace }}/node_modules/tsconfig-paths/register src/workflows/buildHtml/build.ts
+          node --loader ts-node/esm --require ${{ runner.workspace }}/node_modules/tsconfig-paths/register src/workflows/buildHtml/build.ts
       - name: check
         id: check
         shell: bash
