@@ -33,7 +33,7 @@ jobs:
         run: npm install --no-save --no-package-lock @actions/core @actions/github fs-extra globby read-file-yaml showdown handlebars read-file-string lodash-es tsx tsconfig-jaid
       - name: rewriteTsconfigJaid
         id: rewriteTsconfigJaid
-        run: sed --regexp-extended 's|"\.\.|"\.\./\.\.|g; s|''\.\.|''\.\./\.\.|g' --in-place ${{ runner.workspace }}/node_modules/tsconfig-jaid/base.json
+        run: sed --regexp-extended 's|"\.\.|"\.\./\.\.|g; s|''\.\.|''\.\./\.\.|g' --in-place ${{ runner.workspace }}/node_modules/tsconfig-jaid/base.json && cat ${{ runner.workspace }}/node_modules/tsconfig-jaid/base.json
       - id: build
         name: build
         run: ${{ runner.workspace }}/node_modules/.bin/tsx src/workflows/buildHtml/build.ts
