@@ -38,6 +38,7 @@ jobs:
         name: checkTypescriptConfig
         run: |-
           set -o xtrace
+          ls -l --almost-all --color=always --si --literal --group-directories-first $GITHUB_WORKSPACE/node_modules/.bin
           PATH=$PATH:$GITHUB_WORKSPACE/node_modules/.bin
           export PATH
           tsc --showConfig
