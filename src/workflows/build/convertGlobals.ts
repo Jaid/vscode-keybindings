@@ -17,7 +17,7 @@ const toYaml = input => yaml.stringify(input, null, {
 const ExclusionRule = class {
   value: string
 
-  type: `static` | `regex` | `command`
+  type: `command` | `regex` | `static`
 
   constructor(input) {
     if (typeof input === `string`) {

@@ -1,8 +1,8 @@
 export interface RawKeybinding {
-  key: string;
-  command: string;
-  args?: string[];
-  when?: string;
+  key: string
+  command: string
+  args?: string[]
+  when?: string
 }
 
 export default class Keybinding {
