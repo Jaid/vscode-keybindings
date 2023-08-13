@@ -36,12 +36,13 @@ jobs:
         run: npm install --no-save --no-package-lock tsconfig-jaid
       - id: build
         name: build
+        env:
+          NODE_OPTIONS: --loader ts-node/esm --require ${{ runner.workspace }}/node_modules/tsconfig-paths/register
         run: |-
           set -o xtrace
           ${{ runner.workspace }}/node_modules/.bin/tsc --showConfig
           ${{ runner.workspace }}/node_modules/.bin/ts-node --showConfig
-          ${{ runner.workspace }}/node_modules/.bin/ts-node --help
-          node --loader ts-node/esm --require ${{ runner.workspace }}/node_modules/tsconfig-paths/register src/workflows/buildHtml/build.ts
+          node src/workflows/buildHtml/build.ts
       - name: check
         id: check
         shell: bash
