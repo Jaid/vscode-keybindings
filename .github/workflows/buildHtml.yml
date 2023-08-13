@@ -39,7 +39,7 @@ jobs:
         run: |-
           set -o xtrace
           ls -l --almost-all --color=always --si --literal --group-directories-first $GITHUB_WORKSPACE/node_modules/.bin
-          PATH=$PATH:$RUNNER_WORKSPACE/node_modules/.bin
+          PATH=$PATH:$GITHUB_WORKSPACE/node_modules/.bin:$RUNNER_WORKSPACE/node_modules/.bin
           export PATH
           tsc --showConfig
           ts-node --showConfig
@@ -47,8 +47,9 @@ jobs:
         name: build
         env:
           NODE_OPTIONS: --loader ts-node/esm
+          TS_NODE_DEBUG: true
         run: |-
-          PATH=$PATH:$GITHUB_WORKSPACE/node_modules/.bin
+          PATH=$PATH:$GITHUB_WORKSPACE/node_modules/.bin:$RUNNER_WORKSPACE/node_modules/.bin
           export PATH
           set -o xtrace
           node src/workflows/buildHtml/build.ts
