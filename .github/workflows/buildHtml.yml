@@ -48,6 +48,7 @@ jobs:
         env:
           NODE_OPTIONS: --loader ts-node/esm
           TS_NODE_DEBUG: true
+          TS_NODE_PRETTY: true
         run: |-
           PATH=$PATH:$GITHUB_WORKSPACE/node_modules/.bin:$RUNNER_WORKSPACE/node_modules/.bin
           export PATH
