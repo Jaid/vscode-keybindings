@@ -11,6 +11,8 @@ import readFileString from 'read-file-string'
 import readFileYaml from 'read-file-yaml'
 import showdown from 'showdown'
 
+import Keybinding from 'src/workflows/lib/Keybinding.js'
+
 const dirName = path.dirname(fileURLToPath(import.meta.url))
 
 const setOutput = (value, name = `value`) => {

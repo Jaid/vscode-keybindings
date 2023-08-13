@@ -1,17 +1,19 @@
 export interface RawKeybinding {
-  key: string
-  command: string
-  args?: string[]
-  when?: string
+  key: string;
+  command: string;
+  args?: string[];
+  when?: string;
 }
 
 export default class Keybinding {
-  key: string
-  command: any
-  args: any
+  readonly key: string
+  readonly command: any
+  readonly args?: any
+  readonly when?: string
   constructor(public data: RawKeybinding) {
-    this.key = data.key
-    this.command = data.command
-    this.args = data.args
+    Object.assign(this, data)
+  }
+  isAddition() {
+    return !this.key.startsWith(`-`)
   }
 }
