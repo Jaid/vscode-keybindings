@@ -24,7 +24,11 @@ const dataNormalized = {
   deletions: {},
 }
 const normalizeKeystrokes = keystrokes => {
-  const sorted = lodash.orderBy(keystrokes, [keystroke => keystroke.command, keystroke => keystroke.when ?? ``])
+  const getMainKey = keystroke => {
+    const key:string = keystroke.key
+    return key.split(/[ +|]/g).findLast(true)
+  }
+  const sorted = lodash.orderBy(keystrokes, [getMainKey, keystroke => keystroke.command, keystroke => keystroke.when ?? ``])
   return sorted.map(keystroke => {
     const keyVisualization = keystroke.key.split(/([ +|])/g).map(part => {
       if (part === ` `) {
