@@ -34,8 +34,8 @@ jobs:
       - name: rewriteTsconfigJaid
         id: rewriteTsconfigJaid
         run: |-
-          sed 's|"\.\./\.\.|"\.\./\.\./${{ github.repository.name }}|g' --in-place ${{ runner.workspace }}/node_modules/tsconfig-jaid/base.json
-          sed "s|'\.\./\.\.|'\.\./\.\./${{ github.repository.name }}|g" --in-place ${{ runner.workspace }}/node_modules/tsconfig-jaid/base.json
+          sed 's|"\.\./\.\.|"\.\./\.\./${{ github.event.repository.name }}|g' --in-place ${{ runner.workspace }}/node_modules/tsconfig-jaid/base.json
+          sed "s|'\.\./\.\.|'\.\./\.\./${{ github.event.repository.name }}|g" --in-place ${{ runner.workspace }}/node_modules/tsconfig-jaid/base.json
           cat ${{ runner.workspace }}/node_modules/tsconfig-jaid/base.json
       - id: build
         name: build
