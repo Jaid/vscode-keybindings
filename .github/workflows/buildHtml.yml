@@ -40,8 +40,8 @@ jobs:
           NODE_OPTIONS: --loader ts-node/esm
         run: |-
           set -o xtrace
-          ${{ runner.workspace }}/node_modules/.bin/tsc --showConfig
-          ${{ runner.workspace }}/node_modules/.bin/ts-node --showConfig
+          npx tsc --showConfig
+          npx ts-node --showConfig
           node src/workflows/buildHtml/build.ts
       - name: check
         id: check
