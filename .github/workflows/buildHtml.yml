@@ -51,12 +51,12 @@ jobs:
           TS_NODE_DEBUG: true
           TS_NODE_PRETTY: true
           TS_NODE_LOG_ERROR: true
+          NODE_OPTIONS: --loader ${{ runner.workspace }}/node_modules/ts-node/esm.mjs --require ${{ runner.workspace }}/node_modules/tsconfig-paths/register
         run: |-
           PATH=$PATH:$GITHUB_WORKSPACE/node_modules/.bin:$RUNNER_WORKSPACE/node_modules/.bin
           export PATH
           set -o xtrace
-          # NODE_OPTIONS="--loader $RUNNER_WORKSPACE/node_modules/ts-node/esm --require $RUNNER_WORKSPACE/node_modules/tsconfig-paths/register" node src/workflows/buildHtml/build.ts
-          ts-node --esm --require $RUNNER_WORKSPACE/node_modules/tsconfig-paths/register.js src/workflows/buildHtml/build.ts
+          NODE_OPTIONS="--loader $RUNNER_WORKSPACE/node_modules/ts-node/esm --require $RUNNER_WORKSPACE/node_modules/tsconfig-paths/register" node src/workflows/buildHtml/build.ts
       - name: check
         id: check
         shell: bash
