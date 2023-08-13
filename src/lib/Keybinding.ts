@@ -5,7 +5,7 @@ export interface RawKeybinding {
   when?: string
 }
 
-export default class Keybinding {
+export class Keybinding {
   readonly key: string
   readonly command: any
   readonly args?: any
