@@ -27,8 +27,8 @@ const normalizeKeystrokes = keystrokes => {
   const getKeyStrokeOrder = keystroke => {
     const key:string = keystroke.key
     const lastKey = key.split(/[ +|]/g).findLast(true)
-    if (lastKey.charAt(0) === `f` && lastKey.length === 2) {
-      return `-${lastKey.charAt(1)}`
+    if (/^f\d{1,2}$/.test(lastKey)) {
+      return `-${lastKey}`
     }
     return lastKey
   }
