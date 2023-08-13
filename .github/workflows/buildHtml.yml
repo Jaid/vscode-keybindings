@@ -39,9 +39,11 @@ jobs:
         env:
           NODE_OPTIONS: --loader ts-node/esm
         run: |-
+          PATH=$(npm bin):$PATH
+          export PATH
           set -o xtrace
-          npx tsc --showConfig
-          npx ts-node --showConfig
+          tsc --showConfig
+          ts-node --showConfig
           node src/workflows/buildHtml/build.ts
       - name: check
         id: check
