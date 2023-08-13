@@ -34,16 +34,22 @@ jobs:
       - name: installNodePackagesInRepo
         id: installNodePackagesInRepo
         run: npm install --no-save --no-package-lock tsconfig-jaid
+      - id: checkTypescriptConfig
+        name: checkTypescriptConfig
+        run: |-
+          PATH=$PATH:$GITHUB_WORKSPACE/node_modules/.bin
+          export PATH
+          set -o xtrace
+          tsc --showConfig
+          ts-node --showConfig
       - id: build
         name: build
         env:
           NODE_OPTIONS: --loader ts-node/esm
         run: |-
-          set -o xtrace
           PATH=$PATH:$GITHUB_WORKSPACE/node_modules/.bin
           export PATH
-          tsc --showConfig
-          ts-node --showConfig
+          set -o xtrace
           node src/workflows/buildHtml/build.ts
       - name: check
         id: check
