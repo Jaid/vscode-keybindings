@@ -29,7 +29,7 @@ jobs:
           node-version: latest
       - name: installNodePackages
         id: installNodePackages
-        working-directory: ${{ github.workspace }}
+        working-directory: ${{ runner.workspace }}
         run: npm install --no-save ts-node @actions/core @actions/github fs-extra globby read-file-yaml showdown handlebars read-file-string lodash-es tsconfig-paths
       - name: installNodePackagesInRepo
         id: installNodePackagesInRepo
