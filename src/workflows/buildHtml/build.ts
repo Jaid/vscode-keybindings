@@ -11,7 +11,7 @@ import readFileString from 'read-file-string'
 import readFileYaml from 'read-file-yaml'
 import showdown from 'showdown'
 
-import Keybinding from 'src/workflows/lib/Keybinding.js'
+import {RawKeybinding, Keybinding} from 'src/workflows/lib/Keybinding.js'
 
 const dirName = path.dirname(fileURLToPath(import.meta.url))
 
@@ -20,7 +20,13 @@ const setOutput = (value, name = `value`) => {
   core.info(`Output ${name}: ${value}`)
 }
 
-const data = await readFileYaml.default(path.join(process.env.RUNNER_WORKSPACE, `out`, `data.yml`))
+interface DataEntry {
+  keystrokes: RawKeybinding[]
+}
+
+type Data = Record<string, DataEntry>
+
+const data: Data = await readFileYaml.default(path.join(process.env.RUNNER_WORKSPACE, `out`, `data.yml`))
 const dataNormalized = {
   additions: {},
   deletions: {},
@@ -72,6 +78,8 @@ for (const [id, entry] of Object.entries(data)) {
   const [deletions, additions] = lodash.partition(entry.keystrokes, keystroke => keystroke.command.startsWith(`-`))
   if (additions.length) {
     core.info(`${additions.length} additions for ${id}`)
+    const constructedAdditions = additions.map(keybinding => new Keybinding(keybinding))
+    constructedAdditions.sort((a, b) => a.compareTo(b))
     dataNormalized.additions[id] = normalizeKeystrokes(additions)
   }
   if (deletions.length) {
