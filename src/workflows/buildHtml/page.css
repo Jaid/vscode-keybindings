@@ -1,16 +1,13 @@
 body {
   background: black;
   color: white;
-  font-family: Geologica, Rubik, sans-serif;
+  font-family: GeologicaFlex, sans-serif;
   padding: 1rem;
 }
 td > code {
   background: white;
   padding: 0.2rem;
   color: rgba(0, 0, 0, 0.9);
-  /* font-size: 70%; *
-  /* font-family: Rubik, sans-serif; */
-  /* font-weight: 700; */
   border-bottom: 0.15rem solid rgb(165 165 165);
 }
 table {
