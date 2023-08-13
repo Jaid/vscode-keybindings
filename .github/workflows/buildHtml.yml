@@ -30,10 +30,10 @@ jobs:
       - name: installNodePackages
         id: installNodePackages
         working-directory: ${{ runner.workspace }}
-        run: npm install --no-save --no-package-lock ts-node @actions/core @actions/github fs-extra globby read-file-yaml showdown handlebars read-file-string lodash-es
+        run: npm install --no-save --no-package-lock ts-node @actions/core @actions/github fs-extra globby read-file-yaml showdown handlebars read-file-string lodash-es tsconfig-paths
       - name: installNodePackagesInRepo
         id: installNodePackagesInRepo
-        run: npm install --no-save --no-package-lock tsconfig-jaid tsconfig-paths
+        run: npm install --no-save --no-package-lock tsconfig-jaid
       - id: checkTypescriptConfig
         name: checkTypescriptConfig
         run: |-
@@ -48,7 +48,6 @@ jobs:
       - id: build
         name: build
         env:
-          NODE_OPTIONS: --loader ts-node/esm --require tsconfig-paths/register
           TS_NODE_DEBUG: true
           TS_NODE_PRETTY: true
           TS_NODE_LOG_ERROR: true
@@ -56,7 +55,7 @@ jobs:
           PATH=$PATH:$GITHUB_WORKSPACE/node_modules/.bin:$RUNNER_WORKSPACE/node_modules/.bin
           export PATH
           set -o xtrace
-          node src/workflows/buildHtml/build.ts
+          NODE_OPTIONS="--loader $RUNNER_WORKSPACE/node_modules/ts-node/esm --require $RUNNER_WORKSPACE/node_modules/tsconfig-paths/register" node src/workflows/buildHtml/build.ts
       - name: check
         id: check
         shell: bash
