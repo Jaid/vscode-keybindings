@@ -30,7 +30,7 @@ jobs:
       - name: installNodePackages
         id: installNodePackages
         working-directory: ${{ runner.workspace }}
-        run: npm install --no-save --no-package-lock ts-node @actions/core @actions/github fs-extra globby read-file-yaml showdown handlebars read-file-string lodash-es tsconfig-paths
+        run: npm install --no-save --no-package-lock ts-node @actions/core @actions/github fs-extra globby read-file-yaml showdown handlebars read-file-string lodash-es tsconfig-paths tsx
       - name: installNodePackagesInRepo
         id: installNodePackagesInRepo
         run: npm install --no-save --no-package-lock tsconfig-jaid
@@ -40,25 +40,16 @@ jobs:
           set -o xtrace
           ls -l --almost-all --color=always --si --literal --group-directories-first $GITHUB_WORKSPACE/node_modules/.bin
           ls -l --almost-all --color=always --si --literal --group-directories-first $RUNNER_WORKSPACE/node_modules/.bin
-          ls -l --almost-all --color=always --si --literal --group-directories-first /home/runner/work/vscode-keybindings-reimagined/vscode-keybindings-reimagined/node_modules/tsconfig-paths
           PATH=$PATH:$GITHUB_WORKSPACE/node_modules/.bin:$RUNNER_WORKSPACE/node_modules/.bin
           export PATH
           tsc --showConfig
-          ts-node --showConfig
       - id: build
         name: build
-        env:
-          TS_NODE_DEBUG: true
-          TS_NODE_PRETTY: true
-          TS_NODE_LOG_ERROR: true
-          TS_NODE_BASEURL: ${{ github.workspace }}
-          TS_NODE_PROJECT: ${{ github.workspace }}/tsconfig.json
-          NODE_OPTIONS: --loader ${{ runner.workspace }}/node_modules/ts-node/esm.mjs --require ${{ runner.workspace }}/node_modules/tsconfig-paths/register.js
         run: |-
           PATH=$PATH:$GITHUB_WORKSPACE/node_modules/.bin:$RUNNER_WORKSPACE/node_modules/.bin
           export PATH
           set -o xtrace
-          node src/workflows/buildHtml/build.ts
+          tsx src/workflows/buildHtml/build.ts
       - name: check
         id: check
         shell: bash
