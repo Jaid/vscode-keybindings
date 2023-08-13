@@ -27,6 +27,9 @@ const normalizeKeystrokes = keystrokes => {
   const getKeystrokeOrder = keystroke => {
     const key: string = keystroke.key
     const lastKey = lodash.last(key.split(/[ +|]/g))
+    if (lastKey.length === 1) {
+      return `.${lastKey}`
+    }
     if (/^f\d{1,2}$/.test(lastKey)) {
       return `-${lastKey}`
     }
