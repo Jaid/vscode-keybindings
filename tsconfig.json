@@ -2,5 +2,8 @@
   "extends": "tsconfig-jaid/base",
   "typeAcquisition": {
     "enable": true
+  },
+  "ts-node": {
+    "experimentalSpecifierResolution": "node"
   }
 }
