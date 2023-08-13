@@ -6,13 +6,9 @@ export interface RawKeybinding {
 }
 
 export default class Keybinding {
-
-  key: any
-
+  key: string
   command: any
-
   args: any
-
   constructor(public data: RawKeybinding) {
     this.key = data.key
     this.command = data.command
