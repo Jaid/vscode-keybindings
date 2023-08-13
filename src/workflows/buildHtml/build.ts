@@ -84,7 +84,7 @@ const fontBuffer = await fs.readFile(path.resolve(dirName, `geologica.ttf`))
 const html = htmlTemplateInvoker({
   showdownContent: converter.makeHtml(md),
   style: await readFileString.default(path.resolve(dirName, `page.css`)),
-  fontDataUrl: `data:font/woff2;base64,${fontBuffer.toString(`base64`)}`,
+  fontDataUrl: `data:font/ttf;base64,${fontBuffer.toString(`base64`)}`,
 })
 const outputFolder = `dist`
 const mdFile = path.resolve(outputFolder, `index.md`)
