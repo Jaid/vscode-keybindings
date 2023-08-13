@@ -1,0 +1,31 @@
+body {
+  background: black;
+  color: white;
+  font-family: Rubik, sans-serif;
+  padding: 1rem;
+}
+td > code {
+  background: white;
+  padding: 0.2rem;
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 700;
+  font-size: 70%;
+  font-family: Rubik, sans-serif;
+  border-bottom: 0.15rem solid rgb(165 165 165);
+}
+table {
+  border-collapse: collapse;
+}
+tr > td {
+  padding: 0.5rem;
+}
+tr:nth-child(even) {
+  background: color(srgb 0.58 0.54 1 / 0.10);
+}
+tr > td:first-child {
+  white-space: nowrap;
+  user-select: none;
+}
+tr > td:last-child {
+  max-width: 40rem;
+}
