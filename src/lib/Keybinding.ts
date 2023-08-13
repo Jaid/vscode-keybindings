@@ -16,4 +16,10 @@ export class Keybinding {
   isAddition() {
     return !this.key.startsWith(`-`)
   }
+  compareTo(other: Keybinding) {
+    if (this.key === other.key) {
+      return 0
+    }
+    return this.key > other.key ? 1 : -1
+  }
 }
