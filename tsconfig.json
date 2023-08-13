@@ -3,7 +3,7 @@
   "typeAcquisition": {
     "enable": true
   },
-  "ts-node": {
-    "experimentalSpecifierResolution": "node"
+  "compilerOptions": {
+    "esModuleInterop": true
   }
 }
