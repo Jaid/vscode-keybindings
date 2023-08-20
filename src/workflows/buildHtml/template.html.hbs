@@ -5,32 +5,15 @@
     }
     @font-face {
       font-family: geologicaText;
-      src: var(--font-data-url);
+      src: url({{{fontDataUrl}}});
       font-variation-settings: 'wght' 400;
     }
     @font-face {
       font-family: geologicaKey;
       /*src: local('Geologica'), local('Geologica Flex'), var(--font-data-url);*/
-      src: var(--font-data-url);
+      src: url({{{fontDataUrl}}});
       font-variation-settings: 'wght' 900;
     }
-  </style>
-  <style>
-        :root {
-      --font-data-url: url({{{fontDataUrl}}});
-    }
-    @font-face {
-      font-family: geologicaText;
-      src: var(--font-data-url);
-      font-variation-settings: 'wght' 400;
-    }
-    @font-face {
-      font-family: geologicaKey;
-      /*src: local('Geologica'), local('Geologica Flex'), var(--font-data-url);*/
-      src: var(--font-data-url);
-      font-variation-settings: 'wght' 900;
-    }
-
     {{{style}}}
   </style>
 </head>
