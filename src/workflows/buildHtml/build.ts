@@ -52,10 +52,10 @@ console.dir(dataNormalized, {depth: Number.POSITIVE_INFINITY})
 core.info(JSON.stringify(dataNormalized))
 const handlebars = Handlebars.create()
 handlebars.registerHelper(`isBaseKey`, value => {
-  return value === `baseKey`
+  return value.type === `baseKey`
 })
 handlebars.registerHelper(`isModifierKey`, value => {
-  return value === `modifierKey`
+  return value.type === `modifierKey`
 })
 handlebars.registerHelper(`formatKey`, value => {
   return value.replace(/^oem_/, `OEM `).toUpperCase()
