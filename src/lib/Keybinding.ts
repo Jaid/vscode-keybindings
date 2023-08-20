@@ -17,10 +17,12 @@ export type KeyVisualization = {
   value: string
 }
 
+const collator = new Intl.Collator
+
 export class Keybinding {
   readonly key: string
-  readonly command: any
-  readonly args?: any
+  readonly command: string
+  readonly args?: string[]
   readonly when?: string
   static compare(a: Keybinding, b: Keybinding) {
     return a.compareTo(b)
@@ -66,11 +68,24 @@ export class Keybinding {
   toKeys() {
     return this.key.split(/[ +]/) as [...string[], string]
   }
+  toRaw() {
+    const raw: RawKeybinding = {
+      key: this.key,
+      command: this.command,
+    }
+    if (this.args) {
+      raw.args = this.args
+    }
+    if (this.when) {
+      raw.when = this.when
+    }
+    return raw
+  }
   isComplex() {
     return /[ +]/.test(this.key)
   }
   splitIntoHalves(): HalvesSplit {
-    return /(?<prefix>.*[ +])?(?<baseKey>.+)$/.exec(this.key) as any as HalvesSplit
+    return /(?<prefix>.+[ +])?(?<baseKey>.+)$/.exec(this.key) as any as HalvesSplit
   }
   getBaseKey() {
     return this.splitIntoHalves().baseKey
@@ -96,7 +111,7 @@ export class Keybinding {
     const thisBaseKey = this.getBaseKey()
     const otherBaseKey = other.getBaseKey()
     if (thisBaseKey !== otherBaseKey) {
-      return Intl.Collator().compare(thisBaseKey, otherBaseKey)
+      return collator.compare(thisBaseKey, otherBaseKey)
     }
   }
 }
