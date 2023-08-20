@@ -40,14 +40,22 @@ for (const group of [`addition`, `deletion`]) {
     }
     core.info(`${filteredKeybindings.length} ${group}s for ${id}`)
     filteredKeybindings.sort(Keybinding.compare)
-    dataNormalized[group][id] = filteredKeybindings
+    dataNormalized[group][id] = filteredKeybindings.map(keybinding => {
+      return {
+        ...keybinding,
+        visualization: keybinding.asVisualization(),
+      }
+    })
   }
 }
 console.dir(dataNormalized, {depth: Number.POSITIVE_INFINITY})
 core.info(JSON.stringify(dataNormalized))
 const handlebars = Handlebars.create()
-handlebars.registerHelper(`isKey`, value => {
-  return value === `key`
+handlebars.registerHelper(`isBaseKey`, value => {
+  return value === `baseKey`
+})
+handlebars.registerHelper(`isModifierKey`, value => {
+  return value === `modifierKey`
 })
 handlebars.registerHelper(`formatKey`, value => {
   return value.replace(/^oem_/, `OEM `).toUpperCase()

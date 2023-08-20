@@ -9,8 +9,10 @@
    Keystroke|Command|Condition
     --|-- |--
     {{#each this}}
-      {{#each keyVisualization ~}}
-        {{#if (isKey type)~}}
+      {{#each visualization ~}}
+        {{#if (isBaseKey this)~}}
+          `{{{formatKey value}}}`
+        {{~else if (isModifierKey this)~}}
           `{{{formatKey value}}}`
         {{~else~}}
           {{{value}}}
