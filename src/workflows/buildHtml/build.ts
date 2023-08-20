@@ -20,7 +20,7 @@ const setOutput = (value, name = `value`) => {
   core.info(`Output ${name}: ${value}`)
 }
 
-interface DataEntry {
+type DataEntry = {
   keystrokes: RawKeybinding[]
 }
 
@@ -57,7 +57,7 @@ handlebars.registerHelper(`startCase`, value => {
 })
 const template = await readFileString.default(path.resolve(dirName, `template.md.hbs`))
 const templateInvoker = handlebars.compile(template, {
-  compat
+  compat,
 })
 const md = templateInvoker({data: dataNormalized})
 const htmlTemplate = await readFileString.default(path.resolve(dirName, `template.html.hbs`))

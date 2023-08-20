@@ -1,18 +1,18 @@
 import {TypedArray} from 'type-fest'
 
-export interface RawKeybinding {
+export type RawKeybinding = {
   key: string
   command: string
   args?: string[]
   when?: string
 }
 
-export interface HalvesSplit {
+export type HalvesSplit = {
   prefix?: string
   baseKey: string
 }
 
-export interface KeyVisualization {
+export type KeyVisualization = {
 
 }
 
@@ -55,10 +55,10 @@ export class Keybinding {
     keyVisualization
   }
   toParts() {
-    return this.key.split(/([ +])/g)
+    return this.key.split(/([ +])/)
   }
   toKeys() {
-    return this.key.split(/[ +]/g) as [...string[], string]
+    return this.key.split(/[ +]/) as [...string[], string]
   }
   isComplex() {
     return /[ +]/.test(this.key)
