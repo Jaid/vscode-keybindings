@@ -57,7 +57,7 @@ handlebars.registerHelper(`startCase`, value => {
 })
 const template = await readFileString.default(path.resolve(dirName, `template.md.hbs`))
 const templateInvoker = handlebars.compile(template, {
-  compat,
+  noEscape: true,
 })
 const md = templateInvoker({data: dataNormalized})
 const htmlTemplate = await readFileString.default(path.resolve(dirName, `template.html.hbs`))
