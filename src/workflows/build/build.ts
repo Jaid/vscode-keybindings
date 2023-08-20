@@ -1,7 +1,6 @@
 // @ts-nocheck
 import path from 'node:path'
 
-import * as core from '@actions/core'
 import fs from 'fs-extra'
 import lodash from 'lodash-es'
 import readFileYaml from 'read-file-yaml'
