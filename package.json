@@ -5,10 +5,10 @@
     "browserslist-config-jaid-universal": "^3.0.0",
     "eslint": "^8.47.0",
     "eslint-config-jaid": "^3.2.3",
-    "tsconfig-jaid": "^4.1.1"
+    "tsconfig-jaid": "^4.1.1",
+    "type-fest": "^4.2.0"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "name": "vscode-keyindings",
   "type": "module",
   "description": "Simplified wrapper for pluralize.",

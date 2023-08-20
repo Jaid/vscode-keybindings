@@ -27,68 +27,24 @@ interface DataEntry {
 type Data = Record<string, DataEntry>
 
 const data: Data = await readFileYaml.default(path.join(process.env.RUNNER_WORKSPACE, `out`, `data.yml`))
-const dataNormalized = {
-  additions: {},
-  deletions: {},
-}
-const normalizeKeystrokes = keystrokes => {
-  const getKeystrokeOrder = keystroke => {
-    const key: string = keystroke.key
-    const lastKey = lodash.last(key.split(/[ +|]/g))
-    if (lastKey.length === 1) {
-      return `.${lastKey}`
+const dataNormalized: Record<string, Record<string, Keybinding[]>> = {}
+for (const group of [`addition`, `deletion`]) {
+  for (const [id, entry] of Object.entries(data)) {
+    const keybindings = entry.keystrokes.map(Keybinding.fromRaw)
+    const filteredKeybindings = keybindings.filter(keybinding => keybinding.getLogic() === group)
+    if (!filteredKeybindings.length) {
+      continue
     }
-    if (/^f\d{1,2}$/.test(lastKey)) {
-      return `-${lastKey}`
+    if (!dataNormalized[group]) {
+      dataNormalized[group] = {}
     }
-    return lastKey
-  }
-  const getKeystrokeModifierOrder = keystroke => {
-    const key: string = keystroke.key
-    const modifiers = key.split(/[ +|]/g).filter(part => part !== ` ` && part !== `+`).slice(0, -1)
-    return modifiers.length
-  }
-  const sorted = lodash.orderBy(keystrokes, [getKeystrokeOrder, getKeystrokeModifierOrder, `command`, `when`])
-  return sorted.map(keystroke => {
-    const keyVisualization = keystroke.key.split(/([ +|])/g).map(part => {
-      if (part === ` `) {
-        return {
-          type: `connector`,
-          value: ` → `,
-        }
-      }
-      if (part === `+`) {
-        return {
-          type: `connector`,
-          value: ` `,
-        }
-      }
-      return {
-        type: `key`,
-        value: part,
-      }
-    })
-    return {
-      ...keystroke,
-      keyVisualization,
-    }
-  })
-}
-for (const [id, entry] of Object.entries(data)) {
-  const [deletions, additions] = lodash.partition(entry.keystrokes, keystroke => keystroke.command.startsWith(`-`))
-  if (additions.length) {
-    core.info(`${additions.length} additions for ${id}`)
-    const constructedAdditions = additions.map(keybinding => new Keybinding(keybinding))
-    constructedAdditions.sort((a, b) => a.compareTo(b))
-    dataNormalized.additions[id] = normalizeKeystrokes(additions)
-  }
-  if (deletions.length) {
-    core.info(`${deletions.length} deletions for ${id}`)
-    dataNormalized.deletions[id] = normalizeKeystrokes(deletions)
+    core.info(`${filteredKeybindings.length} ${group}s for ${id}`)
+    filteredKeybindings.sort(Keybinding.compare)
+    dataNormalized[group][id] = filteredKeybindings
   }
 }
-core.info(JSON.stringify(dataNormalized))
 console.dir(dataNormalized, {depth: Number.POSITIVE_INFINITY})
+core.info(JSON.stringify(dataNormalized))
 const handlebars = Handlebars.create()
 handlebars.registerHelper(`isKey`, value => {
   return value === `key`
@@ -100,7 +56,9 @@ handlebars.registerHelper(`startCase`, value => {
   return lodash.startCase(value)
 })
 const template = await readFileString.default(path.resolve(dirName, `template.md.hbs`))
-const templateInvoker = handlebars.compile(template)
+const templateInvoker = handlebars.compile(template, {
+  compat
+})
 const md = templateInvoker({data: dataNormalized})
 const htmlTemplate = await readFileString.default(path.resolve(dirName, `template.html.hbs`))
 const htmlTemplateInvoker = handlebars.compile(htmlTemplate)
