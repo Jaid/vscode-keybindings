@@ -9,15 +9,15 @@
     "type-fest": "^4.2.0"
   },
   "scripts": {},
-  "name": "vscode-keyindings",
+  "name": "vscode-keybindings-reimagined",
   "type": "module",
   "description": "Simplified wrapper for pluralize.",
   "funding": "https://github.com/sponsors/jaid",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jaid/vscode-keyindings"
+    "url": "https://github.com/jaid/vscode-keybindings-reimagined"
   },
-  "homepage": "https://github.com/Jaid/vscode-keyindings",
+  "homepage": "https://github.com/Jaid/vscode-keybindings-reimagined",
   "keywords": [
     "vsce",
     "vsix",
