@@ -13,7 +13,8 @@ export type HalvesSplit = {
 }
 
 export type KeyVisualization = {
-
+  type: "baseKey" | `connector` | `modifierKey`
+  value: string
 }
 
 export class Keybinding {
@@ -34,7 +35,7 @@ export class Keybinding {
     return !this.key.startsWith(`-`)
   }
   asVisualization(): KeyVisualization[] {
-    const keyVisualization = this.toParts().map(part => {
+    return this.toParts().map(part => {
       if (part === ` `) {
         return {
           type: `connector`,
@@ -47,12 +48,17 @@ export class Keybinding {
           value: ` `,
         }
       }
+      if ([`ctrl`, `shift`, `alt`].includes(part)) {
+        return {
+          type: `modifierKey`,
+          value: part,
+        }
+      }
       return {
-        type: `key`,
+        type: `baseKey`,
         value: part,
       }
     })
-    keyVisualization
   }
   toParts() {
     return this.key.split(/([ +])/)
