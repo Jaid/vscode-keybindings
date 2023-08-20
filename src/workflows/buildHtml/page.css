@@ -9,10 +9,10 @@ tr > td:first-child > code {
   padding: 0.2rem;
   color: rgba(0, 0, 0, 0.9);
   border-bottom: 0.15rem solid rgb(165 165 165);
-  font-family: geologicaKext, Comic Sans MS, sans-serif;
+  font-family: geologicaKey, Comic Sans MS, sans-serif;
 }
 tr > td:not(:first-child) > code {
-  font-family: Geologica Text, Comic Sans MS, sans-serif;
+  font-family: geologicaText, Comic Sans MS, sans-serif;
 }
 table {
   border-collapse: collapse;
