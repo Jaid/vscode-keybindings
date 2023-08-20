@@ -3,7 +3,6 @@ import path from 'node:path'
 import {fileURLToPath} from 'node:url'
 
 import core from '@actions/core'
-import {context} from '@actions/github'
 import fs from 'fs-extra'
 import Handlebars from 'handlebars'
 import * as lodash from 'lodash-es'
@@ -72,11 +71,9 @@ const htmlTemplate = await readFileString.default(path.resolve(dirName, `templat
 const htmlTemplateInvoker = handlebars.compile(htmlTemplate)
 const converter = new showdown.Converter
 converter.setFlavor(`github`)
-const fontBuffer = await fs.readFile(path.resolve(dirName, `geologica.ttf`))
 const html = htmlTemplateInvoker({
   showdownContent: converter.makeHtml(md),
-  style: await readFileString.default(path.resolve(dirName, `page.css`)),
-  fontDataUrl: `data:font/ttf;base64,${fontBuffer.toString(`base64`)}`,
+  style: await readFileString.default(path.resolve(dirName, `page.css`))
 })
 const outputFolder = `dist`
 const mdFile = path.resolve(outputFolder, `index.md`)
