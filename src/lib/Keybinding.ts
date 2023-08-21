@@ -58,9 +58,6 @@ export class Keybinding {
   readonly command: string
   readonly args?: string[]
   readonly when?: string
-  static compare(a: Keybinding, b: Keybinding) {
-    return a.compareTo(b)
-  }
   static fromRaw(raw: RawKeybinding) {
     return new Keybinding(raw)
   }
@@ -76,7 +73,7 @@ export class Keybinding {
         return {
           type: `connector`,
           value: part,
-          title: ` → `,
+          title: ` → `,
         }
       }
       if (part === `+`) {

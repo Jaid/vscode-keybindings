@@ -38,7 +38,9 @@ for (const group of [`addition`, `deletion`]) {
       dataNormalized[group] = {}
     }
     core.info(`${filteredKeybindings.length} ${group}s for ${id}`)
-    filteredKeybindings.sort(Keybinding.compare)
+    filteredKeybindings.sort((a, b) => {
+      return a.compareTo(b)
+    })
     dataNormalized[group][id] = filteredKeybindings.map(keybinding => {
       return {
         ...keybinding,
@@ -48,7 +50,6 @@ for (const group of [`addition`, `deletion`]) {
   }
 }
 console.dir(dataNormalized, {depth: Number.POSITIVE_INFINITY})
-core.info(JSON.stringify(dataNormalized))
 const handlebars = Handlebars.create()
 handlebars.registerHelper(`isBaseKey`, value => {
   return value.type === `baseKey`
@@ -56,10 +57,7 @@ handlebars.registerHelper(`isBaseKey`, value => {
 handlebars.registerHelper(`isModifierKey`, value => {
   return value.type === `modifierKey`
 })
-handlebars.registerHelper(`formatKey`, value => {
-  return value.replace(/^oem_/, `OEM `).toUpperCase()
-})
-handlebars.registerHelper(`startCase`, value => {
+handlebars.registerHelper(`startCase`, (value: string) => {
   return lodash.startCase(value)
 })
 const template = await readFileString.default(path.resolve(dirName, `template.md.hbs`))
@@ -73,7 +71,7 @@ const converter = new showdown.Converter
 converter.setFlavor(`github`)
 const html = htmlTemplateInvoker({
   showdownContent: converter.makeHtml(md),
-  style: await readFileString.default(path.resolve(dirName, `page.css`))
+  style: await readFileString.default(path.resolve(dirName, `page.css`)),
 })
 const outputFolder = `dist`
 const mdFile = path.resolve(outputFolder, `index.md`)
