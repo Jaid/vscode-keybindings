@@ -22,6 +22,7 @@ export type KeyVisualization = {
 
 const collator = new Intl.Collator
 
+// Useful: https://kbdlayout.info/KBDGR/virtualkeys
 const titleMap: Record<string, string> = {
   escape: `ESC`,
   up: `▲`,
