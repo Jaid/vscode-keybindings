@@ -38,14 +38,14 @@ for (const group of [`addition`, `deletion`]) {
       dataNormalized[group] = {}
     }
     core.info(`${filteredKeybindings.length} ${group}s for ${id}`)
+    filteredKeybindings.sort((a, b) => {
+      return a.compareTo(b)
+    })
     const dataExtended: (Keybinding & {visualization: KeyVisualization})[] = filteredKeybindings.map(keybinding => {
       return {
         ...keybinding,
         visualization: keybinding.asVisualization(),
       }
-    })
-    dataExtended.sort((a, b) => {
-      return a.compareTo(b)
     })
     dataNormalized[group][id] = dataExtended
   }
