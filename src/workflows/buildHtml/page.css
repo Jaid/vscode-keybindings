@@ -39,7 +39,7 @@ tr > td:first-child > code {
 tr > td:nth-child(2) {
   max-width: 24em;
 }
-tr > td:not(:first-child) > code {
+tr > td:not(:first-child) {
   font-variation-settings: 'wght' 200;
   white-space: nowrap;
 }
