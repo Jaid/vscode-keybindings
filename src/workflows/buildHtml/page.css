@@ -5,6 +5,9 @@ body {
   padding: 1rem;
   font-variation-settings: 'wght' 400;
 }
+code {
+  font-family: Geologica;
+}
 tr > td:first-child > :is(em, code) {
   background: white;
   padding: 0.2rem;
@@ -13,9 +16,10 @@ tr > td:first-child > :is(em, code) {
 }
 tr > td:first-child > em {
   color: rgba(0, 0, 0, 0.9);
+  font-style: normal;
 }
 tr > td:first-child > code {
-  color: red;
+  color: oklab(0.57 0 -0.07);
 }
 tr > td:not(:first-child) > code {
   font-variation-settings: 'wght' 600;
@@ -27,10 +31,9 @@ tr > td {
   padding: 0.5rem;
 }
 tr:nth-child(even) {
-  background: color(srgb 0.58 0.54 1 / 0.10);
+  background: oklab(0.17 0.02 -0.05);
 }
 tr > td:first-child {
-  white-space: nowrap;
   user-select: none;
 }
 tr > td:last-child {
