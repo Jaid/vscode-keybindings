@@ -6,7 +6,7 @@
 @font-face {
   font-family: geologicaKey;
   src: local(Geologica);
-  font-variation-settings: 'wght' 900;
+  font-variation-settings: 'wght' 400;
 }
 body {
   background: black;
