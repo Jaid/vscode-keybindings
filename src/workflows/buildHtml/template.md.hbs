@@ -13,7 +13,7 @@
         {{#if (isBaseKey this)~}}
           `{{{formatKey value}}}`
         {{~else if (isModifierKey this)~}}
-          `{{{formatKey value}}}`
+          _{{{formatKey value}}}_
         {{~else~}}
           {{{value}}}
         {{~/if}}
