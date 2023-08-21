@@ -1,3 +1,5 @@
+import {title} from 'node:process'
+
 import {TypedArray} from 'type-fest'
 
 export type RawKeybinding = {
@@ -27,6 +29,27 @@ const titleMap: Record<string, string> = {
   left: `◀`,
   right: `▶`,
   backspace: `⌫`,
+  oem_1: `Ü`,
+  oem_2: `#`,
+  oem_3: `#`,
+  oem_4: `ẞ`,
+  oem_5: `^`,
+  oem_6: `´`,
+  oem_7: `Ä`,
+  oem_period: `.`,
+  oem_comma: `,`,
+  oem_minus: `-`,
+  oem_102: `<`,
+}
+
+const getTitleFromKey = (key: Keybinding['key']) => {
+  if (titleMap[key]) {
+    return titleMap[key]
+  }
+  if (key.startsWith(`numpad_`)) {
+    return `Numpad ${key.slice(7)}`
+  }
+  return key.toUpperCase()
 }
 
 export class Keybinding {
@@ -66,13 +89,13 @@ export class Keybinding {
         return {
           type: `modifierKey`,
           value: part,
-          title: titleMap[part] ?? part.toUpperCase(),
+          title: gettitleFromKey(part),
         }
       }
       return {
         type: `baseKey`,
         value: part,
-        title: titleMap[part] ?? part.toUpperCase(),
+        title: getTitleFromKey(part),
       }
     })
   }
