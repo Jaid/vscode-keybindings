@@ -28,7 +28,7 @@ tr > td:first-child > :is(em, code) {
   font-size: 0.8em;
 }
 tr > td:first-child > em {
-  color: rgba(0, 0, 0, 0.9);
+  color: oklab(0.43 0 0);
   font-style: normal;
 }
 tr > td:first-child > code {
