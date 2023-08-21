@@ -10,12 +10,12 @@
     --|-- |--
     {{#each this}}
       {{#each visualization ~}}
-        {{#if (isBaseKey this)~}}
-          `{{{formatKey value}}}`
-        {{~else if (isModifierKey this)~}}
-          _{{{formatKey value}}}_
+        {{#if (isModifierKey this)~}}
+          `{{{title}}}`
+        {{~else if (isBaseKey this)~}}
+          _{{{title}}}_
         {{~else~}}
-          {{{value}}}
+          {{{title}}}
         {{~/if}}
       {{~/each~}}
       |`{{{command}}}`

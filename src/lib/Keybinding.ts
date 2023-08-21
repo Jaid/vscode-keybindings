@@ -41,24 +41,28 @@ export class Keybinding {
       if (part === ` `) {
         return {
           type: `connector`,
-          value: ` → `,
+          value: part,
+          title: ` → `,
         }
       }
       if (part === `+`) {
         return {
           type: `connector`,
-          value: ` `,
+          value: part,
+          title: ` `,
         }
       }
       if ([`ctrl`, `shift`, `alt`].includes(part)) {
         return {
           type: `modifierKey`,
           value: part,
+          title: part.toUpperCase(),
         }
       }
       return {
         type: `baseKey`,
         value: part,
+        title: part.toUpperCase(),
       }
     })
   }

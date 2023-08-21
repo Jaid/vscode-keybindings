@@ -11,10 +11,10 @@ tr > td:first-child > :is(em, code) {
   border-bottom: 0.15rem solid rgb(165 165 165);
   font-variation-settings: 'wght' 800;
 }
-tr > td:first-child > code {
+tr > td:first-child > em {
   color: rgba(0, 0, 0, 0.9);
 }
-tr > td:first-child > em {
+tr > td:first-child > code {
   color: red;
 }
 tr > td:not(:first-child) > code {
