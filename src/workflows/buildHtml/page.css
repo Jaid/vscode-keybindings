@@ -5,21 +5,20 @@ body {
   padding: 1rem;
   font-variation-settings: 'wght' 400;
 }
-tr > td:first-child > code {
+tr > td:first-child > :is(i, code) {
   background: white;
   padding: 0.2rem;
-  color: rgba(0, 0, 0, 0.9);
   border-bottom: 0.15rem solid rgb(165 165 165);
-  font-variation-settings: 'wght' 600;
-}
-tr > td:not(:first-child) > code {
   font-variation-settings: 'wght' 800;
 }
-tr > td:not(:first-child) > code:not(:last-child) {
+tr > td:first-child > code {
+  color: rgba(0, 0, 0, 0.9);
+}
+tr > td:first-child > i {
   color: red;
 }
-tr > td:not(:first-child) > code:last-child {
-  color: green;
+tr > td:not(:first-child) > code {
+  font-variation-settings: 'wght' 600;
 }
 table {
   border-collapse: collapse;
