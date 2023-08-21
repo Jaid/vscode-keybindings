@@ -89,7 +89,7 @@ export class Keybinding {
         return {
           type: `modifierKey`,
           value: part,
-          title: gettitleFromKey(part),
+          title: getTitleFromKey(part),
         }
       }
       return {
