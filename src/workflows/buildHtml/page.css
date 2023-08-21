@@ -6,7 +6,7 @@ body {
   font-variation-settings: 'wght' 400;
   display: flex;
   flex-direction: column;
-  justify-items: center;
+  align-items: center;
 }
 code {
   font-family: Geologica;
