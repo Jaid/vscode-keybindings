@@ -39,6 +39,7 @@ const titleMap: Record<string, string> = {
   oem_period: `.`,
   oem_comma: `,`,
   oem_minus: `-`,
+  oem_plus: `+`,
   oem_102: `<`,
 }
 
