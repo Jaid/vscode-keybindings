@@ -42,6 +42,8 @@ export default [
   `left`,
   `up`,
   `down`,
+  `escape`,
   `space`,
+  `enter`,
   `backspace`,
 ]
