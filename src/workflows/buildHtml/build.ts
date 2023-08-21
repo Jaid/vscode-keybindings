@@ -12,6 +12,9 @@ import showdown from 'showdown'
 
 import {Keybinding, KeyVisualization, RawKeybinding} from 'lib/Keybinding.ts'
 
+import createHtml from './createHtml.js'
+import createMarkdown from './createMarkdown.js'
+
 const dirName = path.dirname(fileURLToPath(import.meta.url))
 
 const setOutput = (value, name = `value`) => {
@@ -51,36 +54,9 @@ for (const group of [`addition`, `deletion`]) {
   }
 }
 console.dir(dataNormalized, {depth: Number.POSITIVE_INFINITY})
-const handlebars = Handlebars.create()
-handlebars.registerHelper(`isBaseKey`, (value: KeyVisualization) => {
-  return value.type === `baseKey`
-})
-handlebars.registerHelper(`isModifierKey`, (value: KeyVisualization) => {
-  return value.type === `modifierKey`
-})
-handlebars.registerHelper(`breakBefore`, (value: string, ...rest) => {
-  const options = rest.at(-1) as Handlebars.HelperOptions
-  const args = rest.slice(1, -1) as string[]
-  const result = args.reduce((accumulator, currentValue) => {
-    return accumulator.replaceAll(currentValue, `${Handlebars.escapeExpression(currentValue)}<wbr>`)
-  }, value)
-  return new Handlebars.SafeString(result)
-})
-handlebars.registerHelper(`startCase`, (value: string) => {
-  return lodash.startCase(value)
-})
-const template = await readFileString.default(path.resolve(dirName, `template.md.hbs`))
-const templateInvoker = handlebars.compile(template, {
-  noEscape: true,
-})
-const md = templateInvoker({data: dataNormalized})
-const htmlTemplate = await readFileString.default(path.resolve(dirName, `template.html.hbs`))
-const htmlTemplateInvoker = handlebars.compile(htmlTemplate, {
-  noEscape: true,
-})
+const md = createMarkdown({data: dataNormalized})
 const converter = new showdown.Converter
-converter.setFlavor(`github`)
-const html = htmlTemplateInvoker({
+const html = createHtml({
   showdownContent: converter.makeHtml(md),
   style: await readFileString.default(path.resolve(dirName, `page.css`)),
 })
