@@ -64,7 +64,7 @@ handlebars.registerHelper(`breakBefore`, (value: string, ...rest) => {
   const result = args.reduce((accumulator, currentValue) => {
     return accumulator.replaceAll(currentValue, `${Handlebars.escapeExpression(currentValue)}<wbr>`)
   }, value)
-  return new Handlebars.SafeString(result).toString()
+  return new Handlebars.SafeString(result)
 })
 handlebars.registerHelper(`startCase`, (value: string) => {
   return lodash.startCase(value)
