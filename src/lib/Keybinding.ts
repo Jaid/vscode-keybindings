@@ -146,6 +146,11 @@ export class Keybinding {
   compareTo(other: Keybinding) {
     const thisBaseKey = this.getBaseKey()
     const otherBaseKey = other.getBaseKey()
+    console.dir({
+      thisBaseKey,
+      otherBaseKey,
+    })
+    return collator.compare(thisBaseKey, otherBaseKey)
     if (thisBaseKey !== otherBaseKey) {
       return collator.compare(thisBaseKey, otherBaseKey)
     }
