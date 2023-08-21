@@ -55,7 +55,9 @@ for (const group of [`addition`, `deletion`]) {
 }
 console.dir(dataNormalized, {depth: Number.POSITIVE_INFINITY})
 const md = createMarkdown({data: dataNormalized})
-const converter = new showdown.Converter
+const converter = new showdown.Converter({
+  tables: true,
+})
 const html = createHtml({
   showdownContent: converter.makeHtml(md),
   style: await readFileString.default(path.resolve(dirName, `page.css`)),
