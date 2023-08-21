@@ -70,7 +70,9 @@ const templateInvoker = handlebars.compile(template, {
 })
 const md = templateInvoker({data: dataNormalized})
 const htmlTemplate = await readFileString.default(path.resolve(dirName, `template.html.hbs`))
-const htmlTemplateInvoker = handlebars.compile(htmlTemplate)
+const htmlTemplateInvoker = handlebars.compile(htmlTemplate, {
+  noEscape: true,
+})
 const converter = new showdown.Converter
 converter.setFlavor(`github`)
 const html = htmlTemplateInvoker({
