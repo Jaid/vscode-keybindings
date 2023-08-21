@@ -20,7 +20,7 @@ export type KeyVisualization = {
   title: string
 }
 
-const collator = new Intl.Collator
+const collator = new Intl.Collator(`de`)
 
 // Useful: https://kbdlayout.info/KBDGR/virtualkeys
 const titleMap: Record<string, string> = {
@@ -149,5 +149,14 @@ export class Keybinding {
     if (thisBaseKey !== otherBaseKey) {
       return collator.compare(thisBaseKey, otherBaseKey)
     }
+    const thisComplexity = this.getComplexity()
+    const otherComplexity = other.getComplexity()
+    if (thisComplexity !== otherComplexity) {
+      return thisComplexity - otherComplexity
+    }
+    if (this.command !== other.command) {
+      return collator.compare(this.command, other.command)
+    }
+    return collator.compare(this.when ?? ``, other.when ?? ``)
   }
 }
