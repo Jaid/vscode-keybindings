@@ -23,7 +23,7 @@ tr > td:first-child > code {
   background: oklab(0.93 0 -0.04);
 }
 tr > td:not(:first-child) > code {
-  font-variation-settings: 'wght' 600;
+  font-variation-settings: 'wght' 200;
 }
 table {
   border-collapse: collapse;
