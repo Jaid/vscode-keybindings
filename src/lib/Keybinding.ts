@@ -1,5 +1,6 @@
 import {title} from 'node:process'
 
+import {firstMatch, Match} from 'super-regex'
 import {TypedArray} from 'type-fest'
 
 export type RawKeybinding = {
@@ -121,13 +122,17 @@ export class Keybinding {
     return /[ +]/.test(this.key)
   }
   splitIntoHalves(): HalvesSplit {
-    return /(?<prefix>.+[ +])?(?<baseKey>.+)$/.exec(this.key) as any as HalvesSplit
+    const result = firstMatch(/(?<prefix>.+[ +])?(?<baseKey>.+)$/, this.key)
+    if (!result) {
+      throw new Error(`Could not split keybinding into halves: ${this.key}`)
+    }
+    return result.namedGroups as HalvesSplit
   }
   getBaseKey() {
     return this.splitIntoHalves().baseKey
   }
-  getPrefix(): string | null {
-    return this.splitIntoHalves().prefix ?? null
+  getPrefix() {
+    return this.splitIntoHalves().prefix
   }
   getLogic() {
     if (this.command.startsWith(`-`)) {
