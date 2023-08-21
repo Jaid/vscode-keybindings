@@ -20,6 +20,7 @@ tr > td:first-child > em {
 }
 tr > td:first-child > code {
   color: oklab(0.57 0 -0.07);
+  background: oklab(0.93 0 -0.04);
 }
 tr > td:not(:first-child) > code {
   font-variation-settings: 'wght' 600;

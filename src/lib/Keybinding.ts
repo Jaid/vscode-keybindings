@@ -15,9 +15,19 @@ export type HalvesSplit = {
 export type KeyVisualization = {
   type: "baseKey" | `connector` | `modifierKey`
   value: string
+  title: string
 }
 
 const collator = new Intl.Collator
+
+const titleMap: Record<string, string> = {
+  escape: `ESC`,
+  up: `▲`,
+  down: `▼`,
+  left: `◀`,
+  right: `▶`,
+  backspace: `⌫`,
+}
 
 export class Keybinding {
   readonly key: string
@@ -56,13 +66,13 @@ export class Keybinding {
         return {
           type: `modifierKey`,
           value: part,
-          title: part.toUpperCase(),
+          title: titleMap[part] ?? part.toUpperCase(),
         }
       }
       return {
         type: `baseKey`,
         value: part,
-        title: part.toUpperCase(),
+        title: titleMap[part] ?? part.toUpperCase(),
       }
     })
   }
