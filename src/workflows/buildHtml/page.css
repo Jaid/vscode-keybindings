@@ -37,7 +37,7 @@ tr > td:first-child > code {
   border-bottom-color: oklab(0.57 0 -0.07);
 }
 tr > td:nth-child(2) {
-  max-width: 24em;
+  max-width: 20em;
 }
 tr > td:not(:first-child) {
   font-variation-settings: 'wght' 200;
