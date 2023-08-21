@@ -58,7 +58,11 @@ handlebars.registerHelper(`isBaseKey`, (value: KeyVisualization) => {
 handlebars.registerHelper(`isModifierKey`, (value: KeyVisualization) => {
   return value.type === `modifierKey`
 })
-handlebars.registerHelper(`breakBefore`, (value: string, ...args: string[], options) => {
+handlebars.registerHelper(`breakBefore`, function () {
+  const value = arguments[0]
+  const options = arguments[arguments.length - 1]
+  const args = [firstArg, ...otherArgs.slice(0, -1)]
+  const options = otherArgs[-1]
   const result = args.reduce((accumulator, currentValue) => {
     return accumulator.replaceAll(currentValue, `${Handlebars.escapeExpression(currentValue)}<wbr>`)
   }, value)
