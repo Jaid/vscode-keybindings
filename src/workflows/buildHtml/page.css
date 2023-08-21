@@ -33,6 +33,10 @@ tr > td:first-child > code {
   background: oklab(0.93 0 -0.04);
   border-bottom-color: oklab(0.57 0 -0.07);
 }
+tr > td:nth-child(2) {
+  max-width: 24em;
+  overflow-wrap: break-word;
+}
 tr > td:not(:first-child) > code {
   font-variation-settings: 'wght' 200;
 }
@@ -51,6 +55,6 @@ tr:nth-child(even) {
 tr > td:first-child {
   user-select: none;
 }
-tr > td:last-child {
+tr > td:nth-child(3) {
   max-width: 40em;
 }
