@@ -58,15 +58,13 @@ handlebars.registerHelper(`isBaseKey`, (value: KeyVisualization) => {
 handlebars.registerHelper(`isModifierKey`, (value: KeyVisualization) => {
   return value.type === `modifierKey`
 })
-handlebars.registerHelper(`breakBefore`, function () {
-  const value = arguments[0]
-  const options = arguments[arguments.length - 1]
-  const args = [firstArg, ...otherArgs.slice(0, -1)]
-  const options = otherArgs[-1]
+handlebars.registerHelper(`breakBefore`, (value: string, ...rest) => {
+  const options = rest.at(-1) as Handlebars.HelperOptions
+  const args = rest.slice(1, -1) as string[]
   const result = args.reduce((accumulator, currentValue) => {
     return accumulator.replaceAll(currentValue, `${Handlebars.escapeExpression(currentValue)}<wbr>`)
   }, value)
-  return new Handlebars.SafeString(result)
+  return new Handlebars.SafeString(result).toString()
 })
 handlebars.registerHelper(`startCase`, (value: string) => {
   return lodash.startCase(value)
