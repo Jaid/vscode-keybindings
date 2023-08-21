@@ -42,6 +42,7 @@ td {
 }
 tr:nth-child(even) {
   background: oklab(0.17 0.02 -0.05);
+  color: oklab(0.75 0.06 -0.14)
 }
 tr > td:first-child {
   user-select: none;
