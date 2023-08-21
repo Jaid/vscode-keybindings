@@ -11,6 +11,9 @@ body {
 code {
   font-family: Geologica;
 }
+table {
+  font-size: smaller;
+}
 tr > td:first-child > :is(em, code) {
   background: white;
   padding: 0.2rem;
