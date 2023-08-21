@@ -11,14 +11,14 @@
     {{#each this}}
       {{#each visualization ~}}
         {{#if (isModifierKey this)~}}
-          `{{{title}}}`
+          `{{title}}`
         {{~else if (isBaseKey this)~}}
-          _{{{title}}}_
+          _{{title}}_
         {{~else~}}
-          {{{title}}}
+          {{title}}
         {{~/if}}
       {{~/each~}}
-      |`{{{command}}}`
+      |`{{breakBeforeDot command}}`
       {{~#if when~}}
         |`{{{when}}}`
       {{~/if}}

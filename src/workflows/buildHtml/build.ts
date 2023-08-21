@@ -38,7 +38,7 @@ for (const group of [`addition`, `deletion`]) {
       dataNormalized[group] = {}
     }
     core.info(`${filteredKeybindings.length} ${group}s for ${id}`)
-    const dataExtended: (Keybinding & { visualization: KeyVisualization })[] = filteredKeybindings.map(keybinding => {
+    const dataExtended: (Keybinding & {visualization: KeyVisualization})[] = filteredKeybindings.map(keybinding => {
       return {
         ...keybinding,
         visualization: keybinding.asVisualization(),
@@ -52,11 +52,14 @@ for (const group of [`addition`, `deletion`]) {
 }
 console.dir(dataNormalized, {depth: Number.POSITIVE_INFINITY})
 const handlebars = Handlebars.create()
-handlebars.registerHelper(`isBaseKey`, value => {
+handlebars.registerHelper(`isBaseKey`, (value: KeyVisualization) => {
   return value.type === `baseKey`
 })
-handlebars.registerHelper(`isModifierKey`, value => {
+handlebars.registerHelper(`isModifierKey`, (value: KeyVisualization) => {
   return value.type === `modifierKey`
+})
+handlebars.registerHelper(`breakBeforeDot`, value => {
+  return String(value).replaceAll(`.`, `<wbr>.`)
 })
 handlebars.registerHelper(`startCase`, (value: string) => {
   return lodash.startCase(value)
