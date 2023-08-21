@@ -4,6 +4,9 @@ body {
   font-family: Geologica, Comic Sans MS, sans-serif;
   padding: 1rem;
   font-variation-settings: 'wght' 400;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
 }
 code {
   font-family: Geologica;
