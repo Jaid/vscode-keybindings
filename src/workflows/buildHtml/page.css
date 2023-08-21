@@ -1,28 +1,25 @@
-@font-face {
-  font-family: geologicaText;
-  src: local(Geologica);
-  font-variation-settings: 'wght' 400;
-}
-@font-face {
-  font-family: geologicaKey;
-  src: local(Geologica);
-  font-variation-settings: 'wght' 400;
-}
 body {
   background: black;
   color: white;
-  font-family: geologicaText, Comic Sans MS, sans-serif;
+  font-family: Geologica, Comic Sans MS, sans-serif;
   padding: 1rem;
+  font-variation-settings: 'wght' 400;
 }
 tr > td:first-child > code {
   background: white;
   padding: 0.2rem;
   color: rgba(0, 0, 0, 0.9);
   border-bottom: 0.15rem solid rgb(165 165 165);
-  font-family: geologicaKey, Comic Sans MS, sans-serif;
+  font-variation-settings: 'wght' 600;
 }
 tr > td:not(:first-child) > code {
-  font-family: geologicaText, Comic Sans MS, sans-serif;
+  font-variation-settings: 'wght' 800;
+}
+tr > td:not(:first-child) > code:not(:last-child) {
+  color: red;
+}
+tr > td:not(:first-child) > code:last-child {
+  color: green;
 }
 table {
   border-collapse: collapse;
