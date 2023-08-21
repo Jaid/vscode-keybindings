@@ -18,10 +18,9 @@ handlebars.registerHelper(`isModifierKey`, (value: KeyVisualization) => {
 })
 handlebars.registerHelper(`breakBefore`, (value: string, ...rest) => {
   const options = rest.at(-1) as Handlebars.HelperOptions
-  const args = rest.slice(1, -1) as string[]
-  console.dir({value, args, options})
+  const args = rest.slice(0, -1) as string[]
   const result = args.reduce((accumulator, currentValue) => {
-    return accumulator.replaceAll(currentValue, `${Handlebars.escapeExpression(currentValue)}<wbr>`)
+    return accumulator.replaceAll(currentValue, `<wbr>${Handlebars.escapeExpression(currentValue)}`)
   }, value)
   return new Handlebars.SafeString(result)
 })
