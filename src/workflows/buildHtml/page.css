@@ -6,7 +6,7 @@ body {
   font-variation-settings: 'wght' 400;
   display: flex;
   flex-direction: column;
-  place-items: center;
+  justify-items: center;
 }
 code {
   font-family: Geologica;
@@ -16,6 +16,7 @@ tr > td:first-child > :is(em, code) {
   padding: 0.2rem;
   border-bottom: 0.15rem solid rgb(165 165 165);
   font-variation-settings: 'wght' 800;
+  min-width: 3em;
 }
 tr > td:first-child > em {
   color: rgba(0, 0, 0, 0.9);
