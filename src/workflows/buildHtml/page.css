@@ -22,7 +22,7 @@ tr > td:first-child > :is(em, code) {
   min-width: 1.4em;
   display: inline-block;
   text-align: center;
-  font-size: 80%;
+  font-size: 0.8em;
 }
 tr > td:first-child > em {
   color: rgba(0, 0, 0, 0.9);
