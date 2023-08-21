@@ -3,6 +3,8 @@ import {title} from 'node:process'
 import {firstMatch, Match} from 'super-regex'
 import {TypedArray} from 'type-fest'
 
+import keySorting from 'lib/keySorting.js'
+
 export type RawKeybinding = {
   key: string
   command: string
@@ -151,12 +153,16 @@ export class Keybinding {
   compareTo(other: Keybinding) {
     const thisBaseKey = this.getBaseKey()
     const otherBaseKey = other.getBaseKey()
-    console.dir({
-      thisBaseKey,
-      otherBaseKey,
-    })
-    return collator.compare(thisBaseKey, otherBaseKey)
     if (thisBaseKey !== otherBaseKey) {
+      if (keySorting.includes(thisBaseKey) && !keySorting.includes(otherBaseKey)) {
+        return -1
+      }
+      if (!keySorting.includes(thisBaseKey) && keySorting.includes(otherBaseKey)) {
+        return 1
+      }
+      if (keySorting.includes(thisBaseKey) && keySorting.includes(otherBaseKey)) {
+        return keySorting.indexOf(thisBaseKey) - keySorting.indexOf(otherBaseKey)
+      }
       return collator.compare(thisBaseKey, otherBaseKey)
     }
     const thisComplexity = this.getComplexity()
