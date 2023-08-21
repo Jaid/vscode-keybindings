@@ -38,10 +38,10 @@ tr > td:first-child > code {
 }
 tr > td:nth-child(2) {
   max-width: 24em;
-  overflow-wrap: break-word;
 }
 tr > td:not(:first-child) > code {
   font-variation-settings: 'wght' 200;
+  white-space: nowrap;
 }
 table {
   border-collapse: collapse;
