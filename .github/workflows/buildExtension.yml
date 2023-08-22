@@ -5,6 +5,9 @@ on:
       artifactId:
         required: true
         type: string
+    secrets:
+      azureToken:
+        required: true
 jobs:
   build:
     runs-on: ubuntu-latest
