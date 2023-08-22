@@ -24,7 +24,7 @@ jobs:
       - name: installNodePackages
         id: installNodePackages
         working-directory: ${{ runner.workspace }}
-        run: npm install --no-save --no-package-lock @actions/core @actions/github fs-extra globby read-file-yaml prevent-start lodash-es tsconfig-jaid tsx
+        run: npm install --no-save --no-package-lock @actions/core @actions/github fs-extra globby read-file-yaml prevent-start lodash-es tsconfig-jaid tsx read-file-json
       - name: rewriteTsconfigJaid
         id: rewriteTsconfigJaid
         run: |-
