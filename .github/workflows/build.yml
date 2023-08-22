@@ -39,6 +39,8 @@ jobs:
       pages: write
     with:
       artifactId: data
-  # buildExtension:
-  #   needs: build
-  #   uses: ./.github/workflows/buildExtension.yml
+  buildExtension:
+    needs: build
+    uses: ./.github/workflows/buildExtension.yml
+    with:
+      artifactId: data
