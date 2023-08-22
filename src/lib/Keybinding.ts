@@ -32,7 +32,6 @@ const titleMap: Record<string, string> = {
   down: `▼`,
   left: `◀`,
   right: `▶`,
-  backspace: `⌫`,
   oem_1: `Ü`,
   oem_2: `#`,
   oem_3: `#`,
