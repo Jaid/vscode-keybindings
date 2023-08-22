@@ -9,7 +9,7 @@
     "eslint-config-jaid": "^4.6.0",
     "key-counter": "^1.0.4",
     "super-regex": "^0.2.0",
-    "tsconfig-jaid": "^4.5.0",
+    "tsconfig-jaid": "^4.6.0",
     "type-fest": "^4.2.0"
   },
   "scripts": {},
