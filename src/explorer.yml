@@ -1,13 +1,22 @@
-- key: f2
+- key: ctrl+e
   command: workbench.explorer.fileView.focus
   when: focusedView != 'workbench.explorer.fileView'
-- key: f2
+- key: ctrl+e
   command: workbench.action.focusActiveEditorGroup
   when: focusedView == 'workbench.explorer.fileView'
-- key: shift+f2
-  command: workbench.explorer.openEditorsView.focus
-  when: focusedView != 'workbench.explorer.openEditorsView'
-- key: ctrl+r
+- key: ctrl+e
+  command: workbench.action.files.newUntitledFile
+  when: focusedView == 'workbench.explorer.fileView' && !editorIsOpen
+- key: shift+ctrl+e
+  command: workbench.files.action.focusOpenEditorsView
+  when: editorIsOpen && workbench.explorer.openEditorsView.active && focusedView != 'workbench.explorer.openEditorsView'
+- key: shift+ctrl+e
+  command: workbench.action.focusActiveEditorGroup
+  when: editorIsOpen && focusedView == 'workbench.explorer.openEditorsView'
+- key: ctrl+shift+e
+  command: workbench.action.files.newUntitledFile
+  when: focusedView == 'workbench.explorer.openEditorsView' && !editorIsOpen
+- key: f2
   command: renameFile
   when: focusedView == 'workbench.explorer.fileView' && !explorerResourceIsRoot && !explorerResourceReadonly
 - key: ctrl+n

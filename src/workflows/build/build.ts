@@ -1,4 +1,3 @@
-// @ts-nocheck
 import path from 'node:path'
 
 import fs from 'fs-extra'
@@ -27,9 +26,17 @@ const config = {
     keystrokes: globalData.excluded,
     role: `doc`,
   },
+  resetExtensions: {},
+  jaid: {},
   editor: {},
+  explorer: {},
+  terminal: {},
+  copilot: {},
 }
 for (const [id, entry] of Object.entries(config)) {
+  if (!entry.role) {
+    entry.role = `extension`
+  }
   if (entry.keystrokes) {
     continue
   }

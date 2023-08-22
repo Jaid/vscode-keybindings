@@ -1,4 +1,3 @@
-// @ts-nocheck
 import path from 'node:path'
 import {fileURLToPath} from 'node:url'
 
@@ -21,5 +20,4 @@ const html = createHtml({
   showdownContent: converter.makeHtml(md),
   style: await readFileString.default(path.join(dirName, `page.css`)),
 })
-// await fs.writeFile(path.join(outputFolder, `index.md`), md)
-fs.outputFile(path.join(`dist`, `index.html`), html)
+await fs.outputFile(path.join(`dist`, `index.html`), html)

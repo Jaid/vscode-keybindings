@@ -1,14 +1,11 @@
 - key: ctrl+oem_2
-  command: editor.action.addCommentLine
-  when: editorTextFocus && !editorReadonly
-- key: ctrl+shift+oem_2
   command: editor.action.commentLine
-  when: editorTextFocus && !editorReadonly
-- key: ctrl+shift+alt+oem_2
+  when: editorTextFocus
+- key: ctrl+shift+oem_2
   command: runCommands
   args:
     commands:
-      - editor.action.copyLinesDownAction
+      - editor.action.copyLinesUpAction
       - cursorUp
       - editor.action.commentLine
       - cursorUndo
@@ -21,16 +18,44 @@
   when: editorFocus && !multipleEditorGroups && groupEditorsCount == 1
 - key: ctrl+shift+w
   command: workbench.action.closeOtherEditors
-  when: editorIsOpen
-- key: ctrl+q
+- key: ctrl+alt+left
   command: workbench.action.previousEditor
-- key: ctrl+e
+  when: editorIsOpen && !activeEditorIsFirstInGroup
+- key: ctrl+alt+right
   command: workbench.action.nextEditor
+  when: editorIsOpen && !activeEditorIsLastInGroup
 - key: ctrl+d
-  command: editor.action.copyLinesUpAction
-  when: editorTextFocus && !editorReadonly
+  command: editor.action.duplicateSelection
+  when: editorTextFocus && editorHasSelection
+- key: ctrl+d
+  command: editor.action.copyLinesDownAction
+  when: textInputFocus && !editorHasSelection
 - key: ctrl+n
   command: workbench.action.files.newUntitledFile
-- key: ctrl+shift+t
+- key: alt+z
   command: workbench.action.reopenClosedEditor
-  when: editorIsOpen && !editorReadonly
+  when: canReopenClosedEditor
+- key: ctrl+s
+  command: workbench.action.files.save
+  when: editorIsOpen
+- key: ctrl+shift+s
+  command: workbench.action.files.saveAll
+  when: editorIsOpen
+- key: shift+backspace
+  command: deleteAllLeft
+  when: textInputFocus
+- key: shift+delete
+  command: deleteAllRight
+  when: textInputFocus
+- key: ctrl+shift+a
+  command: editor.action.selectHighlights
+  when: editorTextFocus
+- key: alt+a
+  command: editor.action.changeAll
+  when: editorTextFocus
+- key: f2
+  command: editor.action.rename
+  when: editorTextFocus && !editorReadonly
+- key: ctrl+f2
+  command: editor.action.refactor
+  when: editorTextFocus && !editorReadonly

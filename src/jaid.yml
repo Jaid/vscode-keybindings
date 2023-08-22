@@ -1,57 +1,16 @@
-- key: ctrl+shift+r
-  command: workbench.action.terminal.relaunch
-  when: terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
 - key: ctrl+oem_5
   command: workbench.action.quickOpen
   when: '!inQuickOpen'
 - key: ctrl+oem_5
   command: workbench.action.closeQuickOpen
   when: inQuickOpen
-- key: ctrl+shift+oem_5
+- key: ctrl+alt+oem_5
   command: workbench.action.quickSwitchWindow
 - key: alt+oem_5
   command: workbench.action.quickOpenView
-# - key: ctrl+shift+i
-#   command: editor.action.insertSnippet
-#   when: editorTextFocus && !editorReadonly
-#   args:
-#     name: Import module
-# - key: ctrl+shift+l
-#   command: editor.action.insertSnippet
-#   when: editorTextFocus && !editorReadonly
-#   args:
-#     name: For of
-# - key: ctrl+shift+d
-#   command: editor.action.insertSnippet
-#   when: editorTextFocus && !editorReadonly
-#   args:
-#     name: JSDoc comment
-# - key: ctrl+shift+l
-#   command: editor.action.insertSnippet
-#   when: editorTextFocus && !editorReadonly
-#   args:
-#     name: For of
-# - key: ctrl+shift+a
-#   command: extension.multiCommand.execute
-#   args:
-#     command: multiCommand.saveAndPush
-# - key: ctrl+up
-#   command: editor.action.inlineSuggest.showNext
-#   when: inlineSuggestionVisible && !editorReadonly
-# - key: ctrl+down
-#   command: editor.action.inlineSuggest.showPrevious
-#   when: inlineSuggestionVisible && !editorReadonly
-# - key: ctrl+alt+t
-#   command: workbench.action.terminal.openNativeConsole
-# - key: ctrl+shift+q
-#   command: git.stageSelectedRanges
-# - key: ctrl+shift+oem_5
-#   command: workbench.action.toggleZenMode
-# - key: ctrl+t
-#   command: workbench.action.terminal.toggleTerminal
-# - key: ctrl+shift+down
-#  command: editor.action.copyLinesDownAction
-#  when: editorTextFocus && !editorReadonly
-# - key: ctrl+shift+up
-#  command: editor.action.copyLinesUpAction
-#  when: editorTextFocus && !editorReadonly
+- key: ctrl+shift+oem_5
+  command: workbench.action.showCommands
+  when: '!inQuickOpen'
+- key: ctrl+shift+oem_5
+  command: workbench.action.closeQuickOpen
+  when: inQuickOpen

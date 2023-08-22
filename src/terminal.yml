@@ -1,0 +1,16 @@
+- key: ctrl+shift+r
+  command: workbench.action.terminal.relaunch
+  when: terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
+- key: ctrl+t
+  command: workbench.action.terminal.focus
+  when: focusedView != 'terminal'
+- key: ctrl+t
+  command: runCommands
+  args:
+    commands:
+      - workbench.action.togglePanel
+      - workbench.action.focusActiveEditorGroup
+  when: focusedView == 'terminal'
+- key: ctrl+shift+t
+  command: workbench.action.focusActiveEditorGroup
+  when: focusedView == 'terminal'

@@ -1,10 +1,9 @@
-// @ts-nocheck
 import path from 'node:path'
 
 import core from '@actions/core'
 import readFileYaml from 'read-file-yaml'
 
-import {Keybinding, KeyVisualization, RawKeybinding} from 'lib/Keybinding.ts'
+import {Keybinding, KeyVisualization, RawKeybinding} from 'lib/Keybinding.js'
 
 type DataEntry = {
   keystrokes: RawKeybinding[]
