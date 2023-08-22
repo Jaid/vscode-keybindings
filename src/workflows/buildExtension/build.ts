@@ -8,7 +8,7 @@ import readFileJson from 'read-file-json'
 import {RawKeybinding} from 'lib/Keybinding.js'
 import loadData from 'lib/loadData.js'
 
-const packageJson = await readFileJson.default(path.join(process.env.RUNNER_WORKSPACE, `package.json`))
+const packageJson = await readFileJson.default(`package.json`)
 const keybindings: RawKeybinding[] = []
 const data = await loadData()
 for (const entry of Object.values(data)) {
