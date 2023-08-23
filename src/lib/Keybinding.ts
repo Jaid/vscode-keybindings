@@ -153,7 +153,7 @@ export class Keybinding {
     const raw = this.toRaw()
     return new Keybinding({
       ...raw,
-      key: preventStart(raw.key, `-`),
+      key: preventStart.default(raw.key, `-`),
     })
   }
   compareTo(other: Keybinding): number {
