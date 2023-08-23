@@ -5,6 +5,7 @@ import readFileYaml from 'read-file-yaml'
 
 import {Keybinding, KeyVisualization, RawKeybinding} from 'lib/Keybinding.js'
 
+import {Data} from 'src/workflows/build/build.js'
 
 export type ExtendedKeybinding = Keybinding & {visualization: KeyVisualization}
 

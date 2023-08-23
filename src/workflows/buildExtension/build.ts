@@ -12,6 +12,9 @@ const packageJson = await readFileJson.default(`package.json`)
 const keybindings: RawKeybinding[] = []
 const data = await loadData()
 for (const entry of Object.values(data)) {
+  if (entry.role === `doc`) {
+    continue
+  }
   keybindings.push(...entry.keystrokes)
 }
 

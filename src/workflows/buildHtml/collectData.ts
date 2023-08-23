@@ -28,9 +28,9 @@ export default async () => {
         dataNormalized[group] = {}
       }
       core.info(`${filteredKeybindings.length} ${group}s for ${id}`)
-      filteredKeybindings.sort((a, b) => {
-        return a.compareTo(b)
-      })
+      // filteredKeybindings.sort((a, b) => {
+      //   return a.compareTo(b)
+      // })
       const dataExtended: (Keybinding & {visualization: KeyVisualization})[] = filteredKeybindings.map(keybinding => {
         return {
           ...keybinding,
