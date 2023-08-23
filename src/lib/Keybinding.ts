@@ -1,7 +1,7 @@
 import {title} from 'node:process'
 
+import preventStart from 'prevent-start'
 import {firstMatch, Match} from 'super-regex'
-import {TypedArray} from 'type-fest'
 
 import keySorting from 'lib/keySorting.js'
 
@@ -64,7 +64,7 @@ export class Keybinding {
   static fromRaw(raw: RawKeybinding) {
     return new Keybinding(raw)
   }
-  constructor(public data: RawKeybinding) {
+  constructor(data: RawKeybinding) {
     Object.assign(this, data)
   }
   isAddition() {
@@ -149,17 +149,37 @@ export class Keybinding {
     const modifiers = keys.slice(0, -1)
     return modifiers.length * 10 + modifiers.join(``).length
   }
-  compareTo(other: Keybinding) {
+  asPositive() {
+    const raw = this.toRaw()
+    return new Keybinding({
+      ...raw,
+      key: preventStart(raw.key, `-`),
+    })
+  }
+  compareTo(other: Keybinding): number {
+    const thisIsDeletion = this.getLogic() === `deletion`
+    const otherIsDeletion = other.getLogic() === `deletion`
+    if (thisIsDeletion && !otherIsDeletion) {
+      return -1
+    }
+    if (!thisIsDeletion && otherIsDeletion) {
+      return 1
+    }
+    if (thisIsDeletion && otherIsDeletion) {
+      return this.asPositive().compareTo(other.asPositive())
+    }
     const thisBaseKey = this.getBaseKey()
     const otherBaseKey = other.getBaseKey()
     if (thisBaseKey !== otherBaseKey) {
-      if (keySorting.includes(thisBaseKey) && !keySorting.includes(otherBaseKey)) {
+      const thisIsSortedKey = keySorting.includes(thisBaseKey)
+      const otherIsSortedKey = keySorting.includes(otherBaseKey)
+      if (thisIsSortedKey && !otherIsSortedKey) {
         return -1
       }
-      if (!keySorting.includes(thisBaseKey) && keySorting.includes(otherBaseKey)) {
+      if (!thisIsSortedKey && otherIsSortedKey) {
         return 1
       }
-      if (keySorting.includes(thisBaseKey) && keySorting.includes(otherBaseKey)) {
+      if (thisIsSortedKey && otherIsSortedKey) {
         return keySorting.indexOf(thisBaseKey) - keySorting.indexOf(otherBaseKey)
       }
       return collator.compare(thisBaseKey, otherBaseKey)
