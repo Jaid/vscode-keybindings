@@ -17,25 +17,18 @@ jobs:
         uses: actions/download-artifact@v3.0.2
         with:
           name: ${{ inputs.artifactId }}
-          path: ${{ runner.workspace }}/out
+          path: out
       - name: checkout
         uses: actions/checkout@v3.5.3
       - name: setupNode
         uses: actions/setup-node@v3.7.0
         with:
           node-version: latest
-      - name: installNodePackages
-        id: installNodePackages
-        working-directory: ${{ runner.workspace }}
-        run: npm install --no-save --no-package-lock @actions/core @actions/github fs-extra globby read-file-yaml prevent-start lodash-es tsconfig-jaid tsx read-file-json
-      - name: rewriteTsconfigJaid
-        id: rewriteTsconfigJaid
-        run: |-
-          sed 's|"\.\./\.\.|"\.\./\.\./${{ github.event.repository.name }}|g' --in-place ${{ runner.workspace }}/node_modules/tsconfig-jaid/base.json
-          sed "s|'\.\./\.\.|'\.\./\.\./${{ github.event.repository.name }}|g" --in-place ${{ runner.workspace }}/node_modules/tsconfig-jaid/base.json
+      - name: npm install
+        uses: jaid/action-npm-install@main
       - id: build
         name: build
-        run: ${{ runner.workspace }}/node_modules/.bin/tsx src/workflows/buildExtension/build.ts
+        run: npm run buildExtension
       - id: bundle
         name: bundle
         shell: bash

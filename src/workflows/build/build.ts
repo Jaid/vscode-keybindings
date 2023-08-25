@@ -4,16 +4,18 @@ import fs from 'fs-extra'
 import readFileYaml from 'read-file-yaml'
 import yaml from 'yaml'
 
-import {Keybinding, RawKeybinding} from 'lib/Keybinding.js'
+import getDataFile from 'lib/getDataFile.js'
+import {RawKeybinding, sortRaw} from 'lib/Keybinding.js'
 
 import convertGlobals from './convertGlobals.js'
-
-export type Data = Record<string, DataEntry>
 
 type DataEntry = {
   role: `doc` | `extension`
   keystrokes: RawKeybinding[]
 }
+export type Category = typeof categories[number]
+export type Data = Record<Category, DataEntry>
+type Config = Partial<Data>
 
 const toYaml = input => yaml.stringify(input, null, {
   schema: `core`,
@@ -25,7 +27,17 @@ const toYaml = input => yaml.stringify(input, null, {
 
 const globalData = convertGlobals()
 
-const config = {
+const categories = [
+  `keptDefaults`,
+  `deletedDefaults`,
+  `resetExtensions`,
+  `jaid`,
+  `editor`,
+  `explorer`,
+  `terminal`,
+  `copilot`,
+] as const
+const config: Config = {
   deletedDefaults: {
     keystrokes: globalData.result,
     role: `extension`,
@@ -35,30 +47,19 @@ const config = {
     role: `doc`,
   },
 }
-const categories = [
-  `deletedDefaults`,
-  `keptDefaults`,
-  `resetExtensions`,
-  `jaid`,
-  `editor`,
-  `explorer`,
-  `terminal`,
-  `copilot`,
-]
-const result: Data = {}
+const result: Partial<Data> = {}
 for (const category of categories) {
   if (config[category]) {
     result[category] = config[category]
     continue
   }
-  const resultEntry: Partial<DataEntry> = {
-    role: `extension`,
+  const role = `extension`
+  const keystrokes: RawKeybinding[] = await readFileYaml.default(path.join(`src`, `${category}.yml`))
+  keystrokes.sort(sortRaw)
+  result[category] = {
+    role,
+    keystrokes,
   }
-  const rawKeybindings: RawKeybinding[] = await readFileYaml.default(path.join(`src`, `${category}.yml`))
-  const keybindings = rawKeybindings.map(Keybinding.fromRaw)
-  keybindings.sort((a, b) => a.compareTo(b))
-  resultEntry.keystrokes = keybindings.map(keybinding => keybinding.toRaw())
-  result[category] = resultEntry as DataEntry
 }
 const yamlOutput = toYaml(result)
-await fs.outputFile(path.join(process.env.RUNNER_WORKSPACE, `out`, `data.yml`), yamlOutput)
+await fs.outputFile(getDataFile(), yamlOutput)

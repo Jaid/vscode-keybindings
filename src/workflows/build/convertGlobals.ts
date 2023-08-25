@@ -1,9 +1,10 @@
-/* eslint-disable unicorn/prefer-node-protocol */
-import core from '@actions/core'
+import path from 'node:path'
+
 import KeyCounter from 'key-counter'
-import path from 'path'
 import readFileJson from 'read-file-json'
 import yaml from 'yaml'
+
+import {RawKeybinding, sortRaw} from 'lib/Keybinding.js'
 
 const toYaml = input => yaml.stringify(input, null, {
   schema: `core`,
@@ -81,11 +82,11 @@ const excludedKeystrokes = [
   `ctrl+x`,
   [`command`, `editor.action.refactor`],
 ].map(input => new ExclusionRule(input))
-const jsonPath = path.resolve(`src`, `global.jsonc`)
+const jsonPath = path.join(`src`, `global.jsonc`)
 const data = await readFileJson.default(jsonPath)
 export default () => {
-  const result = []
-  const excluded = []
+  const result: RawKeybinding[] = []
+  const excluded: RawKeybinding[] = []
   const exclusionCounter = new KeyCounter.default
   const keystrokeCounter = new KeyCounter.default
   for (const entry of data) {
@@ -106,16 +107,18 @@ export default () => {
       command: `-${entry.command}`,
     })
   }
-  core.info(`Loaded ${Object.keys(data).length} global keybindings from ${jsonPath}`)
-  core.info(`Included ${result.length}, excluded ${data.length - result.length}`)
-  core.startGroup(`YAML output (keystrokes to delete)`)
-  core.info(toYaml(result))
-  core.endGroup()
-  core.startGroup(`Excluded (keystrokes to keep)`)
-  core.info(`Excluded ${excluded.length} keybindings`)
-  core.info(toYaml(exclusionCounter.toObjectSortedByValues()))
-  core.info(toYaml(excluded))
-  core.endGroup()
+  result.sort(sortRaw)
+  excluded.sort(sortRaw)
+  console.info(`Loaded ${Object.keys(data).length} global keybindings from ${jsonPath}`)
+  console.info(`Included ${result.length}, excluded ${data.length - result.length}`)
+  console.group(`YAML output (keystrokes to delete)`)
+  console.info(toYaml(result))
+  console.groupEnd()
+  console.group(`Excluded (keystrokes to keep)`)
+  console.info(`Excluded ${excluded.length} keybindings`)
+  console.info(toYaml(exclusionCounter.toObjectSortedByValues()))
+  console.info(toYaml(excluded))
+  console.groupEnd()
   const keystrokeList = Object.entries(keystrokeCounter.toObjectSortedByValues()).map(([key, value]) => {
     return {
       key,
@@ -125,9 +128,9 @@ export default () => {
   })
   keystrokeList.reverse()
   for (const entry of keystrokeList) {
-    core.startGroup(`Keystroke ${entry.key} (${entry.value})`)
-    core.info(entry)
-    core.endGroup()
+    console.group(`Keystroke ${entry.key} (${entry.value})`)
+    console.info(entry)
+    console.groupEnd()
   }
   return {
     result,

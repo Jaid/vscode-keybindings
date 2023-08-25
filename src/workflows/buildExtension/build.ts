@@ -28,4 +28,4 @@ const packageManifest = {
   },
   ...lodash.pick(packageJson, [`repository`, `homepage`, `version`, `description`, `engines`, `categories`]),
 }
-await fs.outputFile(path.resolve(`dist`, `package.json`), JSON.stringify(packageManifest))
+await fs.outputFile(path.join(`dist`, `package.json`), JSON.stringify(packageManifest))

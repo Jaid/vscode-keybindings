@@ -27,7 +27,7 @@ handlebars.registerHelper(`breakBefore`, (value: string, ...rest) => {
 handlebars.registerHelper(`startCase`, (value: string) => {
   return lodash.startCase(value)
 })
-const template = await readFileString.default(path.resolve(dirName, `template.md.hbs`))
+const template = await readFileString.default(path.join(dirName, `template.md.hbs`))
 const templateInvoker = handlebars.compile(template, {
   noEscape: true,
 })

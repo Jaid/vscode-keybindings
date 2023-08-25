@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "buildExtension",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "buildExtension"
+      ],
+      "console": "internalConsole"
+    },
+    {
+      "name": "buildHtml",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "buildHtml"
+      ],
+      "console": "internalConsole"
+    },
+  ]
+}

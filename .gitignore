@@ -35,8 +35,11 @@ Temporary Items
 .env
 
 # Generated or temporary content
-dist
-temp
+/dist/
+/temp/
+/out/
+/srcCompiled/
+/srcCompiled*/
 *.stackdump
 
 # Node, based on https://github.com/github/gitignore/blob/main/Node.gitignore

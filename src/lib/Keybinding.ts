@@ -56,6 +56,7 @@ const getTitleFromKey = (key: Keybinding['key']) => {
   return key.toUpperCase()
 }
 
+
 export class Keybinding {
   readonly key: string
   readonly command: string
@@ -194,4 +195,8 @@ export class Keybinding {
     }
     return collator.compare(this.when ?? ``, other.when ?? ``)
   }
+}
+
+export const sortRaw = (a: RawKeybinding, b: RawKeybinding) => {
+  return Keybinding.fromRaw(a).compareTo(Keybinding.fromRaw(b))
 }

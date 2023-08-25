@@ -13,24 +13,17 @@ jobs:
         uses: actions/setup-node@v3.7.0
         with:
           node-version: latest
-      - name: installNodePackages
-        id: installNodePackages
-        working-directory: ${{ runner.workspace }}
-        run: npm install --no-save --no-package-lock @actions/core globby read-file-yaml key-counter read-file-json yaml fs-extra tsconfig-jaid lodash-es tsx prevent-start
-      - name: rewriteTsconfigJaid
-        id: rewriteTsconfigJaid
-        run: |-
-          sed 's|"\.\./\.\.|"\.\./\.\./${{ github.repository.name }}|g' --in-place ${{ runner.workspace }}/node_modules/tsconfig-jaid/base.json
-          sed "s|'\.\./\.\.|'\.\./\.\./${{ github.repository.name }}|g" --in-place ${{ runner.workspace }}/node_modules/tsconfig-jaid/base.json
+      - name: npm install
+        uses: jaid/action-npm-install@main
       - id: build
         name: build
-        run: ${{ runner.workspace }}/node_modules/.bin/tsx src/workflows/build/build.ts
+        run: npm run build
       - id: uploadArtifact
         name: uploadArtifact
         uses: actions/upload-artifact@v3.1.2
         with:
           name: data
-          path: ${{ runner.workspace }}/out
+          path: out
   buildHtml:
     needs: build
     uses: ./.github/workflows/buildHtml.yml
