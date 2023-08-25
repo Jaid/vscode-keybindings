@@ -12,5 +12,6 @@ export type ExtendedKeybinding = Keybinding & {visualization: KeyVisualization}
 
 export default async () => {
   const data: Data = await readFileYaml.default(getDataFile())
+  console.dir(data)
   return data
 }
