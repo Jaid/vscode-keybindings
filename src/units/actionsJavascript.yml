@@ -8,3 +8,8 @@
   args:
     kind: source.fixAll.ts
   when: supportedCodeAction =~ /(^| )source.fixAll.ts($| |\.)/ && !(supportedCodeAction =~ /(^| )source.fixAll.eslint($| |\.)/)
+- key: ctrl+shift+o
+  command: editor.action.codeAction
+  args:
+    kind: source.removeUnused.ts
+  when: supportedCodeAction =~ /(^| )source.removeUnused.ts($| |\.)/
