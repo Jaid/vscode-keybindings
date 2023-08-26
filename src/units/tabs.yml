@@ -9,7 +9,8 @@
   when: groupEditorsCount <= 1 && !multipleEditorGroups
 - key: ctrl+q
   command: workbench.action.moveEditorToNextGroup
-  when: \!multipleEditorGroups
+  when: |-
+    !multipleEditorGroups
 - key: ctrl+q
   command: workbench.action.focusNextGroup
   when: multipleEditorGroups

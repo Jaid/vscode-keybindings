@@ -1,6 +1,7 @@
 - key: f1
   command: workbench.panel.chat.view.copilot.focus
-  when: \!inChat
+  when: |-
+    !inChat
 - key: f1
   command: workbench.panel.chat.view.copilot.focus
   when: inChat && !inChatInput

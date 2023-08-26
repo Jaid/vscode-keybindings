@@ -1,12 +1,15 @@
 - key: ctrl+l
   command: workbench.action.debug.start
-  when: \!inDebugMode && debuggersAvailable
+  when: |-
+    !inDebugMode && debuggersAvailable
 - key: ctrl+l
   command: workbench.action.debug.run
-  when: \!inDebugMode && !debuggersAvailable
+  when: |-
+    !inDebugMode && !debuggersAvailable
 - key: ctrl+shift+l
   command: workbench.action.debug.selectandstart
-  when: \!inDebugMode
+  when: |-
+    !inDebugMode
 - key: ctrl+l
   command: workbench.action.debug.restart
   when: inDebugMode
