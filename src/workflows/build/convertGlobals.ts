@@ -80,6 +80,7 @@ const excludedKeystrokes = [
   `ctrl+shift+f`,
   `ctrl+w`,
   `ctrl+x`,
+  `ctrl+s`,
   [`command`, `editor.action.refactor`],
 ].map(input => new ExclusionRule(input))
 const jsonPath = path.join(`src`, `global.jsonc`)
