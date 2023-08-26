@@ -39,8 +39,9 @@ const categories = [
   `copilot`,
   `launch`,
   `tabs`,
-  "actionsJavascript",
-  "actions"
+  `actionsJavascript`,
+  `actions`,
+  `git`,
 ] as const
 const config: Config = {
   deletedDefaults: {

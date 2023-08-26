@@ -83,6 +83,7 @@ const excludedKeystrokes = [
   `ctrl+s`,
   `ctrl+shift+s`,
   [`command`, `editor.action.refactor`],
+  [`command`, `workbench.action.toggleFullScreen`],
   `f11`,
 ].map(input => new ExclusionRule(input))
 const jsonPath = path.join(`src`, `global.jsonc`)

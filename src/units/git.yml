@@ -1,0 +1,9 @@
+- key: ctrl+g
+  command: workbench.scm.focus
+  when: focusedView != 'workbench.scm'
+- key: ctrl+g
+  command: workbench.action.focusActiveEditorGroup
+  when: focusedView == 'workbench.scm'
+- key: ctrl+g
+  command: workbench.action.files.newUntitledFile
+  when: focusedView == 'workbench.scm' && !editorIsOpen
