@@ -7,3 +7,9 @@
 - key: ctrl+g
   command: workbench.action.files.newUntitledFile
   when: focusedView == 'workbench.scm' && !editorIsOpen
+- key: ctrl+shift+g
+  command: runCommands
+  args:
+    commands:
+      - git.commitAllSigned
+      - git.sync
