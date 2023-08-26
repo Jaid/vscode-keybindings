@@ -5,25 +5,11 @@
   command: runCommands
   args:
     commands:
-      - editor.action.copyLinesUpAction
+      - editor.action.copyLinesDownAction
       - cursorUp
-      - editor.action.commentLine
+      - editor.action.addCommentLine
       - cursorUndo
   when: editorTextFocus && !editorReadonly
-- key: ctrl+shift+w
-  command: workbench.action.closeEditorsInOtherGroups
-  when: editorFocus && multipleEditorGroups && groupEditorsCount == 1
-- key: ctrl+shift+w
-  command: workbench.action.closeGroup
-  when: editorFocus && !multipleEditorGroups && groupEditorsCount == 1
-- key: ctrl+shift+w
-  command: workbench.action.closeOtherEditors
-- key: ctrl+alt+left
-  command: workbench.action.previousEditor
-  when: editorIsOpen && !activeEditorIsFirstInGroup
-- key: ctrl+alt+right
-  command: workbench.action.nextEditor
-  when: editorIsOpen && !activeEditorIsLastInGroup
 - key: ctrl+d
   command: editor.action.duplicateSelection
   when: editorTextFocus && editorHasSelection
@@ -35,12 +21,6 @@
 - key: alt+z
   command: workbench.action.reopenClosedEditor
   when: canReopenClosedEditor
-- key: ctrl+s
-  command: workbench.action.files.save
-  when: editorIsOpen
-- key: ctrl+shift+s
-  command: workbench.action.files.saveAll
-  when: editorIsOpen
 - key: shift+backspace
   command: deleteAllLeft
   when: textInputFocus
@@ -59,3 +39,15 @@
 - key: ctrl+f2
   command: editor.action.refactor
   when: editorTextFocus && !editorReadonly
+- key: ctrl+r
+  command: editor.action.quickFix
+  when: editorTextFocus && !editorReadonly
+- key: ctrl+shift+r
+  command: editor.action.fixAll
+  when: editorTextFocus && !editorReadonly
+- key: ctrl+alt+right
+  command: editor.action.moveCarretRightAction
+  when: editorFocus && !editorReadonly
+- key: ctrl+alt+left
+  command: editor.action.moveCarretLeftAction
+  when: editorFocus && !editorReadonly

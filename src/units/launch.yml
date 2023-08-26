@@ -1,0 +1,33 @@
+- key: ctrl+l
+  command: workbench.action.debug.start
+  when: \!inDebugMode && debuggersAvailable
+- key: ctrl+l
+  command: workbench.action.debug.run
+  when: \!inDebugMode && !debuggersAvailable
+- key: ctrl+shift+l
+  command: workbench.action.debug.selectandstart
+  when: \!inDebugMode
+- key: ctrl+l
+  command: workbench.action.debug.restart
+  when: inDebugMode
+- key: ctrl+shift+l
+  command: workbench.action.debug.stop
+  when: inDebugMode
+- key: f5
+  command: workbench.action.debug.continue
+  when: debugState == 'stopped'
+- key: f5
+  command: workbench.action.debug.pause
+  when: debugState == 'running'
+- key: alt+f5
+  command: workbench.action.debug.stepOver
+  when: debugState == 'stopped'
+- key: ctrl+f5
+  command: workbench.action.debug.stepInto
+  when: debugState != 'inactive'
+- key: ctrl+shift+f5
+  command: workbench.action.debug.stepIntoTarget
+  when: inDebugMode && stepIntoTargetsSupported && debugState == 'stopped'
+- key: shift+f5
+  command: workbench.action.debug.stepOut
+  when: debugState == 'stopped'

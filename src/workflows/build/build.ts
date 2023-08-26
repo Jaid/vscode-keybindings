@@ -33,9 +33,12 @@ const categories = [
   `resetExtensions`,
   `jaid`,
   `editor`,
+  `breakpoints`,
   `explorer`,
   `terminal`,
   `copilot`,
+  `launch`,
+  `tabs`,
 ] as const
 const config: Config = {
   deletedDefaults: {
@@ -54,7 +57,7 @@ for (const category of categories) {
     continue
   }
   const role = `extension`
-  const keystrokes: RawKeybinding[] = await readFileYaml.default(path.join(`src`, `${category}.yml`))
+  const keystrokes: RawKeybinding[] = await readFileYaml.default(path.join(`src`, `units`, `${category}.yml`))
   keystrokes.sort(sortRaw)
   result[category] = {
     role,

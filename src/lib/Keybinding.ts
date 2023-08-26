@@ -51,11 +51,13 @@ const getTitleFromKey = (key: Keybinding['key']) => {
     return titleMap[key]
   }
   if (key.startsWith(`numpad_`)) {
-    return `Numpad ${key.slice(7)}`
+    return `Numpad ${key.slice(7).toUpperCase()}`
+  }
+  if (key.startsWith(`numpad`)) {
+    return `Numpad ${key.slice(6)}`
   }
   return key.toUpperCase()
 }
-
 
 export class Keybinding {
   readonly key: string

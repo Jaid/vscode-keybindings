@@ -1,0 +1,10 @@
+- key: ctrl+b
+  command: editor.debug.action.toggleBreakpoint
+- key: alt+b
+  command: editor.debug.action.editBreakpoint
+- key: ctrl+shift+b
+  command: editor.debug.action.toggleInlineBreakpoint
+- key: ctrl+shift+alt+b
+  command: workbench.debug.viewlet.action.removeAllBreakpoints
+- key: ctrl+alt+b
+  command: workbench.debug.viewlet.action.toggleBreakpointsActivatedAction

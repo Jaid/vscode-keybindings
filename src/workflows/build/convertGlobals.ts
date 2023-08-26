@@ -81,7 +81,9 @@ const excludedKeystrokes = [
   `ctrl+w`,
   `ctrl+x`,
   `ctrl+s`,
+  `ctrl+shift+s`,
   [`command`, `editor.action.refactor`],
+  `f11`,
 ].map(input => new ExclusionRule(input))
 const jsonPath = path.join(`src`, `global.jsonc`)
 const data = await readFileJson.default(jsonPath)
