@@ -71,6 +71,7 @@ export class Keybinding {
     Object.assign(this, data)
   }
   isAddition() {
+    // return !this.key.startsWith(`-`)
     return !this.key.startsWith(`-`)
   }
   asVisualization(): KeyVisualization[] {

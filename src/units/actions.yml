@@ -1,0 +1,10 @@
+- key: ctrl+o
+  command: editor.action.codeAction
+  args:
+    kind: source.fixAll
+  when: \!(supportedCodeAction =~ /(^| )source.fixAll.eslint($| |\.)/) && !(supportedCodeAction =~ /(^| )source.fixAll.ts($| |\.)/) && supportedCodeAction =~ /(^| )source.fixAll($| |\.)/
+- key: ctrl+shift+o
+  command:
+  args:
+    kind: source.removeUnused
+  when: supportedCodeAction =~ /(^| )source.removeUnused($| |\.)/

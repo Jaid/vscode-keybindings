@@ -18,7 +18,7 @@
       - workbench.action.terminal.focus
       - workbench.action.toggleMaximizedPanel
 - key: ctrl+shift+t
-  when: focusedView == 'terminal'
+  when: focusedView == 'terminal' && panelMaximized
   command: runCommands
   args:
     commands:

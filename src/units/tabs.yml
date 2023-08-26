@@ -3,7 +3,10 @@
   when: groupEditorsCount > 1
 - key: ctrl+shift+w
   command: workbench.action.closeGroup
-  when: groupEditorsCount <= 1
+  when: groupEditorsCount == '1' && multipleEditorGroups
+- key: ctrl+shift+w
+  command: workbench.action.closeAllGroups
+  when: groupEditorsCount <= 1 && !multipleEditorGroups
 - key: ctrl+g
   command: workbench.action.moveEditorToNextGroup
   when: \!multipleEditorGroups
