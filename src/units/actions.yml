@@ -9,3 +9,5 @@
   args:
     kind: source.removeUnused
   when: supportedCodeAction =~ /(^| )source.removeUnused($| |\.)/ && !(supportedCodeAction =~ /(^| )source.removeUnused.ts($| |\.)/)
+- key: alt+o
+  command: editor.action.sortLinesAscending
