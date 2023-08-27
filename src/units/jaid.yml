@@ -20,3 +20,19 @@
   command: workbench.action.openWorkspaceSettings
 - key: ctrl+shift+alt+k
   command: workbench.action.openWorkspaceSettingsFile
+- key: ctrl+f11
+  command: workbench.action.reloadWindow
+- key: alt+1
+  command: workbench.action.toggleSidebarVisibility
+- key: alt+2
+  command: workbench.action.toggleAuxiliaryBar
+- key: alt+3
+  command: workbench.action.togglePanel
+- key: alt+4
+  command: workbench.action.toggleActivityBarVisibility
+- key: alt+5
+  command: workbench.action.toggleStatusbarVisibility
+- key: alt+6
+  command: workbench.action.toggleTabsVisibility
+- key: alt+0
+  command: workbench.action.toggleZenMode

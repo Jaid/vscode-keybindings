@@ -34,3 +34,16 @@
 - key: shift+f5
   command: workbench.action.debug.stepOut
   when: debugState == 'stopped'
+- key: f4
+  command: workbench.action.tasks.reRunTask
+  when: |-
+    !taskRunning
+- key: f4
+  command: workbench.action.tasks.terminate
+  when: taskRunning
+- key: ctrl+f4
+  command: workbench.action.tasks.runTask
+- key: ctrl+shift+f4
+  command: workbench.action.tasks.showTasks
+- key: shift+f4
+  command: workbench.action.tasks.showLog
