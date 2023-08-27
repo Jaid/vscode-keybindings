@@ -42,6 +42,7 @@ const categories = [
   `actionsJavascript`,
   `actions`,
   `git`,
+  `gitlens`,
 ] as const
 const config: Config = {
   deletedDefaults: {

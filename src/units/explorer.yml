@@ -21,10 +21,7 @@
   when: focusedView == 'workbench.explorer.fileView' && !explorerResourceIsRoot && !explorerResourceReadonly
 - key: ctrl+n
   command: explorer.newFile
-  when: focusedView == 'workbench.explorer.fileView'
 - key: ctrl+shift+n
   command: explorer.newFolder
-  when: focusedView == 'workbench.explorer.fileView'
-- key: ctrl+d
+- key: alt+n
   command: duplicate.execute
-  when: focusedView == 'workbench.explorer.fileView'

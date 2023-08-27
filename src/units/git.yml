@@ -11,5 +11,15 @@
   command: runCommands
   args:
     commands:
+      - workbench.action.files.saveFiles
       - git.commitAllSigned
       - git.sync
+  when: |-
+    !editorHasSelection
+- key: ctrl+shift+g
+  command: runCommands
+  args:
+    commands:
+      - workbench.action.files.save
+      - git.commitSigned
+  when: editorHasSelection

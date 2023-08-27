@@ -22,5 +22,5 @@
   command: runCommands
   args:
     commands:
-      - workbench.action.togglePanel
+      # - workbench.action.togglePanel
       - workbench.action.focusActiveEditorGroup

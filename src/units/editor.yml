@@ -1,22 +1,23 @@
 - key: ctrl+oem_2
   command: editor.action.commentLine
   when: editorTextFocus
+- key: alt+oem_2
+  command: runCommands
+  args:
+    commands:
+      - editor.action.addCommentLine
+      - editor.action.copyLinesDownAction
+      - cursorDown
+      - editor.action.removeCommentLine
+  when: editorTextFocus && !editorReadonly
 - key: ctrl+shift+oem_2
   command: runCommands
   args:
     commands:
-      - editor.action.copyLinesDownAction
-      - cursorUp
+      - editor.action.insertLineBefore
+      - editor.action.reindentselectedlines
       - editor.action.addCommentLine
-      - cursorUndo
-  when: editorTextFocus && !editorReadonly
-- key: ctrl+d
-  command: editor.action.duplicateSelection
-  when: editorTextFocus && editorHasSelection
-- key: ctrl+d
-  command: editor.action.copyLinesDownAction
-  when: textInputFocus && !editorHasSelection
-- key: ctrl+n
+- key: ctrl+alt+n
   command: workbench.action.files.newUntitledFile
 - key: alt+z
   command: workbench.action.reopenClosedEditor

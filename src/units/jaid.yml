@@ -4,8 +4,6 @@
 - key: ctrl+oem_5
   command: workbench.action.closeQuickOpen
   when: inQuickOpen
-- key: ctrl+alt+oem_5
-  command: workbench.action.quickSwitchWindow
 - key: alt+oem_5
   command: workbench.action.quickOpenView
 - key: ctrl+shift+oem_5
