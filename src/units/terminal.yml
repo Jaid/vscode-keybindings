@@ -15,12 +15,8 @@
   command: runCommands
   args:
     commands:
-      - workbench.action.terminal.focus
       - workbench.action.toggleMaximizedPanel
+      - workbench.action.terminal.focus
 - key: ctrl+shift+t
   when: focusedView == 'terminal' && panelMaximized
-  command: runCommands
-  args:
-    commands:
-      # - workbench.action.togglePanel
-      - workbench.action.focusActiveEditorGroup
+  command: workbench.action.terminal.toggleTerminal
