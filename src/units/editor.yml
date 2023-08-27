@@ -7,7 +7,6 @@
     commands:
       - editor.action.addCommentLine
       - editor.action.copyLinesDownAction
-      - cursorDown
       - editor.action.removeCommentLine
   when: editorTextFocus && !editorReadonly
 - key: ctrl+shift+oem_2
@@ -16,7 +15,7 @@
     commands:
       - editor.action.insertLineBefore
       - editor.action.reindentselectedlines
-      - editor.action.addCommentLine
+      - editor.action.commentLine
 - key: ctrl+alt+n
   command: workbench.action.files.newUntitledFile
 - key: alt+z
