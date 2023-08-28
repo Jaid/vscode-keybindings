@@ -2,6 +2,7 @@ import {title} from 'node:process'
 
 import preventStart from 'prevent-start'
 import {firstMatch, Match} from 'super-regex'
+import {Writable} from 'type-fest'
 
 import keySorting from 'lib/keySorting.js'
 
@@ -59,20 +60,57 @@ const getTitleFromKey = (key: Keybinding['key']) => {
   return key.toUpperCase()
 }
 
-export class Keybinding {
-  readonly key: string
-  readonly command: string
-  readonly args?: string[]
-  readonly when?: string
+export default class Keybinding {
+  #setupKeystrokes?: string[]
+  #key: string
+  #command: string
+  #args?: string[]
+  #when?: string
+  #modifierAlt: boolean = false
+  #modifierCtrl: boolean = false
+  #modifierShift: boolean = false
   static fromRaw(raw: RawKeybinding) {
     return new Keybinding(raw)
   }
   constructor(data: RawKeybinding) {
-    Object.assign(this, data)
+    this.#command = data.command
+    if (data.args) {
+      this.#args = data.args
+    }
+    if (data.when) {
+      this.#when = data.when
+    }
+    const keystrokes = data.key.split(/\s+/)
+    const keystroke = keystrokes.at(-1) as string
+    if (keystrokes.length > 1) {
+      this.#setupKeystrokes = keystrokes.slice(0, -1)
+    }
+    const keystrokeParts = keystroke.split(`\\s*+\\*s`)
+    for (const keystrokePart of keystrokeParts) {
+      if (keystrokePart === `ctrl`) {
+        this.#modifierCtrl = true
+        continue
+      }
+      if (keystrokePart === `shift`) {
+        this.#modifierShift = true
+        continue
+      }
+      if (keystrokePart === `alt`) {
+        this.#modifierAlt = true
+        continue
+      }
+      if (this.#key) {
+        throw new Error(`Keybinding “${data.key}” has multiple base keys: “${this.#key}” and “${keystrokePart}”`)
+      }
+      this.#key = keystrokePart
+    }
+  }
+  isCombo() {
+    return this.#setupKeystrokes !== undefined
   }
   isAddition() {
-    // return !this.key.startsWith(`-`)
-    return !this.key.startsWith(`-`)
+    // return !this.#key.startsWith(`-`)
+    return !this.#key.startsWith(`-`)
   }
   asVisualization(): KeyVisualization[] {
     return this.toParts().map(part => {
@@ -105,31 +143,31 @@ export class Keybinding {
     })
   }
   toParts() {
-    return this.key.split(/([ +])/)
+    return this.#key.split(/([ +])/)
   }
   toKeys() {
-    return this.key.split(/[ +]/) as [...string[], string]
+    return this.#key.split(/[ +]/) as [...string[], string]
   }
   toRaw() {
     const raw: RawKeybinding = {
-      key: this.key,
-      command: this.command,
+      key: this.#key,
+      command: this.#command,
     }
-    if (this.args) {
-      raw.args = this.args
+    if (this.#args) {
+      raw.args = this.#args
     }
-    if (this.when) {
-      raw.when = this.when
+    if (this.#when) {
+      raw.when = this.#when
     }
     return raw
   }
   isComplex() {
-    return /[ +]/.test(this.key)
+    return /[ +]/.test(this.#key)
   }
   splitIntoHalves(): HalvesSplit {
-    const result = firstMatch(/(?<prefix>.+[ +])?(?<baseKey>.+)$/, this.key)
+    const result = firstMatch(/(?<prefix>.+[ +])?(?<baseKey>.+)$/, this.#key)
     if (!result) {
-      throw new Error(`Could not split keybinding into halves: ${this.key}`)
+      throw new Error(`Could not split keybinding into halves: ${this.#key}`)
     }
     return result.namedGroups as HalvesSplit
   }
@@ -140,7 +178,7 @@ export class Keybinding {
     return this.splitIntoHalves().prefix
   }
   getLogic() {
-    if (this.command.startsWith(`-`)) {
+    if (this.#command.startsWith(`-`)) {
       return `deletion`
     }
     return `addition`
@@ -193,10 +231,10 @@ export class Keybinding {
     if (thisComplexity !== otherComplexity) {
       return thisComplexity - otherComplexity
     }
-    if (this.command !== other.command) {
-      return collator.compare(this.command, other.command)
+    if (this.#command !== other.#command) {
+      return collator.compare(this.#command, other.#command)
     }
-    return collator.compare(this.when ?? ``, other.when ?? ``)
+    return collator.compare(this.#when ?? ``, other.#when ?? ``)
   }
 }
 

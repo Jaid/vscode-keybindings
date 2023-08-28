@@ -4,7 +4,7 @@ import core from '@actions/core'
 import readFileYaml from 'read-file-yaml'
 
 import getDataFile from 'lib/getDataFile.js'
-import {Keybinding, KeyVisualization, RawKeybinding} from 'lib/Keybinding.js'
+import Keybinding, {KeyVisualization, RawKeybinding} from 'lib/Keybinding.js'
 
 type DataEntry = {
   keystrokes: RawKeybinding[]

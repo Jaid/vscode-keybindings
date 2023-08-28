@@ -4,7 +4,7 @@ import fs from 'fs-extra'
 import readFileYaml from 'read-file-yaml'
 
 import getDataFile from 'lib/getDataFile.js'
-import {Keybinding, KeyVisualization} from 'lib/Keybinding.js'
+import Keybinding, {KeyVisualization} from 'lib/Keybinding.js'
 
 import {Data} from 'src/workflows/build/build.js'
 
