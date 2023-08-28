@@ -1,6 +1,31 @@
 {
   "version": "0.10.0",
+  "type": "module",
+  "name": "vscode-keybindings-reimagined",
+  "description": "Personal keybindings (also removes any default keybindings)",
+  "keywords": [
+    "code-extension",
+    "extension",
+    "keybinding",
+    "keybindings","keymap","keymaps",
+    "keystroke","keystrokes",
+    "reset",
+    "vsce",
+    "vscode",
+    "vscode-extension",
+    "vscode-keybindings",
+    "vsix"
+  ],
   "author": "Jaid <jaid.jsx@gmail.com> (https://github.com/Jaid)",
+  "homepage": "https://github.com/Jaid/vscode-keybindings-reimagined",
+  "funding": "https://github.com/sponsors/jaid",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaid/vscode-keybindings-reimagined"
+  },
+  "engines": {
+    "vscode": "^1.81.0"
+  },
   "devDependencies": {
     "@actions/core": "^1.10.0",
     "@actions/github": "^5.1.1",
@@ -27,30 +52,6 @@
     "build": "tsx src/workflows/build/build.ts",
     "buildExtension": "tsx src/workflows/buildExtension/build.ts",
     "buildHtml": "tsx src/workflows/buildHtml/build.ts"
-  },
-  "name": "vscode-keybindings-reimagined",
-  "type": "module",
-  "description": "Personal keybindings (also removes any default keybindings)",
-  "funding": "https://github.com/sponsors/jaid",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jaid/vscode-keybindings-reimagined"
-  },
-  "homepage": "https://github.com/Jaid/vscode-keybindings-reimagined",
-  "keywords": [
-    "vsce",
-    "vsix",
-    "code-extension",
-    "extension",
-    "vscode",
-    "vscode-extension",
-    "vscode-keybindings",
-    "keybindings",
-    "keybinding",
-    "reset"
-  ],
-  "engines": {
-    "vscode": "^1.81.0"
   },
   "categories": [
     "Keymaps"
