@@ -35,6 +35,7 @@ const categories = [
   `editor`,
   `breakpoints`,
   `explorer`,
+  `outline`,
   `terminal`,
   `copilot`,
   `launch`,

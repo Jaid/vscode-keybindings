@@ -1,0 +1,9 @@
+- key: ctrl+y
+  command: outline.focus
+  when: focusedView != 'workbench.explorer.fileView'
+- key: ctrl+y
+  command: workbench.action.focusActiveEditorGroup
+  when: focusedView == 'outline' && editorIsOpen
+- key: ctrl+y
+  command: workbench.action.files.newUntitledFile
+  when: focusedView == 'outline' && !editorIsOpen

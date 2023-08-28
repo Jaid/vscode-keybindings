@@ -51,3 +51,13 @@
 - key: ctrl+alt+left
   command: editor.action.moveCarretLeftAction
   when: editorFocus && !editorReadonly
+- key: ctrl+oem_period
+  command: editor.action.inlineSuggest.acceptNextLine
+  when: inlineSuggestVisible && !editorReadonly
+- key: ctrl+shift+oem_period
+  command: editor.action.inlineSuggest.showNext
+  when: inlineSuggestVisible
+- key: alt+oem_period
+  command: editor.action.inlineSuggest.trigger
+  when: |-
+    !editorReadonly
