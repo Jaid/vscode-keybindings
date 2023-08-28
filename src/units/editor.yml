@@ -5,17 +5,17 @@
   command: runCommands
   args:
     commands:
-      - editor.action.addCommentLine
-      - editor.action.copyLinesDownAction
-      - editor.action.removeCommentLine
+    - editor.action.addCommentLine
+    - editor.action.copyLinesDownAction
+    - editor.action.removeCommentLine
   when: editorTextFocus && !editorReadonly
 - key: ctrl+shift+oem_2
   command: runCommands
   args:
     commands:
-      - editor.action.insertLineBefore
-      - editor.action.reindentselectedlines
-      - editor.action.commentLine
+    - editor.action.insertLineBefore
+    - editor.action.reindentselectedlines
+    - editor.action.commentLine
 - key: ctrl+alt+n
   command: workbench.action.files.newUntitledFile
 - key: alt+z
